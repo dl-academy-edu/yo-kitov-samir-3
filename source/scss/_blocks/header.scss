@@ -1,0 +1,31 @@
+.header {
+  padding: 34px 71px 33px 60px;
+
+  width: 100%;
+  color: $nav;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50px;
+
+    width: 89%;
+    height: 1px;
+
+    background-color: $nav;
+  }
+}
+
+.header__list {
+  display: flex;
+  gap: 21px;
+}
+
+.header__item:first-child {
+  margin-right: auto;
+
+  color: $basic-text;
+  font-weight: 700;
+}

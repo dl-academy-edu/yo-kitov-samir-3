@@ -1,0 +1,151 @@
+@import "fonts";
+@import "_variables.base";
+@import "_mixins";
+
+/*
+  Import vendor libraries
+*/
+@import "vendor/_normalize";
+
+/*
+  Import utils classes and base styles
+*/
+@import "_utils";
+@import "_base";
+
+/*
+  Import all other blocks
+*/
+@import "_blocks/main-title";
+@import "_blocks/container";
+@import "_blocks/footer";
+@import "_blocks/header";
+
+
+/*
+  Ниже пример подключения других блоков
+
+  Каждый новый файл должен отвечать за конкретный блок в терминах БЭМ
+  (https://ru.bem.info/methodology/key-concepts/#%D0%B1%D0%BB%D0%BE%D0%BA)
+
+  Для именования селекторов давайте придерживаться стиля two dashes
+  (https://ru.bem.info/methodology/naming-convention/#%D1%81%D1%82%D0%B8%D0%BB%D1%8C-two-dashes)
+  block-name__element-name--modificator
+*/
+
+/*
+  Код ниже нужно удалить, он добавлен просто для примера
+  Не стал выносить в отдельный файл, но если бы блок coming-soon действительно был бы нужен,
+  то он должен был бы быть в файле _blocks/coming-soon.scss
+*/
+
+//*index*//
+//banner
+.banner {
+  padding: 0 69px 0 50px;
+  margin: 38px auto 0;
+}
+
+.banner__title {
+  display: inline-block;
+  max-width: min-content;
+}
+
+.banner__sub-title {
+  display: inline-block;
+  max-width: 250px;
+  margin: 65px 0 45px 36px;
+
+  font-size: inherit;
+}
+
+//slider
+.slider {
+  overflow: hidden;
+}
+
+.slider__list {
+  display: flex;
+  position: relative;
+
+  transition: margin-left 0.4s;
+}
+
+.slider__item {
+  min-width: 100%;
+}
+
+//controls
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 29px;
+}
+
+.controls__arrow {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  border: 3px solid $basic-text;
+
+  position: relative;
+
+  &:after {
+    content: "";
+    width: 16px;
+    height: 16px;
+
+    border-top: 3px solid $basic-text;
+    border-left: 3px solid $basic-text;
+
+    position: absolute;
+  }
+}
+
+.controls__arrow--left {
+  &:after {
+    transform: rotate(-45deg);
+
+    left: 14px;
+    top: 11px;
+  }
+}
+
+.controls__arrow--right {
+  &:after {
+    transform: rotate(135deg);
+
+    left: 6px;
+    top: 11px;
+  }
+}
+
+.controls__list {
+  display: flex;
+  gap: 7px;
+}
+
+.controls__item {
+
+}
+
+.controls__item--active {
+
+}
+
+.controls__item--active .controls__button {
+  background-color: $basic-text;
+}
+
+.controls__button {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background-color: $nav;
+}
+
