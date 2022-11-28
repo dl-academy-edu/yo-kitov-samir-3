@@ -46,6 +46,17 @@ register: "Register"
             <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
                  alt="фотография девушки">
           </picture>
+          <p>0</p>
+        </li>
+
+        <li class="slider__item slider__item--disabled">
+          <picture>
+            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
+            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
+            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
+                 alt="фотография девушки">
+          </picture>
+          <p>1</p>
         </li>
 
         <li class="slider__item">
@@ -55,6 +66,7 @@ register: "Register"
             <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
                  alt="фотография девушки">
           </picture>
+          <p>2</p>
         </li>
 
         <li class="slider__item">
@@ -64,15 +76,7 @@ register: "Register"
             <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
                  alt="фотография девушки">
           </picture>
-        </li>
-
-        <li class="slider__item">
-          <picture>
-            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
-            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
-            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
-                 alt="фотография девушки">
-          </picture>
+          <p>3</p>
         </li>
       </ul>
     </div>
@@ -82,8 +86,8 @@ register: "Register"
               aria-label="Перелестнуть слайдер влево"></button>
 
       <ul class="controls__list">
-        <li class="controls__item controls__item--active">
-          <button class="controls__button"></button>
+        <li class="controls__item">
+          <button class="controls__button controls__button--active"></button>
         </li>
 
         <li class="controls__item">
