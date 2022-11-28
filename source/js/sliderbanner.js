@@ -14,9 +14,10 @@ if (document.querySelector('.slider__list')) {
     counter: 0
   };
 
-  console.log(optionsSlider.start);
   const controls = createControls(parentSlides.children.length, CONTROL, CONTROL_ACTIVE, optionsSlider.start);
 
   parentControls.replaceChildren();
   parentControls.append(...controls);
+
+  [].forEach.call()
 }
