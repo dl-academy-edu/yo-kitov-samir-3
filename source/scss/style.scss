@@ -74,7 +74,7 @@
   min-width: 100%;
   display: block;
 
-  transform: scale(0);
+  transform: rotate(0) scale(0);
   opacity: 0;
   transition: 0.6s;
 
@@ -83,8 +83,8 @@
 }
 
 .slider__item--active {
+  transform: rotate(720deg) scale(1);
   opacity: 1;
-  transform: scale(1);
   transition: 0.6s;
 }
 

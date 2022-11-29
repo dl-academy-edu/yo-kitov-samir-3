@@ -53,8 +53,16 @@ function showSlide({parentSlides, selectorActive, selectorHidden}, numberSlide, 
   }, time);
 }
 
-function setHeightParent(parentSlides, numberSlide) {
-  parentSlides.style.height = parentSlides.children[numberSlide].offsetHeight + 'px';
+function changeCounterArrows({parentSlides, step, visibleSlides, counter}, side) {
+  let count = counter;
+
+  switch (side) {
+    case 'left':
+      return count -= Math.min(step, parentSlides.children.length - (parentSlides.children.length - counter));
+
+    case 'right':
+      return count += Math.min(step, parentSlides.children.length - counter - visibleSlides);
+  }
 }
 
-export {createControls, hideSlide, showSlide, setHeightParent};
+export {createControls, hideSlide, showSlide, changeCounterArrows};
