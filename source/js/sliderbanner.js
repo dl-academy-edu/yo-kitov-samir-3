@@ -1,4 +1,4 @@
-import {createControls, hideSlide, showSlide, changeCounterArrows} from './utils.js';
+import {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive} from './utils.js';
 
 if (document.querySelector('.slider__list')) {
   const parentSlides = document.querySelector('.slider__list');
@@ -36,14 +36,19 @@ if (document.querySelector('.slider__list')) {
     }
   });
 
-  // setHeightParent(parentSlides, optionsSlider.start);
-
   const controls = createControls(parentSlides.children.length, CONTROL_ITEM, BUTTON_ACTIVE, optionsSlider.start);
 
   listControls.replaceChildren();
   listControls.append(...controls);
 
-  // let isCooldown = false;
+  if (localStorage.slide && optionsSlider.start !== Number(localStorage.slide)) {
+    hideSlide(optionsSlide, optionsSlider.start, TIME_HIDE);
+    showSlide(optionsSlide, localStorage.slide, TIME_SHOW);
+    makeDotActive(listControls, optionsSlider.start, localStorage.slide, BUTTON_ACTIVE);
+
+    optionsSlider.prevCounter = localStorage.slide;
+  }
+
   doxControls.addEventListener('click', (e) => {
     const target = e.target;
 
@@ -55,22 +60,11 @@ if (document.querySelector('.slider__list')) {
 
         hideSlide(optionsSlide, optionsSlider.prevCounter, TIME_HIDE);
         showSlide(optionsSlide, data, TIME_SHOW);
+        makeDotActive(listControls, optionsSlider.prevCounter, data, BUTTON_ACTIVE);
 
         optionsSlider.prevCounter = data;
         optionsSlider.counter = data;
-
-        // (function () {
-        //   if (isCooldown) return;
-        //   isCooldown = true;
-
-        // hideSlide(optionsSlide, optionsSlider.prevCounter, 500);
-        // showSlide(optionsSlide, data, 500);
-        //
-        // optionsSlider.prevCounter = data;
-        // optionsSlider.counter = data;
-
-        //   setTimeout(() => isCooldown = false, 510);
-        // })();
+        localStorage.slide = optionsSlider.counter;
       }
     }
 
@@ -78,33 +72,23 @@ if (document.querySelector('.slider__list')) {
       const dataArrow = target.dataset.arrow;
       const numberOfHidden = parentSlides.querySelectorAll(`.${optionsSlide.selectorHidden}`);
 
-      switch (dataArrow) {
-        case 'right':
-          if (numberOfHidden.length === parentSlides.children.length - 1) {
-            optionsSlider.counter = changeCounterArrows(optionsSlider, 'right');
-
-            if (optionsSlider.prevCounter !== optionsSlider.counter) {
-              hideSlide(optionsSlide, optionsSlider.prevCounter, TIME_HIDE);
-              showSlide(optionsSlide, optionsSlider.counter, TIME_SHOW);
-
-              optionsSlider.prevCounter = optionsSlider.counter;
-            }
-          }
-          break;
-
-        case 'left':
-          if (numberOfHidden.length === parentSlides.children.length - 1) {
-            optionsSlider.counter = changeCounterArrows(optionsSlider, 'left');
-
-            if (optionsSlider.prevCounter !== optionsSlider.counter) {
-              hideSlide(optionsSlide, optionsSlider.prevCounter, TIME_HIDE);
-              showSlide(optionsSlide, optionsSlider.counter, TIME_SHOW);
-
-              optionsSlider.prevCounter = optionsSlider.counter;
-            }
-          }
-          break;
+      if (dataArrow === 'right' && numberOfHidden.length === parentSlides.children.length - 1) {
+        optionsSlider.counter = changeCounterArrows(optionsSlider, 'right');
       }
+
+      if (dataArrow === 'left' && numberOfHidden.length === parentSlides.children.length - 1) {
+        optionsSlider.counter = changeCounterArrows(optionsSlider, 'left');
+      }
+
+      if (optionsSlider.prevCounter !== optionsSlider.counter) {
+        hideSlide(optionsSlide, optionsSlider.prevCounter, TIME_HIDE);
+        showSlide(optionsSlide, optionsSlider.counter, TIME_SHOW);
+        makeDotActive(listControls, optionsSlider.prevCounter, optionsSlider.counter, BUTTON_ACTIVE);
+
+        optionsSlider.prevCounter = optionsSlider.counter;
+        localStorage.slide = optionsSlider.counter;
+      }
+
     }
   });
 }

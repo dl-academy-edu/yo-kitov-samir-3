@@ -65,4 +65,13 @@ function changeCounterArrows({parentSlides, step, visibleSlides, counter}, side)
   }
 }
 
-export {createControls, hideSlide, showSlide, changeCounterArrows};
+function makeDotActive(parentDots, prevDot, currentDot, selectorActive) {
+  parentDots.children[prevDot].querySelector('button')
+                              .classList
+                              .remove(selectorActive);
+  parentDots.children[currentDot].querySelector('button')
+                                 .classList
+                                 .add(selectorActive);
+}
+
+export {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive};
