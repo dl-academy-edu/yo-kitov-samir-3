@@ -12,8 +12,8 @@ if (document.querySelector('.slider__list')) {
   const CONTROL_ITEM = '.controls__item';
   const ARROW = '.controls__arrow';
 
-  const TIME_SHOW = 500;
-  const TIME_HIDE = 500;
+  const TIME_SHOW = 800;
+  const TIME_HIDE = 800;
 
   const optionsSlider = {
     parentSlides: parentSlides,
@@ -46,7 +46,8 @@ if (document.querySelector('.slider__list')) {
     showSlide(optionsSlide, localStorage.slide, TIME_SHOW);
     makeDotActive(listControls, optionsSlider.start, localStorage.slide, BUTTON_ACTIVE);
 
-    optionsSlider.prevCounter = localStorage.slide;
+    optionsSlider.prevCounter = Number(localStorage.slide);
+    optionsSlider.counter = Number(localStorage.slide);
   }
 
   doxControls.addEventListener('click', (e) => {
@@ -88,7 +89,6 @@ if (document.querySelector('.slider__list')) {
         optionsSlider.prevCounter = optionsSlider.counter;
         localStorage.slide = optionsSlider.counter;
       }
-
     }
   });
 }
