@@ -1,8 +1,5 @@
-function createControls(numberControls, selectorItem, selectorActive, start) {
+function createControls(numberControls, itemControl, selectorActive, start) {
   const result = [];
-  const itemControl = document.querySelector(selectorItem);
-
-  if (!itemControl) return;
 
   for (let i = 0; i < numberControls; i++) {
     const item = itemControl.cloneNode(true);
@@ -74,4 +71,12 @@ function makeDotActive(parentDots, prevDot, currentDot, selectorActive) {
                                  .add(selectorActive);
 }
 
-export {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive};
+function checkLeftSlide(counter, step) {
+  return counter + 1 - step <= 0;
+}
+
+function checkRightSlide(parentSlides, counter, step) {
+  return counter + step >= parentSlides.children.length;
+}
+
+export {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive, checkLeftSlide, checkRightSlide};

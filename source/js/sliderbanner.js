@@ -1,19 +1,29 @@
-import {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive} from './utils.js';
+import {
+  createControls,
+  hideSlide,
+  showSlide,
+  changeCounterArrows,
+  makeDotActive,
+  checkLeftSlide,
+  checkRightSlide
+} from './utils.js';
 
 if (document.querySelector('.slider__list')) {
   const parentSlides = document.querySelector('.slider__list');
   const listControls = document.querySelector('.controls__list');
+  const itemControl = document.querySelector('.controls__item');
   const doxControls = document.querySelector('.controls');
+  const leftArrow = document.querySelector('.controls__arrow[data-arrow="left"]');
+  const rightArrow = document.querySelector('.controls__arrow[data-arrow="right"]');
 
   const SLIDE_ACTIVE = 'slider__item--active';
   const SLIDE_DISABLED = 'slider__item--disabled';
   const BUTTON_ACTIVE = 'controls__button--active';
   const BUTTON = '.controls__button';
-  const CONTROL_ITEM = '.controls__item';
   const ARROW = '.controls__arrow';
 
-  const TIME_SHOW = 800;
-  const TIME_HIDE = 800;
+  const TIME_SHOW = 500;
+  const TIME_HIDE = 500;
 
   const optionsSlider = {
     parentSlides: parentSlides,
@@ -36,7 +46,7 @@ if (document.querySelector('.slider__list')) {
     }
   });
 
-  const controls = createControls(parentSlides.children.length, CONTROL_ITEM, BUTTON_ACTIVE, optionsSlider.start);
+  const controls = createControls(parentSlides.children.length, itemControl, BUTTON_ACTIVE, optionsSlider.start);
 
   listControls.replaceChildren();
   listControls.append(...controls);
@@ -49,6 +59,8 @@ if (document.querySelector('.slider__list')) {
     optionsSlider.prevCounter = Number(localStorage.slide);
     optionsSlider.counter = Number(localStorage.slide);
   }
+
+  disabledArrow();
 
   doxControls.addEventListener('click', (e) => {
     const target = e.target;
@@ -66,6 +78,8 @@ if (document.querySelector('.slider__list')) {
         optionsSlider.prevCounter = data;
         optionsSlider.counter = data;
         localStorage.slide = optionsSlider.counter;
+
+        disabledArrow();
       }
     }
 
@@ -73,12 +87,16 @@ if (document.querySelector('.slider__list')) {
       const dataArrow = target.dataset.arrow;
       const numberOfHidden = parentSlides.querySelectorAll(`.${optionsSlide.selectorHidden}`);
 
-      if (dataArrow === 'right' && numberOfHidden.length === parentSlides.children.length - 1) {
+      if (dataArrow === 'right' && (numberOfHidden.length === parentSlides.children.length - optionsSlider.step)) {
         optionsSlider.counter = changeCounterArrows(optionsSlider, 'right');
+
+        disabledArrow();
       }
 
-      if (dataArrow === 'left' && numberOfHidden.length === parentSlides.children.length - 1) {
+      if (dataArrow === 'left' && (numberOfHidden.length === parentSlides.children.length - optionsSlider.step)) {
         optionsSlider.counter = changeCounterArrows(optionsSlider, 'left');
+
+        disabledArrow();
       }
 
       if (optionsSlider.prevCounter !== optionsSlider.counter) {
@@ -91,4 +109,9 @@ if (document.querySelector('.slider__list')) {
       }
     }
   });
+
+  function disabledArrow() {
+    leftArrow.disabled = checkLeftSlide(optionsSlider.counter, optionsSlider.step);
+    rightArrow.disabled = checkRightSlide(optionsSlider.parentSlides, optionsSlider.counter, optionsSlider.step);
+  }
 }

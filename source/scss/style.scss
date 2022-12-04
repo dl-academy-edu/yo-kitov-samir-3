@@ -143,6 +143,18 @@
 
     position: absolute;
   }
+
+  &:focus,
+  &:hover,
+  &:focus:after,
+  &:hover:after {
+    border-color: $nav;
+  }
+
+  &:disabled,
+  &:disabled:after {
+    border-color: $dot;
+  }
 }
 
 .controls__arrow--left {
@@ -182,7 +194,12 @@
 
   border-radius: 50%;
 
-  background-color: $nav;
+  background-color: $dot;
+
+  &:hover,
+  &:focus {
+    background-color: $nav;
+  }
 }
 
 .controls__button--active {
@@ -420,7 +437,7 @@
   }
 
   @media (max-width: $media-tablet) {
-    padding: 0 20px
+    padding: 0 20px;
   }
 }
 
@@ -490,12 +507,16 @@
 
   @media (max-width: $media-tablet) {
     margin-top: -181px;
-    padding: 11px 11px 11px
+    padding: 20px 15px;
   }
 }
 
-.portfolio__link {
-  margin-bottom: 15px;
+.portfolio__wrap-link {
+  margin: 0 auto 17px;
+
+  @media (max-width: $media-tablet) {
+    max-width: 160px;
+  }
 }
 
 .portfolio__text {

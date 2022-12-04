@@ -6,6 +6,18 @@
   line-height: 22px;
   font-weight: 700;
 
-  border: 2.5px solid inherit;
+  border: 2.5px solid $basic-text;
   border-radius: 30px;
+
+  &:hover,
+  &:focus {
+    background-color: $basic-text;
+    color: $basic-white;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $dot;
+    border-color: $dot;
+  }
 }

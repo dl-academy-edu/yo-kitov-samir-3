@@ -6,4 +6,13 @@
   line-height: 22px;
 
   border-radius: 30px;
+  border: 2.5px solid $basic-text;
+
+  transition: color $transition-default, background-color $transition-default;
+
+  &:hover,
+  &:focus {
+    background-color: transparent;
+    color: $basic-text;
+  }
 }
