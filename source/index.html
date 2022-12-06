@@ -230,6 +230,92 @@ register: "Register"
 
 @@include('blocks/footer.html')
 
+<section class="sign-in">
+  <form class="sign-in__form form" action="" method="post" name="sign-in">
+    <fieldset class="sign-in__fieldset fieldset">
+      <div class="sign-in__wrap-input wrap-input">
+        <input class="sign-in__input sign-in__input--email input-default" type="email" name="sign-in-email"
+               id="sign-in-email">
+        <label class="sign-in__label sign-in__label--email label" for="sign-in-email">Email <span class="start">*</span></label>
+      </div>
+
+      <div class="sign-in__wrap-input wrap-input">
+        <input class="sign-in__input sign-in__input--password input-default" type="password" name="sign-in-password"
+               id="sign-in-password">
+        <label class="sign-in__label sign-in__label--password label" for="sign-in-password">Password <span
+          class="start">*</span></label>
+      </div>
+
+      <button class="sign-in__submit link" type="submit">Log in</button>
+    </fieldset>
+  </form>
+</section>
+
+<section class="register">
+  <form class="register__form form" action="" method="post" name="register">
+    <fieldset class="register__fieldset fieldset">
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--email input-default" type="email" name="register-email"
+               id="register-email">
+        <label class="register__label register__label--email label" for="register-email">Email <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--email input-default" type="text" name="register-name"
+               id="register-name">
+        <label class="register__label register__label--name label" for="register-name">Name <span class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--surname input-default" type="text" name="register-surname"
+               id="register-surname">
+        <label class="register__label register__label--surname label" for="register-surname">Surname <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--password input-default" type="password" name="register-password"
+               id="register-password">
+        <label class="register__label register__label--password label" for="register-password">Password <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--repeat-password input-default" type="password"
+               name="register-repeat-password"
+               id="register-repeat-password">
+        <label class="register__label register__label--repeat-password label" for="register-repeat-password">Repeat
+          password <span
+            class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--location input-default" type="text" name="register-location"
+               id="register-location">
+        <label class="register__label register__label--location label" for="register-location">Location <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--age input-default" type="text" name="register-age"
+               id="register-age">
+        <label class="register__label register__label--age label" for="register-age">Age <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--agreement visually-hidden" type="checkbox" name="agreement"
+               id="agreement">
+        <label class="register__label register__label--agreement label" for="agreement"><span class="mark"></span>
+          Clicking on the button, you consent to the processing of your personal data.</label>
+      </div>
+
+      <button class="register__submit link" type="submit">Sign up</button>
+    </fieldset>
+  </form>
+</section>
+
 <script src="js/app.js" type="module" defer></script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+.input-default {
+  padding: 13px 14px 12px;
+  border: 2.5px solid $dot;
+
+  &:hover {
+    border-color: $nav;
+  }
+
+  &:focus {
+    border-color: $basic-text;
+  }
+
+  &:invalid {
+    border-color: $button-bad;
+  }
+
+  &:valid {
+    border-color: $button-good;
+  }
+}

@@ -1,0 +1,41 @@
+.mark {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 19px;
+  height: 19px;
+
+  border: 2px solid $dot;
+  border-radius: 3px;
+
+  &:after,
+  &:before {
+    content: "";
+    position: absolute;
+
+    width: 3px;
+
+    background-color: $dot;
+
+    border-radius: 3px;
+  }
+
+  &:after {
+    height: 15px;
+
+    transform: rotate(33deg);
+
+    top: 0;
+    left: 62%;
+  }
+
+  &:before {
+    height: 10px;
+
+    transform: rotate(-33deg);
+
+    top: 29%;
+    left: 26%;
+  }
+}
