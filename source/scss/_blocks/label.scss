@@ -4,6 +4,20 @@
   line-height: 16px;
 
   margin-bottom: 6px;
+}
 
-  position: relative;
+.label--condition {
+  color: $dot;
+
+  cursor: pointer;
+
+  transition: $transition-default;
+
+  &:hover {
+    color: $nav;
+  }
+}
+
+input[data-checkbox="checkbox"]:checked ~ .label {
+  color: $basic-text;
 }

@@ -480,10 +480,15 @@
 .header__item:first-child {
   margin-right: auto;
 
-  font-weight: 700;
+  @media (max-width: $media-tablet) {
+    margin-right: 0
+  }
+}
 
+.header__item--active {
   & .header__link {
     color: $basic-text;
+    font-weight: 700;
 
     transition: color $transition-default;
   }
@@ -491,10 +496,6 @@
   & .header__link:hover,
   & .header__link:focus {
     color: $nav;
-  }
-
-  @media (max-width: $media-tablet) {
-    margin-right: 0
   }
 }
 

@@ -9,6 +9,8 @@
   border: 2.5px solid $basic-text;
   border-radius: 30px;
 
+  transition: background-color $transition-default, color $transition-default;
+
   &:hover,
   &:focus {
     background-color: $basic-text;

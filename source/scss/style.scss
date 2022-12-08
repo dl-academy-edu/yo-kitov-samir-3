@@ -27,7 +27,7 @@
 @import "_blocks/star";
 @import "_blocks/wrap-input";
 @import "_blocks/input-default";
-@import "_blocks/mark";
+@import "_blocks/custom-checkbox";
 @import "_blocks/container";
 @import "_blocks/footer";
 @import "_blocks/header";
@@ -560,6 +560,8 @@
 .register__wrap-input {
   width: 48.3%;
 
+  position: relative;
+
   &:last-of-type,
   &:first-of-type {
     width: 100%;
@@ -571,9 +573,64 @@
 }
 
 .register__label--agreement {
-  color: $dot;
+  padding-left: 34px;
+}
 
-  &:hover {
-    color: $nav;
+//message
+.message {
+  margin-bottom: 40px;
+}
+
+.message__form {
+  max-width: 680px;
+}
+
+.message__fieldset {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.message__wrap-input {
+  position: relative;
+  width: 48.3%;
+
+  &:nth-last-of-type(-n+2) {
+    min-width: 100%;
   }
+}
+
+.message__input--text {
+  min-height: 150px;
+}
+
+.message__label--agreement-message {
+  padding-left: 35px;
+}
+
+//*profile*//
+.profile__title {
+
+}
+
+.profile__info {
+  display: flex;
+  flex-direction: column;
+
+  align-items: start;
+}
+
+.profile__img {
+  width: 320px;
+  height: 450px;
+  object-fit: none;
+}
+
+.profile__info-title {
+  line-height: 22px;
+  font-weight: 700;
+}
+
+.profile__value {
+  font-weight: 500;
 }

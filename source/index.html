@@ -23,13 +23,22 @@
 </head>
 <body>
 @@include("./blocks/header.html", {
-hrefHome: "#",
-hrefBlog: "#",
-hrefSignIn: "#",
-hrefRegister: "#",
+hrefHome: "",
+classHome: "header__item--active",
+
+hrefBlog: "../profile.html",
 myBlog: "My blog",
+classBlog: "",
+
+hrefProfile: "",
+myProfile: "My profile",
+classProfile: "hidden",
+
 signIn: "Sign in",
-register: "Register"
+classSignIn: "",
+
+register: "Register",
+classRegister: ""
 })
 
 <main>
@@ -305,13 +314,68 @@ register: "Register"
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--agreement visually-hidden" type="checkbox" name="agreement"
-               id="agreement">
-        <label class="register__label register__label--agreement label" for="agreement"><span class="mark"></span>
-          Clicking on the button, you consent to the processing of your personal data.</label>
+        <input class="register__input register__input--agreement visually-hidden"
+               type="checkbox" name="agreement"
+               id="agreement" data-checkbox="checkbox">
+        <label class="register__label register__label--agreement label label--condition" for="agreement">Clicking on the
+          button, you
+          consent to the processing of your personal data.</label>
+        <span class="custom-checkbox" aria-disabled="true"></span>
       </div>
 
       <button class="register__submit link" type="submit">Sign up</button>
+    </fieldset>
+  </form>
+</section>
+
+<section class="message">
+  <form class="message__form form" action="" method="post" name="message">
+    <fieldset class="message__fieldset fieldset">
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--name input-default" type="text" name="message-name"
+               id="message-name">
+        <label class="message__label message__label--name label" for="message-name">What is your name? <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--subject input-default" type="text" name="message-subject"
+               id="message-subject">
+        <label class="message__label message__label--subject label" for="message-subject">Message subject <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--email input-default" type="email" name="message-email"
+               id="message-email">
+        <label class="message__label message__label--email label" for="message-email">Your Email <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--phone input-default" type="text" name="message-phone"
+               id="message-phone">
+        <label class="message__label message__label--phone label" for="message-phone">Your mobile phone <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <textarea class="message__input message__input--text input-default" name="message-text"
+                  id="message-text"></textarea>
+        <label class="message__label message__label--text label"
+               for="message-text">What do you want to discuss with me?</label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="visually-hidden" type="checkbox" name="agreement-message" id="agreement-message"
+               data-checkbox="checkbox">
+        <label class="message__label message__label--agreement-message label label--condition"
+               for="agreement-message">Clicking on the button, you consent to the processing of your personal
+          data.</label>
+        <span class="custom-checkbox" aria-disabled="true"></span>
+      </div>
+
+      <button class="message__submit link" type="submit">Send</button>
     </fieldset>
   </form>
 </section>

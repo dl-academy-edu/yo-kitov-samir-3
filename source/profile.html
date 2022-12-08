@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="google" content="notranslate">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>DL Academy</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <script>
+    var docElement = document.documentElement;
+    docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+  </script>
+
+  <!-- Favicon -->
+
+  <!-- build:css -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+<body>
+@@include("./blocks/header.html", {
+hrefHome: "../index.html",
+classHome: "",
+
+hrefBlog: "",
+myBlog: "My blog",
+classBlog: "",
+
+hrefProfile: "",
+myProfile: "My profile",
+classProfile: "header__item--active",
+
+signIn: "Sign in",
+classSignIn: "hidden",
+
+register: "Register",
+classRegister: "hidden"
+})
+
+<main>
+  <section class="profile">
+    <h1 class="profile__title main-title">My profile</h1>
+
+    <div class="profile__inner-wrap">
+      <img class="profile__img" width="121" height="145" src="./img/svg/no-photo.svg" alt="фотография пользователя">
+
+      <div class="profile__info">
+        <p class="profile__info-title">Name:<span class="profile__value"></span></p>
+        <p class="profile__info-title">Surname:<span class="profile__value"></span></p>
+        <p class="profile__info-title">Email:<span class="profile__value"></span></p>
+        <p class="profile__info-title">Password:<span class="profile__value"></span></p>
+        <p class="profile__info-title">Location:<span class="profile__value"></span></p>
+        <p class="profile__info-title">Age:<span class="profile__value"></span></p>
+
+        <button class="profile__button link">Change password</button>
+        <button class="profile__button link">Change other data</button>
+        <button class="profile__button link">Delete account</button>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+@@include('blocks/footer.html')
+
+<script src="js/app.js" type="module" defer></script>
+
+</body>
+</html>
