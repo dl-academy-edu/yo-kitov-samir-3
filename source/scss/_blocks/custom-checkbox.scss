@@ -6,12 +6,10 @@
   width: 19px;
   height: 19px;
 
-  border: 2px solid $dot;
+  border: 2px solid;
   border-radius: 3px;
 
   cursor: pointer;
-
-  z-index: -1;
 
   transition: border $transition-default;
 
@@ -25,6 +23,8 @@
     position: absolute;
 
     width: 3px;
+
+    color: $basic-text;
 
     border-radius: 3px;
 
@@ -50,20 +50,48 @@
   }
 }
 
+.filters__form .custom-checkbox {
+  width: 25px;
+  height: 25px;
+
+  &:before {
+    top: 28%;
+    left: 26%;
+  }
+
+  &:after {
+    top: 13%;
+    left: 55%;
+  }
+}
+
 .label--condition:hover ~ .custom-checkbox {
   border-color: $nav;
 }
 
+input[data-checkbox="checkbox"] ~ .custom-checkbox {
+  border-color: $dot;
+}
 
 input[data-checkbox="checkbox"]:checked ~ .custom-checkbox {
   border-color: $basic-text;
 }
 
-input[data-checkbox="checkbox"]:focus ~ .custom-checkbox {
-  outline: 2px solid $button-good;
-}
-
 input[data-checkbox="checkbox"]:checked ~ .custom-checkbox:before,
 input[data-checkbox="checkbox"]:checked ~ .custom-checkbox:after {
   background-color: $basic-text;
+}
+
+input[data-checkbox="checkbox-blue"]:checked ~ .custom-checkbox:before,
+input[data-checkbox="checkbox-blue"]:checked ~ .custom-checkbox:after {
+  background-color: $blue;
+}
+
+input[data-checkbox="checkbox-blue-light"]:checked ~ .custom-checkbox:before,
+input[data-checkbox="checkbox-blue-light"]:checked ~ .custom-checkbox:after {
+  background-color: $blue-light;
+}
+
+input[data-checkbox="checkbox"]:focus ~ .custom-checkbox {
+  outline: 2px solid $button-good;
 }

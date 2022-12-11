@@ -32,7 +32,7 @@ classBlog: "",
 
 hrefProfile: "",
 myProfile: "My profile",
-classProfile: "hidden",
+classProfile: "hide-completely",
 
 signIn: "Sign in",
 classSignIn: "",
@@ -57,7 +57,7 @@ classRegister: ""
           </picture>
         </li>
 
-        <li class="slider__item slider__item--disabled">
+        <li class="slider__item">
           <picture>
             <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
             <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
@@ -239,7 +239,7 @@ classRegister: ""
 
 @@include('blocks/footer.html')
 
-<section class="sign-in">
+<section class="sign-in wrap-form hidden">
   <form class="sign-in__form form" action="" method="post" name="sign-in">
     <fieldset class="sign-in__fieldset fieldset">
       <div class="sign-in__wrap-input wrap-input">
@@ -254,13 +254,13 @@ classRegister: ""
         <label class="sign-in__label sign-in__label--password label" for="sign-in-password">Password <span
           class="start">*</span></label>
       </div>
-
-      <button class="sign-in__submit link" type="submit">Log in</button>
     </fieldset>
+
+    <button class="sign-in__submit link" type="submit">Log in</button>
   </form>
 </section>
 
-<section class="register">
+<section class="register wrap-form hidden">
   <form class="register__form form" action="" method="post" name="register">
     <fieldset class="register__fieldset fieldset">
       <div class="register__wrap-input wrap-input">
@@ -322,13 +322,13 @@ classRegister: ""
           consent to the processing of your personal data.</label>
         <span class="custom-checkbox" aria-disabled="true"></span>
       </div>
-
-      <button class="register__submit link" type="submit">Sign up</button>
     </fieldset>
+
+    <button class="register__submit link" type="submit">Sign up</button>
   </form>
 </section>
 
-<section class="message">
+<section class="message wrap-form hidden">
   <form class="message__form form" action="" method="post" name="message">
     <fieldset class="message__fieldset fieldset">
       <div class="message__wrap-input wrap-input">
@@ -353,7 +353,7 @@ classRegister: ""
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--phone input-default" type="text" name="message-phone"
+        <input class="message__input message__input--phone input-default" type="tel" name="message-phone"
                id="message-phone">
         <label class="message__label message__label--phone label" for="message-phone">Your mobile phone <span
           class="start">*</span></label>
@@ -374,9 +374,9 @@ classRegister: ""
           data.</label>
         <span class="custom-checkbox" aria-disabled="true"></span>
       </div>
-
-      <button class="message__submit link" type="submit">Send</button>
     </fieldset>
+
+    <button class="message__submit link" type="submit">Send</button>
   </form>
 </section>
 

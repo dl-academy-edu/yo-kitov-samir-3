@@ -4,7 +4,7 @@ if (docElement.querySelector('.header__burger-button')) {
 
   const BUTTON_CLOSE = 'header__burger-button--close';
   const BUTTON_OPEN = 'header__burger-button--open';
-  const NAV_DISABLED = 'header__nav--disabled';
+  const NAV_DISABLED = 'hidden';
   const NAV_ACTIVE = 'header__nav--active';
 
   if (!nav.classList.contains(NAV_DISABLED)) {

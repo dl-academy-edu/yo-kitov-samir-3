@@ -12,5 +12,9 @@
 }
 
 .hidden {
+  visibility: hidden;
+}
+
+.hide-completely {
   display: none;
 }

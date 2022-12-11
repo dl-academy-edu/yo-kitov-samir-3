@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="google" content="notranslate">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>DL Academy</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <script>
+    var docElement = document.documentElement;
+    docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+  </script>
+
+  <!-- Favicon -->
+
+  <!-- build:css -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+<body>
+@@include("./blocks/header.html", {
+hrefHome: "../index.html",
+classHome: "",
+
+hrefBlog: "",
+myBlog: "My blog",
+classBlog: "header__item--active",
+
+hrefProfile: "../profile.html",
+myProfile: "My profile",
+classProfile: "",
+
+signIn: "Sign in",
+classSignIn: "hide-completely",
+
+register: "Register",
+classRegister: "hide-completely"
+})
+
+<main>
+  <section class="filters container">
+    <h1 class="filters__title main-title">My blog</h1>
+
+    <form class="filters__form" action="" name="filters" method="get">
+      <fieldset class="filters__fieldset-tags fieldset">
+        <legend class="filters__legend-tags">Tags</legend>
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="blue" id="blue" data-checkbox="checkbox-blue">
+          <label class="filters__label-tag" for="blue">blue</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="blue-light" id="blue-light"
+                 data-checkbox="checkbox-blue-light">
+          <label class="filters__label-tag" for="blue-light">blue-light</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="yellow" id="yellow" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="yellow">yellow</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="green-light" id="green-light" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="green-light">green-light</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="orange" id="orange" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="orange">orange</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="pink" id="pink" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="pink">pink</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="dark-blue" id="dark-blue" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="dark-blue">dark-blue</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-tag">
+          <input class="visually-hidden" type="checkbox" name="green" id="green" data-checkbox="checkbox">
+          <label class="filters__label-tag" for="green">green</label>
+          <span class="custom-checkbox"></span>
+        </div>
+      </fieldset>
+
+
+    </form>
+  </section>
+
+  <section class="blogs">
+    <h2 class="visually-hidden">All blogs</h2>
+  </section>
+</main>
+
+@@include('blocks/footer.html')
+
+<script src="js/app.js" type="module" defer></script>
+</body>
+</html>

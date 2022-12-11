@@ -1,4 +1,13 @@
 .form {
+  width: 100%;
+
   padding: 38px 38px 40px 37px;
   border: 2.5px solid $basic-text;
+
+  background-color: $basic-white;
+
+  @media (max-width: $media-tablet) {
+    padding: 20px;
+    border: none;
+  }
 }

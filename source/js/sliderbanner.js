@@ -17,7 +17,7 @@ if (document.querySelector('.slider__list')) {
   const rightArrow = document.querySelector('.controls__arrow[data-arrow="right"]');
 
   const SLIDE_ACTIVE = 'slider__item--active';
-  const SLIDE_DISABLED = 'slider__item--disabled';
+  const SLIDE_DISABLED = 'hidden';
   const BUTTON_ACTIVE = 'controls__button--active';
   const BUTTON = '.controls__button';
   const ARROW = '.controls__arrow';
