@@ -25,10 +25,12 @@
 @import "_blocks/form";
 @import "_blocks/fieldset";
 @import "_blocks/label";
+@import "_blocks/label-radio";
 @import "_blocks/star";
 @import "_blocks/wrap-input";
 @import "_blocks/input-default";
 @import "_blocks/custom-checkbox";
+@import "_blocks/blog";
 @import "_blocks/container";
 @import "_blocks/footer";
 @import "_blocks/header";
@@ -710,15 +712,20 @@
 //*blog*//
 //filters
 .filters {
-
+  margin: 0 auto 20px;
 }
 
 .filters__title {
-
+  margin-top: 40px;
 }
 
 .filters__form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: start;
+  row-gap: 30px;
 
+  margin-top: 42px;
 }
 
 .filters__legend {
@@ -729,12 +736,15 @@
   margin-bottom: 10px;
 }
 
+//tags
 .filters__fieldset-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
 
   max-width: 115px;
+
+  margin-right: 77px;
 }
 
 .filters__wrap-input-tag {
@@ -758,3 +768,86 @@
   z-index: 2;
 }
 
+//views
+.filters__fieldset-views {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  max-width: 131px;
+
+  margin-right: 70px;
+}
+
+//comments
+.filters__fieldset-comments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+
+  max-width: 75px;
+
+  margin-right: 137px;
+}
+
+.filters__wrap-input-comments {
+  position: relative;
+}
+
+.filters__label-comments {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  color: $basic-text;
+
+  padding: 2px 0 2px 38px;
+}
+
+//show
+.filters__fieldset-show {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin-right: 76px;
+}
+
+//sort
+.filters__fieldset-sort {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  margin-right: 48px;
+}
+
+//reset
+.filters__wrap-reset {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+
+  padding-top: 18px;
+}
+
+.filters__description-reset {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: $dot;
+}
+
+//search
+.search-form {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 29px;
+}
+
+.search-form__search {
+  flex-grow: 1;
+
+  margin-right: 25px;
+}

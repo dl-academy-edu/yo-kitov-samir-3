@@ -49,68 +49,211 @@ classRegister: "hide-completely"
       <fieldset class="filters__fieldset-tags fieldset">
         <legend class="filters__legend">Tags</legend>
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="blue" id="blue" data-checkbox="checkbox-blue">
-          <label class="filters__label-tag" for="blue">blue</label>
+          <input class="visually-hidden" type="checkbox" name="blue" id="blue" data-checkbox="checkbox-blue" checked>
+          <label class="filters__label-tag label--condition" for="blue">blue</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="blue-light" id="blue-light"
                  data-checkbox="checkbox-blue-light">
-          <label class="filters__label-tag" for="blue-light">blue-light</label>
+          <label class="filters__label-tag label--condition" for="blue-light">blue-light</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="yellow" id="yellow" data-checkbox="checkbox-yellow">
-          <label class="filters__label-tag" for="yellow">yellow</label>
+          <label class="filters__label-tag label--condition" for="yellow">yellow</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="green-light" id="green-light"
                  data-checkbox="checkbox-green-light">
-          <label class="filters__label-tag" for="green-light">green-light</label>
+          <label class="filters__label-tag label--condition" for="green-light">green-light</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="orange" id="orange" data-checkbox="checkbox-orange">
-          <label class="filters__label-tag" for="orange">orange</label>
+          <label class="filters__label-tag label--condition" for="orange">orange</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="pink" id="pink" data-checkbox="checkbox-pink">
-          <label class="filters__label-tag" for="pink">pink</label>
+          <input class="visually-hidden" type="checkbox" name="pink" id="pink" data-checkbox="checkbox-pink" checked>
+          <label class="filters__label-tag label--condition" for="pink">pink</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="dark-blue" id="dark-blue"
                  data-checkbox="checkbox-dark-blue">
-          <label class="filters__label-tag" for="dark-blue">dark-blue</label>
+          <label class="filters__label-tag label--condition" for="dark-blue">dark-blue</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
           <input class="visually-hidden" type="checkbox" name="green" id="green" data-checkbox="checkbox-green">
-          <label class="filters__label-tag" for="green">green</label>
+          <label class="filters__label-tag label--condition" for="green">green</label>
           <span class="custom-checkbox"></span>
         </div>
       </fieldset>
 
+      <fieldset class="filters__fieldset-views fieldset">
+        <legend class="filters__legend">Views</legend>
+        <input class="visually-hidden" type="radio" name="views" id="min">
+        <label class="filters__label-views label-radio" for="min">100-500</label>
 
+        <input class="visually-hidden" type="radio" name="views" id="mid" checked>
+        <label class="filters__label-views label-radio" for="mid">500-1000</label>
+
+        <input class="visually-hidden" type="radio" name="views" id="max">
+        <label class="filters__label-views label-radio" for="max">1000-2000</label>
+      </fieldset>
+
+      <fieldset class="filters__fieldset-comments fieldset">
+        <legend class="filters__legend">Comments</legend>
+        <div class="filters__wrap-input-comments wrap-input">
+          <input class="visually-hidden" type="checkbox" name="min" id="comments-min" data-checkbox="checkbox" checked>
+          <label class="filters__label-comments label label--condition" for="comments-min">0</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-comments wrap-input">
+          <input class="visually-hidden" type="checkbox" name="mid" id="comments-mid" data-checkbox="checkbox">
+          <label class="filters__label-comments label label--condition" for="comments-mid">0-1</label>
+          <span class="custom-checkbox"></span>
+        </div>
+
+        <div class="filters__wrap-input-comments wrap-input">
+          <input class="visually-hidden" type="checkbox" name="max" id="comments-max" data-checkbox="checkbox">
+          <label class="filters__label-comments label label--condition" for="comments-max">1-50</label>
+          <span class="custom-checkbox"></span>
+        </div>
+      </fieldset>
+
+      <fieldset class="filters__fieldset-show fieldset">
+        <legend class="filters__legend">How show?</legend>
+        <input class="visually-hidden" type="radio" name="show" id="min-show" checked>
+        <label class="label-radio" for="min-show">show 5</label>
+
+        <input class="visually-hidden" type="radio" name="show" id="max-show">
+        <label class="label-radio" for="max-show">show 10</label>
+      </fieldset>
+
+      <fieldset class="filters__fieldset-sort fieldset">
+        <legend class="filters__legend">Sort by</legend>
+        <input class="visually-hidden" type="radio" name="sort" id="min-sort" checked>
+        <label class="label-radio" for="min-sort">date</label>
+
+        <input class="visually-hidden" type="radio" name="sort" id="mid-sort">
+        <label class="label-radio" for="mid-sort">title</label>
+
+        <input class="visually-hidden" type="radio" name="sort" id="max-sort">
+        <label class="label-radio" for="max-sort">views</label>
+      </fieldset>
+
+      <div class="filters__wrap-reset">
+        <span class="filters__description-reset">reset form</span>
+        <button class="filters__reset link" type="reset">Reset</button>
+      </div>
+    </form>
+
+    <form class="search-form" name="search-form" action="" method="get">
+      <input class="search-form__search input-default" type="search" name="search" id="search">
+      <label class="visually-hidden" for="search">Search</label>
+      <button class="search-form__submit link" type="submit">Search</button>
     </form>
   </section>
 
-  <section class="blogs">
+  <section class="blogs container">
     <h2 class="visually-hidden">All blogs</h2>
+
+    <div class="slider">
+      <ul class="slider__list">
+        <li class="slider__item slider__item--active">
+          <article class="blog">
+            <div class="blog__inner-wrap">
+              <h2 class="blog__title">This is my new dog.</h2>
+
+              <div class="blog__wrap-markers">
+                <span class="blog__marker blog__marker--orange"></span>
+                <span class="blog__marker blog__marker--blue"></span>
+              </div>
+
+              <div class="blog__wrap-info">
+                <time datetime="2020-01-20">20.01.2020</time>
+                <span class="blog__views">223 views</span>
+                <span class="blog__comments">97 comments</span>
+              </div>
+
+              <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+              <a class="blog__link link-border" href="">Go to this post</a>
+            </div>
+
+            <img width="320" height="236" src="./img/post-image.jpg" alt="">
+          </article>
+        </li>
+      </ul>
+    </div>
+
+    <div class="controls">
+      <button class="controls__arrow controls__arrow--left" data-arrow="left"
+              aria-label="Перелестнуть слайдер влево"></button>
+
+      <ul class="controls__list">
+        <li class="controls__item">
+          <button class="controls__button controls__button--active"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+      </ul>
+
+      <button class="controls__arrow controls__arrow--right" data-arrow="right"
+              aria-label="Перелестнуть слайдер вправо"></button>
+    </div>
   </section>
 </main>
 
 @@include('blocks/footer.html')
 
-<script src="js/app.js" type="module" defer></script>
+<template id="blog">
+  <li class="slider__item">
+    <article class="blog">
+      <div class="blog__inner-wrap">
+        <h2 class="blog__title">This is my new dog.</h2>
+
+        <div class="blog__wrap-markers">
+          <span class="blog__marker blog__marker--orange"></span>
+          <span class="blog__marker blog__marker--blue"></span>
+        </div>
+
+        <div class="blog__wrap-info">
+          <time datetime="2020-01-20">20.01.2020</time>
+          <span class="blog__views">223 views</span>
+          <span class="blog__comments">97 comments</span>
+        </div>
+
+
+      </div>
+    </article>
+  </li>
+</template>
+
+<!--<script src="js/app.js" type="module"></script>-->
 </body>
 </html>

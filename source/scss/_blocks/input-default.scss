@@ -13,12 +13,4 @@
   &:focus {
     border-color: $basic-text;
   }
-
-  &:invalid {
-    border-color: $button-bad;
-  }
-
-  &:valid {
-    border-color: $button-good;
-  }
 }
