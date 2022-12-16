@@ -1,0 +1,128 @@
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-top: 29px;
+
+  @media (max-width: $media-desktop) {
+    margin-top: 39px;
+  }
+
+  @media (max-width: $media-tablet) {
+    margin-top: 30px;
+  }
+}
+
+//arrow
+.controls__arrow {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  border: 3px solid $basic-text;
+
+  position: relative;
+
+  &:after {
+    content: "";
+    width: 16px;
+    height: 16px;
+
+    border-top: 3px solid $basic-text;
+    border-left: 3px solid $basic-text;
+
+    position: absolute;
+  }
+
+  &:focus,
+  &:hover,
+  &:focus:after,
+  &:hover:after {
+    border-color: $nav;
+  }
+
+  &:disabled,
+  &:disabled:after {
+    border-color: $dot;
+    cursor: default;
+  }
+}
+
+.controls__arrow--left {
+  &:after {
+    transform: rotate(-45deg);
+
+    left: 14px;
+    top: 11px;
+  }
+}
+
+.controls__arrow--right {
+  &:after {
+    transform: rotate(135deg);
+
+    left: 6px;
+    top: 11px;
+  }
+}
+
+//button
+.controls__list {
+  display: flex;
+  gap: 7px;
+
+  @media (max-width: $media-tablet) {
+    margin-top: 14px;
+  }
+}
+
+.controls__list--blog {
+  gap: 10px;
+}
+
+.controls__button {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background-color: $dot;
+
+  &:hover,
+  &:focus {
+    background-color: $nav;
+  }
+}
+
+.controls__button--active {
+  background-color: $basic-text;
+  cursor: default;
+}
+
+.controls__button--number {
+  width: auto;
+  height: auto;
+
+  border-radius: 0;
+
+  background-color: transparent;
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+
+  color: $dot;
+
+  &:hover,
+  &:focus {
+    color: $nav;
+
+    background-color: transparent;
+  }
+}
+
+.controls__button--number-active {
+  color: $basic-text;
+  cursor: default;
+}

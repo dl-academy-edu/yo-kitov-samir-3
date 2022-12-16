@@ -1,3 +1,7 @@
+.footer--grey {
+  background-color: $about-bg;
+}
+
 .footer__contacts {
   display: flex;
   flex-direction: column;
@@ -13,6 +17,12 @@
 
   @media (max-width: $media-tablet) {
     padding: 43px 1px 61px 0;
+  }
+}
+
+.footer--grey {
+  & .footer__contacts {
+    padding: 59px 3px 61px 0;
   }
 }
 
@@ -48,8 +58,9 @@
 
   @media (max-width: $media-tablet) {
     gap: 10px;
-    
+
     margin-bottom: 40px;
+    padding: 0 7px 0;
   }
 }
 

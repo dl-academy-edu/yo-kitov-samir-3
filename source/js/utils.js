@@ -1,4 +1,4 @@
-function createControls(numberControls, itemControl, selectorActive, start) {
+function createControls(numberControls, itemControl, selectorActive, start, type) {
   const result = [];
 
   for (let i = 0; i < numberControls; i++) {
@@ -7,6 +7,10 @@ function createControls(numberControls, itemControl, selectorActive, start) {
 
     buttonControl.setAttribute('aria-label', `Переключить на ${i + 1} слайдер`);
     buttonControl.dataset.buttonNumber = i.toString();
+
+    if (type === 'numbers') {
+      buttonControl.textContent = i + 1;
+    }
 
     // Делаем все кнопки слайдера не активными
     if (buttonControl.classList.contains(selectorActive)) {

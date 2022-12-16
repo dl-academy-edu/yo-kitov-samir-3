@@ -22,12 +22,16 @@
   line-height: 29px;
 
   grid-row: 3/4;
+
+  margin-bottom: 9px;
 }
 
 .blog__wrap-markers {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+
+  margin-bottom: 9px;
 }
 
 .blog__marker {
@@ -72,14 +76,21 @@
 }
 
 .blog__wrap-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   color: $nav;
+  margin-bottom: 16px;
 }
 
 .blog__text {
   font-weight: 500;
+
+  margin-bottom: 20px;
 }
 
 .blog__link {
