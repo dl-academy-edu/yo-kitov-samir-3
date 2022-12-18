@@ -8,6 +8,14 @@
   z-index: 1;
 }
 
+.filters__form {
+  @media (max-width: $media-mobile) {
+    & .label {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .label--condition {
   color: $dot;
 

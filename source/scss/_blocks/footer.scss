@@ -11,11 +11,11 @@
 
   padding: 59px 21px 61px 0;
 
-  @media (max-width: $media-desktop) {
+  @media (max-width: $media-tablet) {
     padding: 59px 1px 61px 0;
   }
 
-  @media (max-width: $media-tablet) {
+  @media (max-width: $media-mobile) {
     padding: 43px 1px 61px 0;
   }
 }
@@ -29,7 +29,7 @@
 .footer__contacts__title {
   margin-bottom: 22px;
 
-  @media (max-width: $media-tablet) {
+  @media (max-width: $media-mobile) {
     margin-bottom: 11px;
   }
 }
@@ -38,7 +38,7 @@
   max-width: 272px;
   margin-bottom: 31px;
 
-  @media (max-width: $media-tablet) {
+  @media (max-width: $media-mobile) {
     margin-bottom: 41px;
   }
 }
@@ -56,7 +56,7 @@
   max-width: 327px;
   margin-bottom: 41px;
 
-  @media (max-width: $media-tablet) {
+  @media (max-width: $media-mobile) {
     gap: 10px;
 
     margin-bottom: 40px;

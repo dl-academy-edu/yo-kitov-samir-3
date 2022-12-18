@@ -5,6 +5,11 @@
   padding: 20px 0;
 
   border-top: 2px solid $dot;
+
+  @media (max-width: $media-mobile) {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
 }
 
 .blog__inner-wrap {
@@ -15,6 +20,10 @@
   grid-template-rows: repeat(auto-fit, minmax(0, min-content));
 
   padding: 20px;
+
+  @media (max-width: $media-mobile) {
+    padding: 20px 0 20px;
+  }
 }
 
 .blog__title {
@@ -97,4 +106,16 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 22px;
+}
+
+.blog__img {
+  @media (max-width: $media-tablet) {
+    width: 314px;
+    height: 299px;
+  }
+
+  @media (max-width: $media-mobile) {
+    width: 280px;
+    height: 280px;
+  }
 }

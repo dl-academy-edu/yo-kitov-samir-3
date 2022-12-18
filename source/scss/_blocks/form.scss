@@ -6,7 +6,7 @@
 
   background-color: $basic-white;
 
-  @media (max-width: $media-tablet) {
+  @media (max-width: $media-mobile) {
     padding: 20px;
     border: none;
   }

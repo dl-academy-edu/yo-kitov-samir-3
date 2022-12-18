@@ -3,3 +3,11 @@
   padding: 0;
   border: none;
 }
+
+.filters__form {
+  @media (max-width: $media-mobile) {
+    & .fieldset {
+      margin-right: 0;
+    }
+  }
+}
