@@ -21,6 +21,7 @@
   <link href="css/style.min.css" rel="stylesheet">
   <!-- endbuild -->
 </head>
+<!--класс body-blog нужен для позицианирования кнопки бургер на странице блог-->
 <body class="body-blog">
 @@include("./blocks/header.html", {
 hrefHome: "../index.html",
@@ -49,52 +50,57 @@ classRegister: "hide-completely"
       <fieldset class="filters__fieldset-tags fieldset">
         <legend class="filters__legend">Tags</legend>
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="blue" id="blue" data-checkbox="checkbox-blue" checked>
+          <input class="visually-hidden" type="checkbox" value="blue" name="color" id="blue"
+                 data-checkbox="checkbox-blue" checked>
           <label class="filters__label-tag label--condition" for="blue">blue</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="blue-light" id="blue-light"
+          <input class="visually-hidden" type="checkbox" value="blue-light" name="color" id="blue-light"
                  data-checkbox="checkbox-blue-light">
           <label class="filters__label-tag label--condition" for="blue-light">blue-light</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="yellow" id="yellow" data-checkbox="checkbox-yellow">
+          <input class="visually-hidden" type="checkbox" value="yellow" name="color" id="yellow"
+                 data-checkbox="checkbox-yellow">
           <label class="filters__label-tag label--condition" for="yellow">yellow</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="green-light" id="green-light"
+          <input class="visually-hidden" type="checkbox" value="green-light" name="color" id="green-light"
                  data-checkbox="checkbox-green-light">
           <label class="filters__label-tag label--condition" for="green-light">green-light</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="orange" id="orange" data-checkbox="checkbox-orange">
+          <input class="visually-hidden" type="checkbox" value="orange" name="color" id="orange"
+                 data-checkbox="checkbox-orange">
           <label class="filters__label-tag label--condition" for="orange">orange</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="pink" id="pink" data-checkbox="checkbox-pink" checked>
+          <input class="visually-hidden" type="checkbox" value="pink" name="color" id="pink"
+                 data-checkbox="checkbox-pink" checked>
           <label class="filters__label-tag label--condition" for="pink">pink</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="dark-blue" id="dark-blue"
+          <input class="visually-hidden" type="checkbox" value="dark-blue" name="color" id="dark-blue"
                  data-checkbox="checkbox-dark-blue">
           <label class="filters__label-tag label--condition" for="dark-blue">dark-blue</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-tag">
-          <input class="visually-hidden" type="checkbox" name="green" id="green" data-checkbox="checkbox-green">
+          <input class="visually-hidden" type="checkbox" value="green" name="color" id="green"
+                 data-checkbox="checkbox-green">
           <label class="filters__label-tag label--condition" for="green">green</label>
           <span class="custom-checkbox"></span>
         </div>
@@ -102,32 +108,32 @@ classRegister: "hide-completely"
 
       <fieldset class="filters__fieldset-views fieldset">
         <legend class="filters__legend">Views</legend>
-        <input class="visually-hidden" type="radio" name="views" id="min">
+        <input class="visually-hidden" type="radio" value="100-500" name="views" id="min">
         <label class="filters__label-views label-radio" for="min">100-500</label>
 
-        <input class="visually-hidden" type="radio" name="views" id="mid" checked>
+        <input class="visually-hidden" type="radio" value="500-1000" name="views" id="mid" checked>
         <label class="filters__label-views label-radio" for="mid">500-1000</label>
 
-        <input class="visually-hidden" type="radio" name="views" id="max">
+        <input class="visually-hidden" type="radio" value="1000-2000" name="views" id="max">
         <label class="filters__label-views label-radio" for="max">1000-2000</label>
       </fieldset>
 
       <fieldset class="filters__fieldset-comments fieldset">
         <legend class="filters__legend">Comments</legend>
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" name="min" id="comments-min" data-checkbox="checkbox" checked>
+          <input class="visually-hidden" type="checkbox" value="0" name="comments" id="comments-min" data-checkbox="checkbox" checked>
           <label class="filters__label-comments label label--condition" for="comments-min">0</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" name="mid" id="comments-mid" data-checkbox="checkbox">
+          <input class="visually-hidden" type="checkbox" value="0-1" name="comments" id="comments-mid" data-checkbox="checkbox">
           <label class="filters__label-comments label label--condition" for="comments-mid">0-1</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" name="max" id="comments-max" data-checkbox="checkbox">
+          <input class="visually-hidden" type="checkbox" value="1-50" name="comments" id="comments-max" data-checkbox="checkbox">
           <label class="filters__label-comments label label--condition" for="comments-max">1-50</label>
           <span class="custom-checkbox"></span>
         </div>
@@ -135,22 +141,22 @@ classRegister: "hide-completely"
 
       <fieldset class="filters__fieldset-show fieldset">
         <legend class="filters__legend">How show?</legend>
-        <input class="visually-hidden" type="radio" name="show" id="min-show" checked>
+        <input class="visually-hidden" type="radio" value="5" name="show" id="min-show" checked>
         <label class="label-radio" for="min-show">show 5</label>
 
-        <input class="visually-hidden" type="radio" name="show" id="max-show">
+        <input class="visually-hidden" type="radio" value="10" name="show" id="max-show">
         <label class="label-radio" for="max-show">show 10</label>
       </fieldset>
 
       <fieldset class="filters__fieldset-sort fieldset">
         <legend class="filters__legend">Sort by</legend>
-        <input class="visually-hidden" type="radio" name="sort" id="min-sort" checked>
+        <input class="visually-hidden" type="radio" value="date" name="sort" id="min-sort" checked>
         <label class="label-radio" for="min-sort">date</label>
 
-        <input class="visually-hidden" type="radio" name="sort" id="mid-sort">
+        <input class="visually-hidden" type="radio" value="title" name="sort" id="mid-sort">
         <label class="label-radio" for="mid-sort">title</label>
 
-        <input class="visually-hidden" type="radio" name="sort" id="max-sort">
+        <input class="visually-hidden" type="radio" value="views" name="sort" id="max-sort">
         <label class="label-radio" for="max-sort">views</label>
       </fieldset>
 

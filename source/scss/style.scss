@@ -828,6 +828,7 @@
   @media (max-width: $media-mobile) {
     flex-wrap: wrap;
     justify-content: flex-end;
+    align-items: baseline;
 
     grid-column: 1/-1;
   }
@@ -845,7 +846,7 @@
 
 .filters__submit-search {
   @media (max-width: $media-mobile) {
-    margin-top: 20px;
+    margin: 20px 0 0 20px;
   }
 }
 
