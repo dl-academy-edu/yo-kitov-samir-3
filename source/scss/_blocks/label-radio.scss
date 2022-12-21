@@ -1,0 +1,64 @@
+.label-radio {
+  font-weight: 500;
+
+  padding-left: 37px;
+
+  cursor: pointer;
+
+  transition: $transition-default;
+
+  position: relative;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+
+    transition: $transition-default;
+  }
+
+  &:before {
+    width: 25px;
+    height: 25px;
+
+    border: 2.5px solid $dot;
+
+    left: 0;
+  }
+
+  &:after {
+    width: 13px;
+    height: 13px;
+
+    background-color: $dot;
+
+    left: 6px;
+  }
+
+  &:hover {
+    color: $nav;
+
+    &:before {
+      border-color: $nav;
+    }
+
+    &:after {
+      background-color: $nav;
+    }
+  }
+}
+
+input[type="radio"]:checked {
+  & + .label-radio:before {
+    border-color: $basic-text;
+  }
+
+  & + .label-radio:after {
+    background-color: $basic-text;
+  }
+}

@@ -1,0 +1,13 @@
+.link-border {
+  display: inline;
+
+  border-bottom: 1px $nav dashed;
+
+  transition: color $transition-default;
+
+  &:hover {
+    border-bottom: 1px $nav solid;
+
+    color: $basic-text;
+  }
+}

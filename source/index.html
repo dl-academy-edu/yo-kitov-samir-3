@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta name="google" content="notranslate">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>DL Academy</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <script>
+    var docElement = document.documentElement;
+    docElement.className = docElement.className.replace(/\bno-js\b/, '') + ' js';
+  </script>
+
+  <!-- Favicon -->
+
+  <!-- build:css -->
+  <link href="css/style.min.css" rel="stylesheet">
+  <!-- endbuild -->
+</head>
+<body>
+@@include("./blocks/header.html", {
+hrefHome: "",
+classHome: "header__item--active",
+
+hrefBlog: "../blog.html",
+myBlog: "My blog",
+classBlog: "",
+
+hrefProfile: "",
+myProfile: "My profile",
+classProfile: "hide-completely",
+
+signIn: "Sign in",
+classSignIn: "",
+
+register: "Register",
+classRegister: ""
+})
+
+<main>
+  <section class="banner container">
+    <h1 class="banner__title main-title">Antonina Antoninovna</h1>
+    <h2 class="banner__sub-title">Future front-end developer 23 years old, Tolyatti</h2>
+
+    <div class="slider">
+      <ul class="slider__list">
+        <li class="slider__item slider__item--active">
+          <picture>
+            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
+            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
+            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
+                 alt="фотография девушки">
+          </picture>
+        </li>
+
+        <li class="slider__item">
+          <picture>
+            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
+            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
+            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
+                 alt="фотография девушки">
+          </picture>
+        </li>
+
+        <li class="slider__item">
+          <picture>
+            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
+            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
+            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
+                 alt="фотография девушки">
+          </picture>
+        </li>
+
+        <li class="slider__item">
+          <picture>
+            <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
+            <source media="(max-width: 1120px)" srcset="img/girl-tablet.jpg, img/girl-tablet@x2.jpg 2x">
+            <img class="slider__img" width="1000" height="465" src="./img/girl.jpg" srcset="./img/girl@x2.jpg 2x"
+                 alt="фотография девушки">
+          </picture>
+        </li>
+      </ul>
+    </div>
+
+    <div class="controls">
+      <button class="controls__arrow controls__arrow--left" data-arrow="left"
+              aria-label="Перелестнуть слайдер влево"></button>
+
+      <ul class="controls__list">
+        <li class="controls__item">
+          <button class="controls__button controls__button--active"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+        <li class="controls__item">
+          <button class="controls__button"></button>
+        </li>
+
+      </ul>
+
+      <button class="controls__arrow controls__arrow--right" data-arrow="right"
+              aria-label="Перелестнуть слайдер вправо"></button>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="about__inner-wrap container">
+      <h2 class="about__title title">About me</h2>
+
+      <p class="about__text about__text--left">Aliquam tortor molestie turpis est tristique. Congue diam orci amet quis
+        semper ut. Vitae
+        aenean nibh facilisis urna, ultricies euismod nunc. Commodo fringilla sit hendrerit consequat. Vel ac elit vel
+        sagittis.</p>
+      <p class="about__text about__text--right">Tincidunt id quis pellentesque rutrum pretium. Egestas aliquam dictum
+        ipsum nisl, sed
+        pulvinar. Commodo elit sed a fermentum non justo. Etiam platea consectetur.</p>
+      <p class="about__text about__text--left">Quam ipsum odio tellus etiam aliquam dolor ut hendrerit. Felis risus nec
+        vitae nunc
+        ultricies
+        placerat. Nullam nec felis eu id dolor pellentesque tristique. </p>
+    </div>
+  </section>
+
+  <section class="skills container">
+    <h2 class="skills__title title">Skills</h2>
+    <p class="sub-title">I work in such programs as</p>
+
+    <ul class="skills__list">
+      <li class="skills__item">
+        <img class="skills__img" src="./img/svg/html.svg" alt="логтип HTML 5">
+        <p class="skills__text">HTML 5</p>
+        <span class="skills__progress skills__progress--html">85%</span>
+      </li>
+
+      <li class="skills__item">
+        <img class="skills__img" src="./img/svg/css.svg" alt="логтип CSS/SCSS">
+        <p class="skills__text">CSS/SCSS</p>
+        <span class="skills__progress skills__progress--css">55%</span>
+      </li>
+
+      <li class="skills__item">
+        <img class="skills__img" src="./img/svg/js.svg" alt="логтип JavaScript">
+        <p class="skills__text">JavaScript</p>
+        <span class="skills__progress skills__progress--js">5%</span>
+      </li>
+
+      <li class="skills__item">
+        <img class="skills__img" src="./img/svg/git.svg" alt="логтип Git/GitHub">
+        <p class="skills__text">Git/GitHub</p>
+        <span class="skills__progress skills__progress--git">15%</span>
+      </li>
+
+      <li class="skills__item">
+        <img class="skills__img" src="./img/svg/figma.svg" alt="логтип Figma">
+        <p class="skills__text">Figma</p>
+        <span class="skills__progress skills__progress--figma">80%</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="portfolio">
+    <div class="portfolio__inner-wrap container">
+      <h2 class="portfolio__title title">Portfolio</h2>
+
+      <div class="portfolio__slider">
+        <ul class="portfolio__list">
+          <li class="portfolio__item portfolio__item--active">
+            <picture>
+              <source media="(max-width: 767px)"
+                      srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
+              <source media="(max-width: 1120px)"
+                      srcset="img/project-monster-tablet.jpg, img/project-monster-tablet@x2.jpg 2x">
+              <img class="portfolio__img" width="1000" height="604" src="./img/project-monster.jpg"
+                   srcset="./img/project-monster@x2.jpg 2x" alt="скрин-шот проектной выполненого Самиром">
+            </picture>
+            <div class="portfolio__wrap-info">
+              <div class="portfolio__wrap-link">
+                <a class="portfolio__link link-border" href="#">Learning site for DL Academy courses</a>
+              </div>
+              <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS
+                were used. The site is responsive and cross-browser, but without adding interactivity via
+                JavaScript.</p>
+            </div>
+          </li>
+
+          <li class="portfolio__item">
+            <picture>
+              <source media="(max-width: 767px)"
+                      srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
+              <source media="(max-width: 1119px)"
+                      srcset="img/project-monster-tablet.jpg, img/project-monster-tablet@x2.jpg 2x">
+              <img class="portfolio__img" width="1000" height="604" src="./img/project-monster.jpg"
+                   srcset="./img/project-monster@x2.jpg 2x" alt="скрин-шот проектной выполненого Самиром">
+            </picture>
+            <div class="portfolio__wrap-info">
+              <div class="portfolio__wrap-link">
+                <a class="portfolio__link link-border" href="#">Learning site for DL Academy courses</a>
+              </div>
+              <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS
+                were used. The site is responsive and cross-browser, but without adding interactivity via
+                JavaScript.</p>
+            </div>
+          </li>
+
+          <li class="portfolio__item">
+            <picture>
+              <source media="(max-width: 767px)"
+                      srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
+              <source media="(max-width: 1120px)"
+                      srcset="img/project-monster-tablet.jpg, img/project-monster-tablet@x2.jpg 2x">
+              <img class="portfolio__img" width="1000" height="604" src="./img/project-monster.jpg"
+                   srcset="./img/project-monster@x2.jpg 2x" alt="скрин-шот проектной выполненого Самиром">
+            </picture>
+            <div class="portfolio__wrap-info">
+              <div class="portfolio__wrap-link">
+                <a class="portfolio__link link-border" href="#">Learning site for DL Academy courses</a>
+              </div>
+              <p class="portfolio__text">A simple multi-page static site. The design layout was in Figma. HTML and CSS
+                were used. The site is responsive and cross-browser, but without adding interactivity via
+                JavaScript.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+@@include('blocks/footer.html')
+
+<section class="sign-in wrap-form hidden">
+  <form class="sign-in__form form" action="" method="post" name="sign-in">
+    <fieldset class="sign-in__fieldset fieldset">
+      <div class="sign-in__wrap-input wrap-input">
+        <input class="sign-in__input sign-in__input--email input-default" type="email" name="sign-in-email"
+               id="sign-in-email">
+        <label class="sign-in__label sign-in__label--email label" for="sign-in-email">Email <span class="start">*</span></label>
+      </div>
+
+      <div class="sign-in__wrap-input wrap-input">
+        <input class="sign-in__input sign-in__input--password input-default" type="password" name="sign-in-password"
+               id="sign-in-password">
+        <label class="sign-in__label sign-in__label--password label" for="sign-in-password">Password <span
+          class="start">*</span></label>
+      </div>
+    </fieldset>
+
+    <button class="sign-in__submit link" type="submit">Log in</button>
+  </form>
+</section>
+
+<section class="register wrap-form hidden">
+  <form class="register__form form" action="" method="post" name="register">
+    <fieldset class="register__fieldset fieldset">
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--email input-default" type="email" name="register-email"
+               id="register-email">
+        <label class="register__label register__label--email label" for="register-email">Email <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--email input-default" type="text" name="register-name"
+               id="register-name">
+        <label class="register__label register__label--name label" for="register-name">Name <span class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--surname input-default" type="text" name="register-surname"
+               id="register-surname">
+        <label class="register__label register__label--surname label" for="register-surname">Surname <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--password input-default" type="password" name="register-password"
+               id="register-password">
+        <label class="register__label register__label--password label" for="register-password">Password <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--repeat-password input-default" type="password"
+               name="register-repeat-password"
+               id="register-repeat-password">
+        <label class="register__label register__label--repeat-password label" for="register-repeat-password">Repeat
+          password <span
+            class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--location input-default" type="text" name="register-location"
+               id="register-location">
+        <label class="register__label register__label--location label" for="register-location">Location <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--age input-default" type="text" name="register-age"
+               id="register-age">
+        <label class="register__label register__label--age label" for="register-age">Age <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="register__wrap-input wrap-input">
+        <input class="register__input register__input--agreement visually-hidden"
+               type="checkbox" name="agreement"
+               id="agreement" data-checkbox="checkbox">
+        <label class="register__label register__label--agreement label label--condition" for="agreement">Clicking on the
+          button, you
+          consent to the processing of your personal data.</label>
+        <span class="custom-checkbox" aria-disabled="true"></span>
+      </div>
+    </fieldset>
+
+    <button class="register__submit link" type="submit">Sign up</button>
+  </form>
+</section>
+
+<section class="message wrap-form hidden">
+  <form class="message__form form" action="" method="post" name="message">
+    <fieldset class="message__fieldset fieldset">
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--name input-default" type="text" name="message-name"
+               id="message-name">
+        <label class="message__label message__label--name label" for="message-name">What is your name? <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--subject input-default" type="text" name="message-subject"
+               id="message-subject">
+        <label class="message__label message__label--subject label" for="message-subject">Message subject <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--email input-default" type="email" name="message-email"
+               id="message-email">
+        <label class="message__label message__label--email label" for="message-email">Your Email <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="message__input message__input--phone input-default" type="tel" name="message-phone"
+               id="message-phone">
+        <label class="message__label message__label--phone label" for="message-phone">Your mobile phone <span
+          class="start">*</span></label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <textarea class="message__input message__input--text input-default" name="message-text"
+                  id="message-text"></textarea>
+        <label class="message__label message__label--text label"
+               for="message-text">What do you want to discuss with me?</label>
+      </div>
+
+      <div class="message__wrap-input wrap-input">
+        <input class="visually-hidden" type="checkbox" name="agreement-message" id="agreement-message"
+               data-checkbox="checkbox">
+        <label class="message__label message__label--agreement-message label label--condition"
+               for="agreement-message">Clicking on the button, you consent to the processing of your personal
+          data.</label>
+        <span class="custom-checkbox" aria-disabled="true"></span>
+      </div>
+    </fieldset>
+
+    <button class="message__submit link" type="submit">Send</button>
+  </form>
+</section>
+
+<script src="js/app.js" type="module" defer></script>
+</body>
+</html>

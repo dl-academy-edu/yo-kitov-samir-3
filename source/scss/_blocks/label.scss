@@ -1,0 +1,33 @@
+.label {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  margin-bottom: 6px;
+
+  z-index: 1;
+}
+
+.filters__form {
+  @media (max-width: $media-mobile) {
+    & .label {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.label--condition {
+  color: $dot;
+
+  cursor: pointer;
+
+  transition: $transition-default;
+
+  &:hover {
+    color: $nav;
+  }
+}
+
+input[data-checkbox="checkbox"]:checked ~ .label {
+  color: $basic-text;
+}

@@ -1,0 +1,121 @@
+.blog {
+  display: flex;
+  flex-direction: row-reverse;
+
+  padding: 20px 0;
+
+  border-top: 2px solid $dot;
+
+  @media (max-width: $media-mobile) {
+    flex-direction: column-reverse;
+    flex-wrap: wrap;
+  }
+}
+
+.blog__inner-wrap {
+  display: grid;
+  justify-items: flex-start;
+  align-items: flex-start;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, minmax(0, min-content));
+
+  padding: 20px;
+
+  @media (max-width: $media-mobile) {
+    padding: 20px 0 20px;
+  }
+}
+
+.blog__title {
+  font-size: 24px;
+  line-height: 29px;
+
+  grid-row: 3/4;
+
+  margin-bottom: 9px;
+}
+
+.blog__wrap-markers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+
+  margin-bottom: 9px;
+}
+
+.blog__marker {
+  display: block;
+
+  width: 30px;
+  height: 10px;
+
+  border-radius: 5px;
+}
+
+.blog__marker--blue {
+  background-color: $blue;
+}
+
+.blog__marker--blue-light {
+  background-color: $blue-light;
+}
+
+.blog__marker--yellow {
+  background-color: $yellow;
+}
+
+.blog__marker--green-light {
+  background-color: $green-light;
+}
+
+.blog__marker--orange {
+  background-color: $orange;
+}
+
+.blog__marker--pink {
+  background-color: $pink;
+}
+
+.blog__marker--dark-blue {
+  background-color: $dark-blue;
+}
+
+.blog__marker--green {
+  background-color: $green;
+}
+
+.blog__wrap-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: $nav;
+  margin-bottom: 16px;
+}
+
+.blog__text {
+  font-weight: 500;
+
+  margin-bottom: 20px;
+}
+
+.blog__link {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.blog__img {
+  @media (max-width: $media-tablet) {
+    width: 314px;
+    height: 299px;
+  }
+
+  @media (max-width: $media-mobile) {
+    width: 280px;
+    height: 280px;
+  }
+}

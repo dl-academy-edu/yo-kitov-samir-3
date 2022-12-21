@@ -1,0 +1,25 @@
+.link {
+  background-color: $basic-white;
+  padding: 7.5px 17px;
+
+  color: $basic-text;
+  line-height: 22px;
+  font-weight: 700;
+
+  border: 2.5px solid $basic-text;
+  border-radius: 30px;
+
+  transition: background-color $transition-default, color $transition-default;
+
+  &:hover,
+  &:focus {
+    background-color: $basic-text;
+    color: $basic-white;
+  }
+
+  &:disabled {
+    background-color: transparent;
+    color: $dot;
+    border-color: $dot;
+  }
+}
