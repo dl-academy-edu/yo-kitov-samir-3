@@ -52,38 +52,6 @@
   border-radius: 5px;
 }
 
-.blog__marker--blue {
-  background-color: $blue;
-}
-
-.blog__marker--blue-light {
-  background-color: $blue-light;
-}
-
-.blog__marker--yellow {
-  background-color: $yellow;
-}
-
-.blog__marker--green-light {
-  background-color: $green-light;
-}
-
-.blog__marker--orange {
-  background-color: $orange;
-}
-
-.blog__marker--pink {
-  background-color: $pink;
-}
-
-.blog__marker--dark-blue {
-  background-color: $dark-blue;
-}
-
-.blog__marker--green {
-  background-color: $green;
-}
-
 .blog__wrap-info {
   display: flex;
   flex-wrap: wrap;
@@ -109,6 +77,8 @@
 }
 
 .blog__img {
+  max-width: none;
+
   @media (max-width: $media-tablet) {
     width: 314px;
     height: 299px;

@@ -121,19 +121,22 @@ classRegister: "hide-completely"
       <fieldset class="filters__fieldset-comments fieldset">
         <legend class="filters__legend">Comments</legend>
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" value="0" name="comments" id="comments-min" data-checkbox="checkbox" checked>
+          <input class="visually-hidden" type="checkbox" value="0" name="comments" id="comments-min"
+                 data-checkbox="checkbox" checked>
           <label class="filters__label-comments label label--condition" for="comments-min">0</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" value="0-1" name="comments" id="comments-mid" data-checkbox="checkbox">
+          <input class="visually-hidden" type="checkbox" value="0-1" name="comments" id="comments-mid"
+                 data-checkbox="checkbox">
           <label class="filters__label-comments label label--condition" for="comments-mid">0-1</label>
           <span class="custom-checkbox"></span>
         </div>
 
         <div class="filters__wrap-input-comments wrap-input">
-          <input class="visually-hidden" type="checkbox" value="1-50" name="comments" id="comments-max" data-checkbox="checkbox">
+          <input class="visually-hidden" type="checkbox" value="1-50" name="comments" id="comments-max"
+                 data-checkbox="checkbox">
           <label class="filters__label-comments label label--condition" for="comments-max">1-50</label>
           <span class="custom-checkbox"></span>
         </div>
@@ -205,7 +208,14 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <picture>
+                  <source class="blog__img-mobile" media="(max-width: 767px)"
+                          srcset="img/post/post-image-mobile.jpg, img/post/post-image-mobile@x2.jpg 2x">
+                  <source class="blog__img-tablet" media="(max-width: 1119px)"
+                          srcset="img/post/post-image-tablet.jpg, img/post/post-image-tablet@x2.jpg 2x">
+                  <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg"
+                       srcset="img/post/post-image@x2.jpg 2x" alt="">
+                </picture>
               </article>
             </li>
 
@@ -231,7 +241,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -257,7 +267,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -283,7 +293,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -309,141 +319,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-          </ul>
-        </li>
-
-        <li class="slider__item">
-          <ul class="">
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
           </ul>
@@ -473,7 +349,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -499,7 +375,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -525,7 +401,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -551,7 +427,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -577,141 +453,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-          </ul>
-        </li>
-
-        <li class="slider__item">
-          <ul class="">
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
           </ul>
@@ -741,7 +483,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -767,7 +509,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -793,7 +535,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -819,7 +561,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -845,141 +587,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-          </ul>
-        </li>
-
-        <li class="slider__item">
-          <ul class="">
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-              </article>
-            </li>
-
-            <li>
-              <article class="blog">
-                <div class="blog__inner-wrap">
-                  <h2 class="blog__title">This is my new dog.</h2>
-
-                  <div class="blog__wrap-markers">
-                    <span class="blog__marker blog__marker--orange"></span>
-                    <span class="blog__marker blog__marker--blue"></span>
-                  </div>
-
-                  <div class="blog__wrap-info">
-                    <time datetime="2020-01-20">20.01.2020</time>
-                    <span class="blog__views">223 views</span>
-                    <span class="blog__comments">97 comments</span>
-                  </div>
-
-                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-                  <a class="blog__link link-border" href="">Go to this post</a>
-                </div>
-
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
           </ul>
@@ -1009,7 +617,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1035,7 +643,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1061,7 +669,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1087,7 +695,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1113,7 +721,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
           </ul>
@@ -1143,7 +751,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1169,7 +777,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1195,7 +803,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1221,7 +829,7 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
 
@@ -1247,7 +855,409 @@ classRegister: "hide-completely"
                   <a class="blog__link link-border" href="">Go to this post</a>
                 </div>
 
-                <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+          </ul>
+        </li>
+
+        <li class="slider__item">
+          <ul class="">
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+          </ul>
+        </li>
+
+        <li class="slider__item">
+          <ul class="">
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+          </ul>
+        </li>
+
+        <li class="slider__item">
+          <ul class="">
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
+              </article>
+            </li>
+
+            <li>
+              <article class="blog">
+                <div class="blog__inner-wrap">
+                  <h2 class="blog__title">This is my new dog.</h2>
+
+                  <div class="blog__wrap-markers">
+                    <span class="blog__marker blog__marker--orange"></span>
+                    <span class="blog__marker blog__marker--blue"></span>
+                  </div>
+
+                  <div class="blog__wrap-info">
+                    <time datetime="2020-01-20">20.01.2020</time>
+                    <span class="blog__views">223 views</span>
+                    <span class="blog__comments">97 comments</span>
+                  </div>
+
+                  <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+                    tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+                  <a class="blog__link link-border" href="">Go to this post</a>
+                </div>
+
+                <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg" alt="">
               </article>
             </li>
           </ul>
@@ -1261,7 +1271,7 @@ classRegister: "hide-completely"
 
       <ul class="controls__list controls__list--blog">
         <li class="controls__item">
-          <button class="controls__button controls__button--number"></button>
+          <button class="controls__button controls__button--number">1</button>
         </li>
       </ul>
 
@@ -1276,31 +1286,36 @@ class: "footer--grey"
 })
 
 <template id="blog">
-  <li>
-    <article class="blog">
-      <div class="blog__inner-wrap">
-        <h2 class="blog__title">This is my new dog.</h2>
+  <article class="blog">
+    <div class="blog__inner-wrap">
+      <h2 class="blog__title">This is my new dog.</h2>
 
-        <div class="blog__wrap-markers">
-          <span class="blog__marker blog__marker--orange"></span>
-          <span class="blog__marker blog__marker--blue"></span>
-        </div>
+      <ul class="blog__wrap-markers">
+        <li class="blog__marker"></li>
+        <li class="blog__marker"></li>
+      </ul>
 
-        <div class="blog__wrap-info">
-          <time datetime="2020-01-20">20.01.2020</time>
-          <span class="blog__views">223 views</span>
-          <span class="blog__comments">97 comments</span>
-        </div>
-
-        <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
-          tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
-
-        <a class="blog__link link-border" href="">Go to this post</a>
+      <div class="blog__wrap-info">
+        <time class="blog__time" datetime="2020-01-20">20.01.2020</time>
+        <span class="blog__views">223 views</span>
+        <span class="blog__comments">97 comments</span>
       </div>
 
-      <img class="blog__img" width="320" height="236" src="./img/post-image.jpg" alt="">
-    </article>
-  </li>
+      <p class="blog__text">Duis sit odio dui pretium suspendisse malesuada sit leo in. Massa nec eget etiam
+        tellus ac. Sodales nibh pellentesque donec eu ultrices tortor condimentum massa.</p>
+
+      <a class="blog__link link-border" href="">Go to this post</a>
+    </div>
+
+    <picture>
+      <source class="blog__img-mobile" media="(max-width: 767px)"
+              srcset="img/post/post-image-mobile.jpg, img/post/post-image-mobile@x2.jpg 2x">
+      <source class="blog__img-tablet" media="(max-width: 1119px)"
+              srcset="img/post/post-image-tablet.jpg, img/post/post-image-tablet@x2.jpg 2x">
+      <img class="blog__img" width="320" height="236" src="img/post/post-image.jpg"
+           srcset="img/post/post-image@x2.jpg 2x" alt="">
+    </picture>
+  </article>
 </template>
 
 <script src="js/app.js" type="module"></script>

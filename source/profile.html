@@ -75,8 +75,8 @@ classRegister: "hide-completely"
           </li>
         </ul>
 
-        <button class="profile__button link">Change password</button>
-        <button class="profile__button link">Change other data</button>
+        <button class="profile__button profile__button--password link">Change password</button>
+        <button class="profile__button profile__button--data link">Change other data</button>
         <button class="profile__button link">Delete account</button>
       </div>
     </div>
@@ -87,6 +87,8 @@ classRegister: "hide-completely"
 
 <section class="editing-pass wrap-form hidden">
   <form class="editing-pass__form form" name="editing__pass" action="" method="post">
+    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="editing-pass__fieldset fieldset">
       <div class="editing-pass__wrap-input wrap-input">
         <input class="editing-pass__input input-default" name="old-pass" type="password" id="old-pass">
@@ -111,6 +113,8 @@ classRegister: "hide-completely"
 
 <section class="editing-data wrap-form hidden">
   <form class="editing-data__form form" name="editing-data" action="" method="post">
+    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="editing-data__fieldset fieldset">
       <div class="editing-data__wrap-input wrap-input">
         <input class="editing-data__input input-default" type="email" name="email" id="data-email">

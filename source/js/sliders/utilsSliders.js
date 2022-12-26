@@ -83,4 +83,12 @@ function checkRightSlide(parentSlides, counter, step) {
   return counter + step >= parentSlides.children.length;
 }
 
-export {createControls, hideSlide, showSlide, changeCounterArrows, makeDotActive, checkLeftSlide, checkRightSlide};
+export {
+  createControls,
+  hideSlide,
+  showSlide,
+  changeCounterArrows,
+  makeDotActive,
+  checkLeftSlide,
+  checkRightSlide
+};
