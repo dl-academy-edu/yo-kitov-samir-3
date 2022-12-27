@@ -1,4 +1,6 @@
-import {openPopupButtonClick, closePopupKeyup} from './utils-form-profile.js';
+import {
+  formActive
+} from './utils-form-profile.js';
 
 if (document.querySelector('.profile__info')) {
   const wrapButton = document.querySelector('.profile__info');
@@ -11,22 +13,11 @@ if (document.querySelector('.profile__info')) {
     const target = e.target;
 
     if (target.closest('.profile__button--password')) {
-      openPopupButtonClick(formPass, HIDDEN);
+      formActive(formPass, HIDDEN);
     }
 
     if (target.closest('.profile__button--data')) {
-      openPopupButtonClick(formData, HIDDEN);
+      formActive(formData, HIDDEN);
     }
-
-    document.addEventListener('keyup', closePopupKeyup(HIDDEN));
   });
-
-
 }
-
-//
-// function closePopupKeyboard() {
-//   return function () {
-//     const
-//   }
-// }
