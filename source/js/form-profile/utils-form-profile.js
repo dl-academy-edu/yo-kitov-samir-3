@@ -1,4 +1,4 @@
-function formActive(form, classHidden, isValid = true) {
+function formActive(form, classHidden, objEvent) {
   form.parentElement.classList.remove(classHidden);
 
   const buttonCloseForm = form.querySelector('.close-form');
@@ -11,6 +11,12 @@ function formActive(form, classHidden, isValid = true) {
 
     this.removeEventListener('click', closePopupButtonClick);
     form.removeEventListener('keyup', closePopupKeyup);
+
+    if (Object.keys(objEvent).length) {
+      Object.keys(objEvent).forEach((nameElement)=>{
+        objEvent[nameElement].element.removeEventListener(`${objEvent[nameElement].event}`, objEvent[nameElement].callback)
+      })
+    }
   }
 
   function closePopupKeyup(e) {
@@ -19,6 +25,12 @@ function formActive(form, classHidden, isValid = true) {
 
       document.removeEventListener('keyup', closePopupKeyup);
       buttonCloseForm.removeEventListener('click', closePopupButtonClick);
+    }
+
+    if (Object.keys(objEvent).length) {
+      Object.keys(objEvent).forEach((nameElement)=>{
+        objEvent[nameElement].removeEventListener(`${objEvent[nameElement].event}`, objEvent[nameElement].callback)
+      })
     }
   }
 }
