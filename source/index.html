@@ -243,16 +243,16 @@ classRegister: ""
   <form class="sign-in__form form" action="" method="post" name="sign-in">
     <fieldset class="sign-in__fieldset fieldset">
       <div class="sign-in__wrap-input wrap-input">
-        <input class="sign-in__input sign-in__input--email input-default" type="email" name="sign-in-email"
-               id="sign-in-email">
-        <label class="sign-in__label sign-in__label--email label" for="sign-in-email">Email <span class="start">*</span></label>
+        <input class="sign-in__input sign-in__input--email input-default" type="text" name="email"
+               id="sign-in-email" required>
+        <label class="sign-in__label sign-in__label--email label" for="sign-in-email">Email <span class="star">*</span></label>
       </div>
 
       <div class="sign-in__wrap-input wrap-input">
-        <input class="sign-in__input sign-in__input--password input-default" type="password" name="sign-in-password"
-               id="sign-in-password">
+        <input class="sign-in__input sign-in__input--password input-default" type="password" name="password"
+               id="sign-in-password" required>
         <label class="sign-in__label sign-in__label--password label" for="sign-in-password">Password <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
     </fieldset>
 
@@ -264,53 +264,53 @@ classRegister: ""
   <form class="register__form form" action="" method="post" name="register">
     <fieldset class="register__fieldset fieldset">
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="email" name="register-email"
-               id="register-email">
+        <input class="register__input register__input--email input-default" type="text" name="email"
+               id="register-email" required>
         <label class="register__label register__label--email label" for="register-email">Email <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="text" name="register-name"
-               id="register-name">
-        <label class="register__label register__label--name label" for="register-name">Name <span class="start">*</span></label>
+        <input class="register__input register__input--email input-default" type="text" name="name"
+               id="register-name" required>
+        <label class="register__label register__label--name label" for="register-name">Name <span class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--surname input-default" type="text" name="register-surname"
-               id="register-surname">
+        <input class="register__input register__input--surname input-default" type="text" name="surname"
+               id="register-surname" required>
         <label class="register__label register__label--surname label" for="register-surname">Surname <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--password input-default" type="password" name="register-password"
-               id="register-password">
+        <input class="register__input register__input--password input-default" type="password" name="password"
+               id="register-password" required>
         <label class="register__label register__label--password label" for="register-password">Password <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
         <input class="register__input register__input--repeat-password input-default" type="password"
-               name="register-repeat-password"
-               id="register-repeat-password">
+               name="repeat-password"
+               id="register-repeat-password" required>
         <label class="register__label register__label--repeat-password label" for="register-repeat-password">Repeat
           password <span
-            class="start">*</span></label>
+            class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--location input-default" type="text" name="register-location"
-               id="register-location">
+        <input class="register__input register__input--location input-default" type="text" name="location"
+               id="register-location" required>
         <label class="register__label register__label--location label" for="register-location">Location <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--age input-default" type="text" name="register-age"
-               id="register-age">
+        <input class="register__input register__input--age input-default" type="number" name="age"
+               id="register-age" required>
         <label class="register__label register__label--age label" for="register-age">Age <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="register__wrap-input wrap-input">
@@ -332,42 +332,42 @@ classRegister: ""
   <form class="message__form form" action="" method="post" name="message">
     <fieldset class="message__fieldset fieldset">
       <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--name input-default" type="text" name="message-name"
-               id="message-name">
+        <input class="message__input message__input--name input-default" type="text" name="name"
+               id="message-name" required>
         <label class="message__label message__label--name label" for="message-name">What is your name? <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--subject input-default" type="text" name="message-subject"
-               id="message-subject">
+        <input class="message__input message__input--subject input-default" type="text" name="subject"
+               id="message-subject" required>
         <label class="message__label message__label--subject label" for="message-subject">Message subject <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--email input-default" type="email" name="message-email"
-               id="message-email">
+        <input class="message__input message__input--email input-default" type="text" name="email"
+               id="message-email" required>
         <label class="message__label message__label--email label" for="message-email">Your Email <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--phone input-default" type="tel" name="message-phone"
-               id="message-phone">
+        <input class="message__input message__input--phone input-default" type="tel" name="phone"
+               id="message-phone" required>
         <label class="message__label message__label--phone label" for="message-phone">Your mobile phone <span
-          class="start">*</span></label>
+          class="star">*</span></label>
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <textarea class="message__input message__input--text input-default" name="message-text"
+        <textarea class="message__input message__input--text input-default" name="text"
                   id="message-text"></textarea>
         <label class="message__label message__label--text label"
                for="message-text">What do you want to discuss with me?</label>
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="visually-hidden" type="checkbox" name="agreement-message" id="agreement-message"
+        <input class="visually-hidden" type="checkbox" name="agreement" id="agreement-message"
                data-checkbox="checkbox">
         <label class="message__label message__label--agreement-message label label--condition"
                for="agreement-message">Clicking on the button, you consent to the processing of your personal

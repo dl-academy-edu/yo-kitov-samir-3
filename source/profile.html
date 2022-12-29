@@ -86,24 +86,41 @@ classRegister: "hide-completely"
 @@include('blocks/footer.html')
 
 <section class="editing-pass wrap-form hidden">
-  <form class="editing-pass__form form" name="editing__pass" action="" method="post">
+  <form novalidate class="editing-pass__form form" name="editing-pass" action="" method="post">
     <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="editing-pass__fieldset fieldset">
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="old-pass" type="password" id="old-pass">
+        <input class="editing-pass__input input-default" name="old-password" type="password" id="old-pass" required>
         <label class="editing-pass__label label" for="old-pass">Old password <span class="star">*</span></label>
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="new-pass" type="password" id="new-pass">
+        <input class="editing-pass__input input-default" name="new-password" type="password" id="new-pass" required>
         <label class="editing-pass__label label" for="new-pass">New password <span class="star">*</span></label>
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="repeat-pass" type="password" id="repeat-pass">
+        <input class="editing-pass__input input-default" name="repeat-password" type="password" id="repeat-pass">
         <label class="editing-pass__label label" for="repeat-pass">Repeat new password <span
           class="star">*</span></label>
+      </div>
+
+      <div>
+        <input type="email" name="email" required id="">
+      </div>
+
+      <div>
+        <input type="tel" name="email" required id="">
+      </div>
+
+      <div>
+        <input type="radio" name="e" value="no" id="e">
+        <label for="e">e</label>
+        <input type="radio" name="e" value="yes" id="a" required>
+        <label for="a">a</label>
+        <input type="radio" name="e" value="no" id="s">
+        <label for="s">s</label>
       </div>
     </fieldset>
 
@@ -137,7 +154,7 @@ classRegister: "hide-completely"
       </div>
 
       <div class="editing-data__wrap-input wrap-input">
-        <input class="editing-data__input input-default" type="text" name="age" id="data-age">
+        <input class="editing-data__input input-default" type="number" name="age" id="data-age">
         <label class="editing-data__label label" for="data-age">Age</label>
       </div>
 
