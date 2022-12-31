@@ -65,12 +65,10 @@ function createBlog(selectorBlog, {id, title, tags, date, views, commentsCount, 
 
     textBlog.innerHTML = text;
 
-    imgBlog.src = 'photo.desktopPhotoUrl'
-    imgBlog.srcset = `${photo.desktop2xPhotoUrl} 2x`
-    imgTabletBlog.srcset = `${photo.tabletPhotoUrl}, ${photo.tablet2xPhotoUrl} 2x`
-    imgMobileBlog.srcset = `${photo.mobilePhotoUrl}, ${photo.mobile2xPhotoUrl} 2x`
-
-    console.log(getTimeForMan(date));
+    imgBlog.src = 'photo.desktopPhotoUrl';
+    imgBlog.srcset = `${photo.desktop2xPhotoUrl} 2x`;
+    imgTabletBlog.srcset = `${photo.tabletPhotoUrl}, ${photo.tablet2xPhotoUrl} 2x`;
+    imgMobileBlog.srcset = `${photo.mobilePhotoUrl}, ${photo.mobile2xPhotoUrl} 2x`;
 
     return blog;
   }
