@@ -3,7 +3,8 @@ import {
   renderLinks,
   formValidation,
   getObjDataForm,
-  formRequest
+  formRequest,
+  URL
 } from '../utils-form.js';
 
 // import {
@@ -17,12 +18,13 @@ if (document.querySelector('.profile__info')) {
   const formDataModal = document.querySelector('.editing-data__form');
   const modalData = document.querySelector('.editing-data');
 
-  const URL = 'https://academy.directlinedev.com/'
+  const ITEM_OPEN_PASS_MODAL = 'profile__button--password';
+  const ITEM_OPEN_DATA_MODAL = 'profile__button--data';
 
   wrapButton.addEventListener('click', (e) => {
     const target = e.target;
 
-    if (target.closest('.profile__button--password')) {
+    if (target.closest(`.${ITEM_OPEN_PASS_MODAL}`)) {
       const objRemoveEvent = {
         formPassModal: {
           element: formPassModal,
@@ -34,7 +36,7 @@ if (document.querySelector('.profile__info')) {
       formPassModal.addEventListener('submit', formPassSubmission);
     }
 
-    if (target.closest('.profile__button--data')) {
+    if (target.closest(`.${ITEM_OPEN_DATA_MODAL}`)) {
       activeModal(modalData);
       formDataModal.addEventListener('submit', (e) => {
         e.preventDefault();

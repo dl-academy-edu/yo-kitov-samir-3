@@ -1,3 +1,10 @@
+const URL = 'https://academy.directlinedev.com/';
+
+function closeModal(modal, selectorButtonClose) {
+  const button = modal.querySelector(`.${selectorButtonClose}`);
+  button.click();
+}
+
 function activeModal(modal, objEvent, selectorButtonCloseModal = 'close-form', selectorHiddenModal = 'hidden') {
   modal.classList.remove(selectorHiddenModal);
 
@@ -60,7 +67,7 @@ function renderLinks(selectorHiddenItem = 'hide-completely') {
   }
 }
 
-function formValidation(form, selectorErrorMessage = 'error-message', {
+function formValidation(form, {
   regularEmail = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i,
   regularPhone = /(\+7|8)[\s(]?(\d{3})[\s)]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})/g
 } = {}) {
@@ -71,7 +78,7 @@ function formValidation(form, selectorErrorMessage = 'error-message', {
   let errors = {};
 
   //если сообщения с ошибкой гдето есть то удаляем их
-  removeErrorMessages(selectorErrorMessage);
+  removeErrorMessages();
 
   //перебираем все полученные инпуты
   inputs.forEach((input) => {
@@ -135,22 +142,8 @@ function formValidation(form, selectorErrorMessage = 'error-message', {
     }
   });
 
-  //проверяем есть ли у нас ошибки
-  if (Object.keys(errors).length) {
-    //если есть то берём каждый инпут и показываем под его родителем сообщение об ошибке
-    //при помощи самописной функции 'showMessage'
-    Object.keys(errors)
-          .forEach((name) => {
-            const message = createErrorMessage(errors[name].message, selectorErrorMessage);
-            showMessage(errors[name].input, message);
-            errors[name];
-          });
-    //и после показа соощений выходим из функции и возвращяем false
-    return false;
-  }
 
-  //если объект ошибок пуст то выходим из функции и возвращаем true
-  return true;
+  return errorFormHandler(errors, form);
 }
 
 //Эта функция похожа на formValidation и их можно было объединить в одну, но есть формы
@@ -182,11 +175,28 @@ function getObjDataForm(form) {
   return data;
 }
 
-function createErrorMessage(text = '', selectorError) {
+function errorFormHandler(error, form) {
+  //проверяем есть ли у нас ошибки
+  if (Object.keys(error).length) {
+    //если есть то берём каждый инпут и показываем под его родителем сообщение об ошибке
+    //при помощи самописной функции 'showMessage'
+    Object.keys(error)
+          .forEach(key => {
+            const message = createErrorMessage(error[key].message || error[key]);
+            showMessage(form.elements[key], message);
+          });
+    //и после показа соощений выходим из функции и возвращяем false
+    return false;
+  }
+  //если объект ошибок пуст то выходим из функции и возвращаем true
+  return true;
+}
+
+function createErrorMessage(text = '') {
   const div = document.createElement('div');
   const p = document.createElement('p');
 
-  div.classList.add(selectorError);
+  div.classList.add('error-message');
   p.textContent = text;
 
   div.append(p);
@@ -194,28 +204,71 @@ function createErrorMessage(text = '', selectorError) {
 }
 
 function showMessage(target, message) {
+  if (target.length) {
+    target[0].parentElement.classList.add('input-default--invalid-js');
+    target[0].parentElement.after(message);
+    return;
+  }
+
+  target.classList.add('input-default--invalid-js');
   target.parentElement.after(message);
 }
 
-function removeErrorMessages(selectorErrorMessage) {
-  const errors = document.querySelectorAll(`.${selectorErrorMessage}`);
+function removeErrorMessages() {
+  const errors = document.querySelectorAll('.error-message');
+  const errorsInputs = document.querySelectorAll('.input-default--invalid-js');
+
+  if (errorsInputs) {
+    [...errorsInputs].forEach((input) => input.classList.remove('input-default--invalid-js'));
+  }
 
   if (errors) {
     [...errors].forEach((message) => message.remove());
   }
 }
 
+function saveDataUser(data) {
+  localStorage.userId = data.id;
+  localStorage.token = data.token;
+}
+
 function formRequest(url, options) {
-  return fetch(url, options)
+  return fetch(url, options);
+}
+
+function createPreloader() {
+  const div = document.createElement('div');
+  const innerDiv = document.createElement('div');
+
+  div.classList.add('preloader');
+  div.append(innerDiv);
+
+  innerDiv.classList.add('preloader__inner');
+  return div;
+}
+
+function showPreloader() {
+  document.body.append(createPreloader());
+}
+
+function deletePreloader() {
+  const preloader = document.querySelector('.preloader');
+  preloader.remove();
 }
 
 export {
   formValidation,
   createErrorMessage,
+  errorFormHandler,
   showMessage,
   removeErrorMessages,
   getObjDataForm,
   activeModal,
   renderLinks,
-  formRequest
+  formRequest,
+  closeModal,
+  saveDataUser,
+  showPreloader,
+  deletePreloader,
+  URL
 };

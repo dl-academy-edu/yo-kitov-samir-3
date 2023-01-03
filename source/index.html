@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="page-index--js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -240,7 +240,9 @@ classRegister: ""
 @@include('blocks/footer.html')
 
 <section class="sign-in wrap-form hidden">
-  <form class="sign-in__form form" action="" method="post" name="sign-in">
+  <form novalidate class="sign-in__form form" action="" method="post" name="sign-in">
+    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="sign-in__fieldset fieldset">
       <div class="sign-in__wrap-input wrap-input">
         <input class="sign-in__input sign-in__input--email input-default" type="email" name="email"
@@ -261,7 +263,9 @@ classRegister: ""
 </section>
 
 <section class="register wrap-form hidden">
-  <form class="register__form form" action="" method="post" name="register">
+  <form novalidate class="register__form form" action="" method="post" name="register">
+    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="register__fieldset fieldset">
       <div class="register__wrap-input wrap-input">
         <input class="register__input register__input--email input-default" type="email" name="email"
@@ -271,7 +275,7 @@ classRegister: ""
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="email" name="name"
+        <input class="register__input register__input--email input-default" type="name" name="name"
                id="register-name" required>
         <label class="register__label register__label--name label" for="register-name">Name <span class="star">*</span></label>
       </div>
@@ -320,16 +324,18 @@ classRegister: ""
         <label class="register__label register__label--agreement label label--condition" for="agreement">Clicking on the
           button, you
           consent to the processing of your personal data.</label>
-        <span class="custom-checkbox" aria-disabled="true"></span>
+        <span class="custom-checkbox"></span>
       </div>
     </fieldset>
 
-    <button class="register__submit link" type="submit">Sign up</button>
+    <button disabled class="register__submit link" type="submit">Sign up</button>
   </form>
 </section>
 
 <section class="message wrap-form hidden">
-  <form class="message__form form" action="" method="post" name="message">
+  <form novalidate class="message__form form" action="" method="post" name="message">
+    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="message__fieldset fieldset">
       <div class="message__wrap-input wrap-input">
         <input class="message__input message__input--name input-default" type="text" name="name"
@@ -376,7 +382,7 @@ classRegister: ""
       </div>
     </fieldset>
 
-    <button class="message__submit link" type="submit">Send</button>
+    <button disabled class="message__submit link" type="submit">Send</button>
   </form>
 </section>
 

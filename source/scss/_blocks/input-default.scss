@@ -14,3 +14,11 @@
     border-color: $basic-text;
   }
 }
+
+.input-default--invalid-js {
+  border-color: $button-bad;
+}
+
+.input-default--valid-js {
+  border-color: $button-good;
+}
