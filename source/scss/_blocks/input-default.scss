@@ -16,9 +16,9 @@
 }
 
 .input-default--invalid-js {
-  border-color: $button-bad;
+  border: 2.5px solid $button-bad;
 }
 
 .input-default--valid-js {
-  border-color: $button-good;
+  border: 2.5px solid $button-good;
 }

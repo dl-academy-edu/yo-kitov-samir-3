@@ -77,7 +77,7 @@ function formValidation(form, {
   //создаём пустой рбъект ошибок
   let errors = {};
 
-  //если сообщения с ошибкой гдето есть то удаляем их
+  //если сообщения с ошибкой где-то есть то удаляем их
   removeErrorMessages();
 
   //перебираем все полученные инпуты
@@ -142,7 +142,6 @@ function formValidation(form, {
     }
   });
 
-
   return errorFormHandler(errors, form);
 }
 
@@ -176,20 +175,55 @@ function getObjDataForm(form) {
 }
 
 function errorFormHandler(error, form) {
+  //заведем булевую переменную для того чтобы вернуть её из функци
+  let boolean = true;
   //проверяем есть ли у нас ошибки
   if (Object.keys(error).length) {
     //если есть то берём каждый инпут и показываем под его родителем сообщение об ошибке
-    //при помощи самописной функции 'showMessage'
+    //и подсвечиваем сам инпут красным при помощи самописных функций 'createErrorMessage' и 'showMessage'
     Object.keys(error)
           .forEach(key => {
             const message = createErrorMessage(error[key].message || error[key]);
             showMessage(form.elements[key], message);
           });
-    //и после показа соощений выходим из функции и возвращяем false
-    return false;
+    //и после показа соощений меняем значение булевой переменной на false
+    boolean = false;
   }
-  //если объект ошибок пуст то выходим из функции и возвращаем true
-  return true;
+
+  //здесь нам нужно подсветить зеленым инпуты которые заполнены правильно
+  markCorrectInputs(form);
+
+  return boolean;
+}
+
+function markCorrectInputs(form) {
+  //находим все элементы в форме
+  const inputs = [...form.elements];
+
+  //перебераем все элементы формы
+  inputs.forEach((input) => {
+    //проверяем чтобы эти элементы не являлись кнопкой и филдсетом
+    if (input.localName === 'button' || input.localName === 'fieldset') return;
+
+    //в таргете мы смотрим, если в форме есть несколько инпутов с одним именем то скорее
+    //всего это инпут radio или checkbox, в этом случае нам надо будет дальше
+    //подсветить зеленым родительский элемент, а если нет то подсвечивать будем сам инпут
+    const target = form.elements[input.name].length ? input.parentElement : form.elements[input.name];
+
+    //здесь проверяем нет ли на таргете класса с ошибкой, и если нету то подсвечиваем
+    //его зеленым
+    if (!target.classList.contains('input-default--invalid-js')) {
+      target.classList.add('input-default--valid-js');
+    }
+  });
+}
+
+function removeMarkCorrectInputs(form) {
+  const correctInputs = form.querySelectorAll('.input-default--valid-js');
+
+  if (correctInputs) {
+    [...correctInputs].forEach((input) => input.classList.remove('input-default--valid-js'));
+  }
 }
 
 function createErrorMessage(text = '') {
@@ -203,15 +237,12 @@ function createErrorMessage(text = '') {
   return div;
 }
 
-function showMessage(target, message) {
-  if (target.length) {
-    target[0].parentElement.classList.add('input-default--invalid-js');
-    target[0].parentElement.after(message);
-    return;
-  }
+function showMessage(elem, message) {
+  const target = elem.length ? elem[0].parentElement : elem;
 
+  target.classList.remove('input-default--valid-js');
   target.classList.add('input-default--invalid-js');
-  target.parentElement.after(message);
+  target.after(message);
 }
 
 function removeErrorMessages() {
@@ -236,19 +267,19 @@ function formRequest(url, options) {
   return fetch(url, options);
 }
 
-function createPreloader() {
-  const div = document.createElement('div');
-  const innerDiv = document.createElement('div');
-
-  div.classList.add('preloader');
-  div.append(innerDiv);
-
-  innerDiv.classList.add('preloader__inner');
-  return div;
-}
-
 function showPreloader() {
   document.body.append(createPreloader());
+
+  function createPreloader() {
+    const div = document.createElement('div');
+    const innerDiv = document.createElement('div');
+
+    div.classList.add('preloader');
+    div.append(innerDiv);
+
+    innerDiv.classList.add('preloader__inner');
+    return div;
+  }
 }
 
 function deletePreloader() {
@@ -270,5 +301,6 @@ export {
   saveDataUser,
   showPreloader,
   deletePreloader,
+  removeMarkCorrectInputs,
   URL
 };

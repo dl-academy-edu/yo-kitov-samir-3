@@ -1,22 +1,17 @@
 import {
   activeModal,
+  closeModal,
+  deletePreloader,
+  errorFormHandler,
   formValidation,
   getObjDataForm,
-  formRequest,
-  closeModal,
-  saveDataUser,
-  createErrorMessage,
-  showMessage,
-  errorFormHandler,
   removeErrorMessages,
+  saveDataUser,
   showPreloader,
-  deletePreloader,
-  URL
+  removeMarkCorrectInputs
 } from '../utils-form.js';
 
-import {
-  activeButtonSubmit
-} from './utils-form-index.js';
+import {activeButtonSubmit} from './utils-form-index.js';
 
 const pageIndex = document.querySelector('.page-index--js');
 
@@ -72,21 +67,31 @@ if (pageIndex) {
           body: JSON.stringify(data)
         })
           .then((response) => {
-            return response.json();
+            if (response.ok || response.status === 422) {
+              return response.json();
+            } else {
+              throw new Error(`status: ${response.status}`);
+            }
           })
           .then((response) => {
             if (response.success) {
-              closeModal(modalRegister, SELECTOR_BUTTON_CLOSE);
-              saveDataUser(response.data);
-              renderLinks();
               form.reset();
+              removeMarkCorrectInputs(form);
+              closeModal(modalRegister, SELECTOR_BUTTON_CLOSE);
             } else {
               throw response;
             }
           })
           .catch((error) => {
-            removeErrorMessages();
-            errorFormHandler(error.errors, form);
+            if (error.errors) {
+              removeErrorMessages();
+              errorFormHandler(error.errors, form);
+              return;
+            }
+
+            if (error) {
+              console.log(error.message);
+            }
           })
           .finally(() => deletePreloader());
       });
