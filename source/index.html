@@ -21,7 +21,7 @@
   <link href="css/style.min.css" rel="stylesheet">
   <!-- endbuild -->
 </head>
-<body>
+<body class="body-index">
 @@include("./blocks/header.html", {
 hrefHome: "",
 classHome: "header__item--active",
@@ -173,9 +173,9 @@ classRegister: ""
     <div class="portfolio__inner-wrap container">
       <h2 class="portfolio__title title">Portfolio</h2>
 
-      <div class="portfolio__slider">
-        <ul class="portfolio__list">
-          <li class="portfolio__item portfolio__item--active">
+      <div class="swiper">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -194,7 +194,7 @@ classRegister: ""
             </div>
           </li>
 
-          <li class="portfolio__item">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -213,7 +213,7 @@ classRegister: ""
             </div>
           </li>
 
-          <li class="portfolio__item">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -232,6 +232,9 @@ classRegister: ""
             </div>
           </li>
         </ul>
+
+        <button class="swiper-button-prev swiper-arrow" aria-label="переключить слайдер влево"></button>
+        <button class="swiper-button-next swiper-arrow" aria-label="переключить слайдер вправо"></button>
       </div>
     </div>
   </section>
@@ -317,15 +320,6 @@ classRegister: ""
           class="star">*</span></label>
       </div>
 
-      <div>
-        <input type="radio" name="a" id="1">
-        <label for="1">1</label>
-        <input type="radio" name="a" id="2" value="yes" required>
-        <label for="2">2</label>
-        <input type="radio" name="a" id="3">
-        <label for="3">3</label>
-      </div>
-
       <div class="register__wrap-input wrap-input">
         <input class="register__input register__input--agreement visually-hidden"
                type="checkbox" name="agreement"
@@ -337,7 +331,7 @@ classRegister: ""
       </div>
     </fieldset>
 
-    <button disabled class="register__submit link" type="submit">Sign up</button>
+    <button disabled class="register__submit link link--form-margin" type="submit">Sign up</button>
   </form>
 </section>
 
@@ -391,7 +385,7 @@ classRegister: ""
       </div>
     </fieldset>
 
-    <button disabled class="message__submit link" type="submit">Send</button>
+    <button disabled class="message__submit link link--form-margin" type="submit">Send</button>
   </form>
 </section>
 

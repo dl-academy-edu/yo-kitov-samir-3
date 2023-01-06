@@ -1,8 +1,14 @@
-.error-message {
+.message {
   padding: 10px 10px 10px 0;
 
   font-size: 14px;
   line-height: 16px;
+}
 
+.message--error {
   color: $button-bad;
+}
+
+.message--success {
+  color: $button-good;
 }

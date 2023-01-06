@@ -1,14 +1,17 @@
 import {
   activeModal,
   closeModal,
-  deletePreloader,
-  errorFormHandler,
   formValidation,
   getObjDataForm,
-  removeErrorMessages,
+  clearForms,
   saveDataUser,
   showPreloader,
-  removeMarkCorrectInputs
+  deletePreloader,
+  removeMarkedInputs,
+  SELECTOR_MESSAGE_INVALID,
+  INPUT_STATE_SELECTOR_INVALID,
+  SELECTOR_MESSAGE_VALID,
+  INPUT_STATE_SELECTOR_VALID,
 } from '../utils-form.js';
 
 import {activeButtonSubmit} from './utils-form-index.js';
@@ -76,7 +79,7 @@ if (pageIndex) {
           .then((response) => {
             if (response.success) {
               form.reset();
-              removeMarkCorrectInputs(form);
+              clearForms(form);
               closeModal(modalRegister, SELECTOR_BUTTON_CLOSE);
             } else {
               throw response;
@@ -84,8 +87,7 @@ if (pageIndex) {
           })
           .catch((error) => {
             if (error.errors) {
-              removeErrorMessages();
-              errorFormHandler(error.errors, form);
+              formValidation(form, error.errors);
               return;
             }
 

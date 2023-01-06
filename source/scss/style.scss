@@ -16,6 +16,8 @@
 /*
   Import all other blocks
 */
+@import "./node_modules/swiper/swiper";
+@import "_blocks/swiper";
 @import "_blocks/main-title";
 @import "_blocks/title";
 @import "_blocks/link-border";
@@ -34,7 +36,7 @@
 @import "_blocks/input-default";
 @import "_blocks/custom-checkbox";
 @import "_blocks/close-form";
-@import "_blocks/error-message";
+@import "_blocks/message";
 @import "_blocks/blog";
 @import "_blocks/container";
 @import "_blocks/footer";
@@ -337,37 +339,6 @@
   }
 }
 
-.portfolio__list {
-  color: $basic-white;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
-
-.portfolio__item {
-  background-color: $basic-white;
-
-  margin: 0 auto;
-
-  grid-column: 1/2;
-  grid-row: 1/2;
-
-  opacity: 0;
-
-  @media (max-width: $media-tablet) {
-    width: 648px;
-  }
-
-  @media (max-width: $media-mobile) {
-    width: 100%;
-  }
-}
-
-.portfolio__item--active {
-  opacity: 1;
-}
-
 .portfolio__img {
   @media (max-width: $media-tablet) {
     width: 648px;
@@ -437,6 +408,7 @@
 .register__fieldset {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 20px;
 }
 

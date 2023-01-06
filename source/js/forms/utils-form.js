@@ -1,4 +1,11 @@
 const URL = 'https://academy.directlinedev.com/';
+const SUCCESS_MESSAGE = 'All right';
+const SELECTOR_MESSAGE_INVALID = 'message--error';
+const INPUT_STATE_SELECTOR_INVALID = 'input-default--invalid-js';
+const SELECTOR_MESSAGE_VALID = 'message--success';
+const INPUT_STATE_SELECTOR_VALID = 'input-default--valid-js';
+const REGULAR_EMAIL = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
+const REGULAR_PHONE = /(\+7|8)[\s(]?(\d{3})[\s)]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})/g;
 
 function closeModal(modal, selectorButtonClose) {
   const button = modal.querySelector(`.${selectorButtonClose}`);
@@ -67,18 +74,62 @@ function renderLinks(selectorHiddenItem = 'hide-completely') {
   }
 }
 
-function formValidation(form, {
-  regularEmail = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i,
-  regularPhone = /(\+7|8)[\s(]?(\d{3})[\s)]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})/g
-} = {}) {
+function formValidation(form, objError = {}) {
+  let objInvalidInputs;
+
+  //отчищаем все инпуты в форме от пометок и сообщений
+  clearForms(form);
+
+  objInvalidInputs = Object.keys(objError).length ? objError : getInvalidInputs(form);
+  const boolean = errorFormHandler(objInvalidInputs, form);
+
+  const objValidInputs = getValidInputs(form);
+  successFormHandler(objValidInputs, form);
+
+  return boolean;
+}
+
+function clearForms(form, objValid={selectorMessage:SELECTOR_MESSAGE_VALID,
+                                                  inputState:INPUT_STATE_SELECTOR_VALID},
+                          objInvalid={selectorMessage:SELECTOR_MESSAGE_INVALID, inputState:INPUT_STATE_SELECTOR_INVALID}) {
+  removeAllMessages(form, objValid.selectorMessage);
+  removeMarkedInputs(form, objValid.inputState);
+  removeAllMessages(form, objInvalid.selectorMessage);
+  removeMarkedInputs(form, objInvalid.inputState);
+}
+
+function getObjDataForm(form) {
+  const inputs = [...form.elements];
+
+  let data = {};
+
+  inputs.forEach((input) => {
+    if (input.localName === 'button' || input.localName === 'fieldset') return;
+
+    switch (input.type) {
+      case 'radio':
+        const inputsRadio = [...form.elements[input.name]].find((radio) => radio.checked);
+        data[input.name] = inputsRadio.value || '';
+        break;
+
+      case 'file':
+        data[input.name] = input.files[0] || '';
+        break;
+
+      default:
+        data[input.name] = input.value || '';
+    }
+  });
+
+  return data;
+}
+
+function getInvalidInputs(form) {
   //получаем все инпуты формы
   const inputs = [...form.elements];
 
   //создаём пустой рбъект ошибок
   let errors = {};
-
-  //если сообщения с ошибкой где-то есть то удаляем их
-  removeErrorMessages();
 
   //перебираем все полученные инпуты
   inputs.forEach((input) => {
@@ -113,7 +164,7 @@ function formValidation(form, {
           //тогда мы проверяем его значение регулярным выражением, и если проверка не прошла
           //мы складываем в объект ошибок: имя инпута(в качестве свойства), сам инпут
           //и сообщение об ошибке в качестве значения
-          if (!input.value.match(regularEmail)) {
+          if (!input.value.match(REGULAR_EMAIL)) {
             errors[input.name] = {
               input: input,
               message: 'Please enter a valid email address (your entry is not in the format "somebody@example.com")'
@@ -123,7 +174,7 @@ function formValidation(form, {
 
         //здесь тоже самое что и с email только tel
         case 'tel':
-          if (!input.value.match(regularPhone)) {
+          if (!input.value.match(REGULAR_PHONE)) {
             errors[input.name] = {
               input: input,
               message: 'Please enter a valid phone (your entry is not in the format "+7-9xx-xxx-xx-xx" or "8-9xx-xxx-xx-xx")'
@@ -142,95 +193,102 @@ function formValidation(form, {
     }
   });
 
-  return errorFormHandler(errors, form);
+  return errors;
 }
 
-//Эта функция похожа на formValidation и их можно было объединить в одну, но есть формы
-//которые не надо валидировать, а надо собрать только данные, поэтому было принято решение
-//вынести сбор данных в отдельную функцию
-function getObjDataForm(form) {
+function getValidInputs(form, invalidInputStateSelector = INPUT_STATE_SELECTOR_INVALID) {
+  //заводим объект под валидные инпуты
+  let validInputs = {};
+
+  //находим все элементы в форме
   const inputs = [...form.elements];
 
-  let data = {};
+  //перебераем все элементы формы
+  inputs.forEach((elem) => {
+    //проверяем чтобы эти элементы не являлись кнопкой и филдсетом
+    if (elem.localName === 'button' || elem.localName === 'fieldset' || elem.type === 'checkbox') return;
 
-  inputs.forEach((input) => {
-    if (input.localName === 'button' || input.localName === 'fieldset') return;
+    //в таргете мы смотрим, если в форме есть несколько инпутов с одним именем то скорее
+    //всего это инпут radio , в этом случае нам надо будет
+    //подсветить зеленым родительский элемент, а если нет то подсвечивать будем сам инпут
+    const target = form.elements[elem.name].length ? elem.parentElement : form.elements[elem.name];
 
-    switch (input.type) {
-      case 'radio':
-        const inputsRadio = [...form.elements[input.name]].find((radio) => radio.checked);
-        data[input.name] = inputsRadio.value || '';
-        break;
-
-      case 'file':
-        data[input.name] = input.files[0] || '';
-        break;
-
-      default:
-        data[input.name] = input.value || '';
+    //здесь проверяем нет ли на таргете класса с ошибкой, и если нету то это значит что
+    //инпут заполнен коректно и добавляем его в наш объект валидных инпутов
+    if (!target.classList.contains(invalidInputStateSelector)) {
+      validInputs[elem.name] = {
+        input: elem,
+        message: SUCCESS_MESSAGE
+      };
     }
   });
 
-  return data;
+  return validInputs;
 }
 
-function errorFormHandler(error, form) {
+function errorFormHandler(objError, form) {
   //заведем булевую переменную для того чтобы вернуть её из функци
   let boolean = true;
   //проверяем есть ли у нас ошибки
-  if (Object.keys(error).length) {
+  if (Object.keys(objError).length) {
     //если есть то берём каждый инпут и показываем под его родителем сообщение об ошибке
-    //и подсвечиваем сам инпут красным при помощи самописных функций 'createErrorMessage' и 'showMessage'
-    Object.keys(error)
+    //и подсвечиваем сам инпут красным
+    Object.keys(objError)
           .forEach(key => {
-            const message = createErrorMessage(error[key].message || error[key]);
+            const message = createMessage(objError[key].message || objError[key], SELECTOR_MESSAGE_INVALID);
             showMessage(form.elements[key], message);
+            markErrorInput(form.elements[key]);
           });
     //и после показа соощений меняем значение булевой переменной на false
     boolean = false;
   }
 
-  //здесь нам нужно подсветить зеленым инпуты которые заполнены правильно
-  markCorrectInputs(form);
-
   return boolean;
 }
 
-function markCorrectInputs(form) {
-  //находим все элементы в форме
-  const inputs = [...form.elements];
-
-  //перебераем все элементы формы
-  inputs.forEach((input) => {
-    //проверяем чтобы эти элементы не являлись кнопкой и филдсетом
-    if (input.localName === 'button' || input.localName === 'fieldset') return;
-
-    //в таргете мы смотрим, если в форме есть несколько инпутов с одним именем то скорее
-    //всего это инпут radio или checkbox, в этом случае нам надо будет дальше
-    //подсветить зеленым родительский элемент, а если нет то подсвечивать будем сам инпут
-    const target = form.elements[input.name].length ? input.parentElement : form.elements[input.name];
-
-    //здесь проверяем нет ли на таргете класса с ошибкой, и если нету то подсвечиваем
-    //его зеленым
-    if (!target.classList.contains('input-default--invalid-js')) {
-      target.classList.add('input-default--valid-js');
-    }
-  });
-}
-
-function removeMarkCorrectInputs(form) {
-  const correctInputs = form.querySelectorAll('.input-default--valid-js');
-
-  if (correctInputs) {
-    [...correctInputs].forEach((input) => input.classList.remove('input-default--valid-js'));
+function successFormHandler(objSuccess, form) {
+  //проверяем пустой у нас объект или нет
+  if (Object.keys(objSuccess).length) {
+    //если не пустой то берём каждый инпут и показываем под его родителем сообщение, что все
+    //хорошо и подсвечиваем сам инпут зеленым
+    Object.keys(objSuccess)
+          .forEach(key => {
+            const message = createMessage(objSuccess[key].message || objSuccess[key], SELECTOR_MESSAGE_VALID);
+            showMessage(form.elements[key], message);
+            markSuccessInput(form.elements[key]);
+          });
   }
 }
 
-function createErrorMessage(text = '') {
+function markSuccessInput(elem, validInputStateSelector = INPUT_STATE_SELECTOR_VALID, invalidInputStateSelector = INPUT_STATE_SELECTOR_INVALID) {
+  const target = elem.length ? elem[0].parentElement : elem;
+
+  if (!target.classList.contains(invalidInputStateSelector)) {
+    target.classList.add(validInputStateSelector);
+  }
+}
+
+function markErrorInput(elem, validInputStateSelector = INPUT_STATE_SELECTOR_VALID, invalidInputStateSelector = INPUT_STATE_SELECTOR_INVALID) {
+  const target = elem.length ? elem[0].parentElement : elem;
+
+  target.classList.remove(validInputStateSelector);
+  target.classList.add(invalidInputStateSelector);
+}
+
+function removeMarkedInputs(form, inputStateSelector) {
+  const correctInputs = form.querySelectorAll(`.${inputStateSelector}`);
+
+  if (correctInputs) {
+    [...correctInputs].forEach((input) => input.classList.remove(inputStateSelector));
+  }
+}
+
+function createMessage(text = '', selectorMessage) {
   const div = document.createElement('div');
   const p = document.createElement('p');
 
-  div.classList.add('error-message');
+  div.classList.add('message');
+  div.classList.add(selectorMessage);
   p.textContent = text;
 
   div.append(p);
@@ -238,20 +296,13 @@ function createErrorMessage(text = '') {
 }
 
 function showMessage(elem, message) {
-  const target = elem.length ? elem[0].parentElement : elem;
+  const target = elem.length ? elem[0] : elem;
 
-  target.classList.remove('input-default--valid-js');
-  target.classList.add('input-default--invalid-js');
-  target.after(message);
+  target.parentElement.prepend(message);
 }
 
-function removeErrorMessages() {
-  const errors = document.querySelectorAll('.error-message');
-  const errorsInputs = document.querySelectorAll('.input-default--invalid-js');
-
-  if (errorsInputs) {
-    [...errorsInputs].forEach((input) => input.classList.remove('input-default--invalid-js'));
-  }
+function removeAllMessages(form, selectorMessage) {
+  const errors = form.querySelectorAll(`.${selectorMessage}`);
 
   if (errors) {
     [...errors].forEach((message) => message.remove());
@@ -289,10 +340,8 @@ function deletePreloader() {
 
 export {
   formValidation,
-  createErrorMessage,
-  errorFormHandler,
-  showMessage,
-  removeErrorMessages,
+  createMessage,
+  removeAllMessages,
   getObjDataForm,
   activeModal,
   renderLinks,
@@ -301,6 +350,11 @@ export {
   saveDataUser,
   showPreloader,
   deletePreloader,
-  removeMarkCorrectInputs,
+  removeMarkedInputs,
+  clearForms,
+  SELECTOR_MESSAGE_INVALID,
+  INPUT_STATE_SELECTOR_INVALID,
+  SELECTOR_MESSAGE_VALID,
+  INPUT_STATE_SELECTOR_VALID,
   URL
 };

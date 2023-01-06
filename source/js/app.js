@@ -5,6 +5,7 @@ import './sliders/sliders.js';
 import './local/local.js';
 import './burgermenu.js';
 import './index.js';
+import './swiper.js';
 
 window.addEventListener('DOMContentLoaded', function () {
 

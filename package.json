@@ -36,6 +36,7 @@
     "stylelint-scss": "^4.3.0"
   },
   "dependencies": {
-    "postcss-scss": "^4.0.4"
+    "postcss-scss": "^4.0.4",
+    "swiper": "^8.4.5"
   }
 }

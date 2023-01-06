@@ -46,22 +46,22 @@
     height: 32px;
 
     position: absolute;
-    top: 210px;
     right: 20px;
+    top: 53px;
 
     overflow: hidden;
   }
 
   &.header__burger-button--open {
-    right: 10px;
-    top: 49px;
+    right: 20px;
+    top: 53px;
 
     animation: button-open $animation-button linear;
   }
 
   &.header__burger-button--close {
     right: 20px;
-    top: 210px;
+    top: 53px;
 
     animation: button-close $animation-button linear;
   }
@@ -69,28 +69,76 @@
 
 @keyframes button-open {
   0% {
-    top: 210px;
     right: 20px;
-  }
-
-  48.5% {
-    top: 210px;
-    right: 20px;
-  }
-
-  51.5% {
-    right: 10px;
-    top: 49px;
+    top: 53px;
   }
 
   100% {
-    right: 10px;
-    top: 49px;
+    right: 20px;
+    top: 53px;
   }
 }
 
 @keyframes button-close {
   0% {
+    right: 20px;
+    top: 53px;
+  }
+
+  48.5% {
+    right: 20px;
+    top: 53px;
+  }
+}
+
+//стили и анимация кнопки для страницы индекс
+.body-index {
+  @media (max-width: $media-mobile) {
+    & .header__burger-button {
+      top: 210px;
+      right: 20px;
+    }
+
+    & .header__burger-button--close {
+      top: 210px;
+      right: 20px;
+
+      animation: button-index-close $animation-button linear;
+    }
+
+    & .header__burger-button--open {
+      right: 10px;
+      top: 49px;
+
+      animation: button-index-open $animation-button linear;
+    }
+  }
+}
+
+@keyframes button-index-open {
+  0% {
+    top: 210px;
+    right: 20px;
+  }
+
+  48.5% {
+    top: 210px;
+    right: 20px;
+  }
+
+  51.5% {
+    right: 10px;
+    top: 49px;
+  }
+
+  100% {
+    right: 10px;
+    top: 49px;
+  }
+}
+
+@keyframes button-index-close {
+  0% {
     right: 10px;
     top: 49px;
   }
@@ -108,49 +156,6 @@
   100% {
     top: 210px;
     right: 20px;
-  }
-}
-
-//стили и анимация кнопки на странице блог
-.body-blog {
-  @media (max-width: $media-mobile) {
-    & .header__burger-button--close.header__burger-button {
-      right: 20px;
-      top: 53px;
-
-      animation: button-blog-open $animation-button linear;
-    }
-
-    & .header__burger-button {
-      right: 20px;
-      top: 53px;
-
-      animation: button-blog-close $animation-button linear;
-    }
-  }
-}
-
-@keyframes button-blog-open {
-  0% {
-    right: 20px;
-    top: 53px;
-  }
-
-  100% {
-    right: 20px;
-    top: 53px;
-  }
-}
-
-@keyframes button-blog-close {
-  0% {
-    right: 20px;
-    top: 53px;
-  }
-
-  48.5% {
-    right: 20px;
-    top: 53px;
   }
 }
 
