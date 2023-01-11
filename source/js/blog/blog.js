@@ -20,11 +20,15 @@ if (document.querySelector('.page-blog--js')) {
                                     .slice(1)
                                     .split('&');
   console.log(location.search);
-  let paramsSearch = getObjParamsLocationSearch(arrayParamsSearch);
-  console.log(paramsSearch);
-  [...document.forms].forEach((form) => {
-    initializeForm(form, paramsSearch);
-  });
+  let paramsSearch;
+  if (location.search) {
+    paramsSearch = getObjParamsLocationSearch(arrayParamsSearch);
+    console.log(paramsSearch);
+    [...document.forms].forEach((form) => {
+      initializeForm(form, paramsSearch);
+    });
+  }
+
 
   formFilters.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -38,7 +42,7 @@ if (document.querySelector('.page-blog--js')) {
 
 
   function onSuccessTags(arrayTagsData) {
-    const tags = getArrayTags(arrayTagsData, paramsSearch.tags);
+    const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
     showTags(wrapTags, tags);
   }
 
