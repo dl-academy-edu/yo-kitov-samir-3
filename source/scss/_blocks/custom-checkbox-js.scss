@@ -1,0 +1,53 @@
+.custom-checkbox-js {
+  width: 25px;
+  height: 25px;
+
+  position: relative;
+  display: block;
+
+  border: 2px solid inherit;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  transition: border $transition-default;
+}
+
+.label--condition:hover {
+  & ~ .custom-checkbox-js {
+    color: $nav;
+  }
+}
+
+.custom-checkbox-js--small-stick,
+.custom-checkbox-js--big-stick {
+  position: absolute;
+
+  width: 3px;
+
+  border-radius: 3px;
+
+  color: transparent;
+
+  background-color: inherit;
+
+  transition: background-color $transition-default;
+}
+
+.custom-checkbox-js--small-stick {
+  height: 11px;
+
+  top: 32%;
+  left: 27%;
+
+  transform: rotate(-33deg);
+}
+
+.custom-checkbox-js--big-stick {
+  top: 13%;
+  left: 55%;
+
+  height: 15px;
+
+  transform: rotate(33deg);
+}

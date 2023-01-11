@@ -27,18 +27,10 @@ hrefHome: "",
 classHome: "header__item--active",
 
 hrefBlog: "../blog.html",
-myBlog: "My blog",
 classBlog: "",
 
-hrefProfile: "",
-myProfile: "My profile",
+hrefProfile: "../profile.html",
 classProfile: "hide-completely",
-
-signIn: "Sign in",
-classSignIn: "",
-
-register: "Register",
-classRegister: ""
 })
 
 <main>
@@ -242,9 +234,9 @@ classRegister: ""
 
 @@include('blocks/footer.html')
 
-<section class="sign-in wrap-form hidden">
+<section class="sign-in modal hidden">
   <form novalidate class="sign-in__form form" action="" method="post" name="sign-in">
-    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="sign-in__fieldset fieldset">
       <div class="sign-in__wrap-input wrap-input">
@@ -265,9 +257,9 @@ classRegister: ""
   </form>
 </section>
 
-<section class="register wrap-form hidden">
+<section class="register modal hidden">
   <form novalidate class="register__form form" action="" method="post" name="register">
-    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="register__fieldset fieldset">
       <div class="register__wrap-input wrap-input">
@@ -321,13 +313,14 @@ classRegister: ""
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--agreement visually-hidden"
-               type="checkbox" name="agreement"
-               id="agreement" data-checkbox="checkbox">
+        <input class="visually-hidden" type="checkbox" name="agreement" id="agreement">
         <label class="register__label register__label--agreement label label--condition" for="agreement">Clicking on the
           button, you
           consent to the processing of your personal data.</label>
-        <span class="custom-checkbox"></span>
+        <span class="custom-checkbox">
+          <span class="custom-checkbox--small-stick"></span>
+          <span class="custom-checkbox--big-stick"></span>
+        </span>
       </div>
     </fieldset>
 
@@ -335,9 +328,9 @@ classRegister: ""
   </form>
 </section>
 
-<section class="message wrap-form hidden">
+<section class="message modal hidden">
   <form novalidate class="message__form form" action="" method="post" name="message">
-    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="message__fieldset fieldset">
       <div class="message__wrap-input wrap-input">
@@ -376,12 +369,14 @@ classRegister: ""
       </div>
 
       <div class="message__wrap-input wrap-input">
-        <input class="visually-hidden" type="checkbox" name="agreement" id="agreement-message"
-               data-checkbox="checkbox">
+        <input class="visually-hidden" type="checkbox" name="agreement" id="agreement-message">
         <label class="message__label message__label--agreement-message label label--condition"
                for="agreement-message">Clicking on the button, you consent to the processing of your personal
           data.</label>
-        <span class="custom-checkbox" aria-disabled="true"></span>
+        <span class="custom-checkbox">
+           <span class="custom-checkbox--small-stick"></span>
+           <span class="custom-checkbox--big-stick"></span>
+        </span>
       </div>
     </fieldset>
 

@@ -1,20 +1,31 @@
 import {
-  activeModal,
-  closeModal,
+  activeModalForm,
+  closeModalForm,
+  MODAL_CLOSE_BUTTON_SELECTOR,
   formValidation,
   getObjDataForm,
-  clearForms,
+  sendRequestForForm,
+  onFormSubmission,
+  renderLinks,
+  clearForm,
   saveDataUser,
   showPreloader,
   deletePreloader,
-  removeMarkedInputs,
-  SELECTOR_MESSAGE_INVALID,
-  INPUT_STATE_SELECTOR_INVALID,
-  SELECTOR_MESSAGE_VALID,
-  INPUT_STATE_SELECTOR_VALID,
+  URL,
+
+  createModalMessage,
+  showModalMessage,
+  removeLaterModalMessage,
+  MODAL_MESSAGE_TEXT_ERROR,
+  MODAL_MESSAGE_INVALID,
+  MODAL_MESSAGE_TEXT_SUCCESS,
+  MODAL_MESSAGE_VALID,
 } from '../utils-form.js';
 
-import {activeButtonSubmit} from './utils-form-index.js';
+import {
+  accessToSubmitButton,
+  resolveFormSignIn
+} from './utils-form-index.js';
 
 const pageIndex = document.querySelector('.page-index--js');
 
@@ -29,79 +40,87 @@ if (pageIndex) {
   const ITEM_OPEN_SIGN_IN_MODAL = 'header__item--sign-in-js';
   const ITEM_OPEN_REGISTER_MODAL = 'header__item--register-js';
   const BUTTON_OPEN_MESSAGE_MODAL = 'footer__message-button--js';
-  const SELECTOR_BUTTON_CLOSE = 'close-form';
 
   pageIndex.addEventListener('click', (e) => {
     const target = e.target;
 
     //форма входа
     if (target.closest(`.${ITEM_OPEN_SIGN_IN_MODAL}`)) {
-      activeModal(modalSignIn);
+      const objRemoveEvent = {
+        formSignInModal: {
+          element: formSignInModal,
+          event: 'submit',
+          callback: onFormSubmission
+        }
+      };
+
+      activeModalForm(modalSignIn, objRemoveEvent);
+
+      const optionsRequestSignIn = {
+        url: 'api/users/login',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        modal: modalSignIn
+      };
+
+      formSignInModal.addEventListener('submit', onFormSubmission(optionsRequestSignIn, 'validate', resolveFormSignIn));
     }
 
     //форма регистрации
     if (target.closest(`.${ITEM_OPEN_REGISTER_MODAL}`)) {
-      const agreementCheckbox = modalRegister.querySelector('input[name=agreement]');
-      agreementCheckbox.addEventListener('click', activeButtonSubmit);
+      const objEventButtonSubmit = accessToSubmitButton(formRegisterModal);
 
       const objRemoveEvent = {
-        agreementCheckbox: {
-          element: agreementCheckbox,
-          event: 'click',
-          callback: activeButtonSubmit
+        ...objEventButtonSubmit,
+        formRegisterModal: {
+          element: formRegisterModal,
+          event: 'submit',
+          callback: onFormSubmission
         }
       };
-      activeModal(modalRegister, objRemoveEvent);
 
-      formRegisterModal.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const form = e.target;
+      activeModalForm(modalRegister, objRemoveEvent);
 
-        if (!formValidation(form)) return;
+      const optionsRequestRegister = {
+        url: 'api/users',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        modal: modalRegister,
+      };
 
-        const data = getObjDataForm(form);
-        showPreloader();
-
-        fetch(`https://academy.directlinedev.com/api/users`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify(data)
-        })
-          .then((response) => {
-            if (response.ok || response.status === 422) {
-              return response.json();
-            } else {
-              throw new Error(`status: ${response.status}`);
-            }
-          })
-          .then((response) => {
-            if (response.success) {
-              form.reset();
-              clearForms(form);
-              closeModal(modalRegister, SELECTOR_BUTTON_CLOSE);
-            } else {
-              throw response;
-            }
-          })
-          .catch((error) => {
-            if (error.errors) {
-              formValidation(form, error.errors);
-              return;
-            }
-
-            if (error) {
-              console.log(error.message);
-            }
-          })
-          .finally(() => deletePreloader());
-      });
+      formRegisterModal.addEventListener('submit', onFormSubmission(optionsRequestRegister));
     }
 
     //форма сообщения
     if (target.closest(`.${BUTTON_OPEN_MESSAGE_MODAL}`)) {
-      activeModal(modalMessage);
+      const objEventButtonSubmit = accessToSubmitButton(formMessageModal);
+
+      const objRemoveEvent = {
+        ...objEventButtonSubmit,
+        formMessageModal: {
+          element: formMessageModal,
+          event: 'submit',
+          callback: onFormSubmission
+        }
+      };
+
+      activeModalForm(modalMessage, objRemoveEvent);
+
+      const optionsRequestSignIn = {
+        url: 'api/emails',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        modal: modalMessage,
+        extendedData: true
+      };
+
+      formMessageModal.addEventListener('submit', onFormSubmission(optionsRequestSignIn, 'validate'));
     }
   });
 }

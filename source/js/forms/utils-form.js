@@ -1,4 +1,5 @@
 const URL = 'https://academy.directlinedev.com/';
+const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
 const SELECTOR_MESSAGE_INVALID = 'message--error';
 const INPUT_STATE_SELECTOR_INVALID = 'input-default--invalid-js';
@@ -6,13 +7,48 @@ const SELECTOR_MESSAGE_VALID = 'message--success';
 const INPUT_STATE_SELECTOR_VALID = 'input-default--valid-js';
 const REGULAR_EMAIL = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
 const REGULAR_PHONE = /(\+7|8)[\s(]?(\d{3})[\s)]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})/g;
+const MODAL_CLOSE_BUTTON_SELECTOR = 'close-modal';
+const MODAL_MESSAGE_TEXT_ERROR = 'The form was sent but the server transmits an error: “The form was sent but the server transmits an error”';
+const MODAL_MESSAGE_TEXT_SUCCESS = 'Form has been sent successfully';
+const MODAL_MESSAGE_INVALID = 'modal-message__text--error';
+const MODAL_MESSAGE_VALID = 'modal-message__text--success';
+const VALIDATE_FORM = 'validate';
 
-function closeModal(modal, selectorButtonClose) {
+function createModalMessage(text, selectorStateModalMessage, selectorButtonCloseModal = MODAL_CLOSE_BUTTON_SELECTOR) {
+  const innerModal = `<div class="modal-message__inner-wrap">
+    <button class="close-modal" type="button" aria-label="Закрыть окно с сообщением"></button>
+    <p class="modal-message__text ${selectorStateModalMessage}">${text}</p>
+  </div>`;
+  const modal = document.createElement('div');
+  modal.classList.add('modal-message');
+  modal.classList.add('modal');
+  modal.innerHTML = innerModal;
+
+  const buttonCloseModal = modal.querySelector(`.${selectorButtonCloseModal}`);
+  buttonCloseModal.addEventListener('click', (e) => {
+    modal.remove();
+  });
+
+  return modal;
+}
+
+function showModalMessage(modal) {
+  document.body.append(modal);
+}
+
+function removeLaterModalMessage(modal) {
+  const timerRemove = setTimeout(() => {
+    modal.remove();
+    clearTimeout(timerRemove);
+  }, TIME_DELETE_MODAL);
+}
+
+function closeModalForm(modal, selectorButtonClose) {
   const button = modal.querySelector(`.${selectorButtonClose}`);
   button.click();
 }
 
-function activeModal(modal, objEvent, selectorButtonCloseModal = 'close-form', selectorHiddenModal = 'hidden') {
+function activeModalForm(modal, objEvent, selectorButtonCloseModal = MODAL_CLOSE_BUTTON_SELECTOR, selectorHiddenModal = 'hidden') {
   modal.classList.remove(selectorHiddenModal);
 
   const forms = [...modal.querySelectorAll('form')];
@@ -78,7 +114,7 @@ function formValidation(form, objError = {}) {
   let objInvalidInputs;
 
   //отчищаем все инпуты в форме от пометок и сообщений
-  clearForms(form);
+  clearForm(form);
 
   objInvalidInputs = Object.keys(objError).length ? objError : getInvalidInputs(form);
   const boolean = errorFormHandler(objInvalidInputs, form);
@@ -89,9 +125,14 @@ function formValidation(form, objError = {}) {
   return boolean;
 }
 
-function clearForms(form, objValid={selectorMessage:SELECTOR_MESSAGE_VALID,
-                                                  inputState:INPUT_STATE_SELECTOR_VALID},
-                          objInvalid={selectorMessage:SELECTOR_MESSAGE_INVALID, inputState:INPUT_STATE_SELECTOR_INVALID}) {
+function clearForm(form, objValid = {
+                     selectorMessage: SELECTOR_MESSAGE_VALID,
+                     inputState: INPUT_STATE_SELECTOR_VALID
+                   },
+                   objInvalid = {
+                     selectorMessage: SELECTOR_MESSAGE_INVALID,
+                     inputState: INPUT_STATE_SELECTOR_INVALID
+                   }) {
   removeAllMessages(form, objValid.selectorMessage);
   removeMarkedInputs(form, objValid.inputState);
   removeAllMessages(form, objInvalid.selectorMessage);
@@ -314,10 +355,6 @@ function saveDataUser(data) {
   localStorage.token = data.token;
 }
 
-function formRequest(url, options) {
-  return fetch(url, options);
-}
-
 function showPreloader() {
   document.body.append(createPreloader());
 
@@ -338,23 +375,112 @@ function deletePreloader() {
   preloader.remove();
 }
 
+function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) {
+  showPreloader();
+
+  fetch(`${URL}${objOptionsRequest.url}`, {
+    method: method,
+    headers: objOptionsRequest?.headers,
+    body: JSON.stringify(objOptionsRequest?.body),
+  })
+    .then((response) => {
+      if (response.ok || response.status === 422 || response.status === 401 || response.status === 400) {
+        return response.json();
+      } else {
+        throw new Error(`status: ${response.status}`);
+      }
+    })
+    .then((response) => {
+      if (response.success) {
+        if (resolve) {
+          resolve(response.data);
+        }
+
+        clearForm(objOptionsRequest.form);
+        objOptionsRequest.form.reset();
+        closeModalForm(objOptionsRequest.modal, MODAL_CLOSE_BUTTON_SELECTOR);
+
+        const modalMessageSuccess = createModalMessage(MODAL_MESSAGE_TEXT_SUCCESS, MODAL_MESSAGE_VALID);
+        showModalMessage(modalMessageSuccess);
+        removeLaterModalMessage(modalMessageSuccess);
+      } else {
+        throw response;
+      }
+    })
+    .catch((error) => {
+      let modalMessageError;
+
+      if (error.errors && Object.keys(error.errors).length) {
+        formValidation(objOptionsRequest.form, error.errors);
+        return;
+      }
+
+      if (error._message) {
+        clearForm(objOptionsRequest.form);
+        objOptionsRequest.form.reset();
+        modalMessageError = createModalMessage(error._message, MODAL_MESSAGE_INVALID);
+        showModalMessage(modalMessageError);
+        return;
+      }
+
+      if (error) {
+        modalMessageError = createModalMessage(MODAL_MESSAGE_TEXT_ERROR, MODAL_MESSAGE_INVALID);
+        showModalMessage(modalMessageError);
+      }
+    })
+    .finally(() => deletePreloader());
+}
+
+function onFormSubmission(objOptionsRequest, type = VALIDATE_FORM, resolve = null, reject = null) {
+  return function (e) {
+    e.preventDefault();
+    const form = e.target;
+
+    if (type === VALIDATE_FORM) {
+      if (!formValidation(form)) return;
+    }
+
+    const data = getObjDataForm(form);
+
+    const optionsRequest = {
+      url: objOptionsRequest.url,
+      headers: objOptionsRequest.headers,
+      body: data,
+      form: form,
+      modal: objOptionsRequest.modal
+    };
+    sendRequestForForm(optionsRequest, objOptionsRequest.method, resolve, reject);
+  };
+}
+
 export {
   formValidation,
   createMessage,
   removeAllMessages,
   getObjDataForm,
-  activeModal,
+  activeModalForm,
   renderLinks,
-  formRequest,
-  closeModal,
+  sendRequestForForm,
+  onFormSubmission,
+  closeModalForm,
+  MODAL_CLOSE_BUTTON_SELECTOR,
   saveDataUser,
   showPreloader,
   deletePreloader,
   removeMarkedInputs,
-  clearForms,
+
+  clearForm,
   SELECTOR_MESSAGE_INVALID,
   INPUT_STATE_SELECTOR_INVALID,
   SELECTOR_MESSAGE_VALID,
   INPUT_STATE_SELECTOR_VALID,
+
+  createModalMessage,
+  showModalMessage,
+  removeLaterModalMessage,
+  MODAL_MESSAGE_TEXT_ERROR,
+  MODAL_MESSAGE_INVALID,
+  MODAL_MESSAGE_TEXT_SUCCESS,
+  MODAL_MESSAGE_VALID,
   URL
 };

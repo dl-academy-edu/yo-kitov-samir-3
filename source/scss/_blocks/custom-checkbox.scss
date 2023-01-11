@@ -6,7 +6,9 @@
   width: 19px;
   height: 19px;
 
-  border: 2px solid;
+  color: $dot;
+
+  border: 2px solid inherit;
   border-radius: 5px;
 
   cursor: pointer;
@@ -14,38 +16,69 @@
   transition: border $transition-default;
 
   &:hover {
-    border-color: $nav;
+    color: $nav;
   }
 
-  &:after,
-  &:before {
-    content: "";
-    position: absolute;
+  //&:after,
+  //&:before {
+  //  content: "";
+  //  position: absolute;
+  //
+  //  width: 3px;
+  //
+  //  border-radius: 3px;
+  //
+  //  transition: background-color $transition-default;
+  //}
+  //
+  //&:after {
+  //  height: 15px;
+  //
+  //  transform: rotate(33deg);
+  //
+  //  top: 0;
+  //  left: 62%;
+  //}
+  //
+  //&:before {
+  //  height: 10px;
+  //
+  //  transform: rotate(-33deg);
+  //
+  //  top: 29%;
+  //  left: 26%;
+  //}
+}
 
-    width: 3px;
+.custom-checkbox--small-stick,
+.custom-checkbox--big-stick {
+  position: absolute;
 
-    border-radius: 3px;
+  width: 3px;
 
-    transition: background-color $transition-default;
-  }
+  border-radius: 3px;
 
-  &:after {
-    height: 15px;
+  background-color: inherit;
 
-    transform: rotate(33deg);
+  transition: background-color $transition-default;
+}
 
-    top: 0;
-    left: 62%;
-  }
+.custom-checkbox--small-stick {
+  height: 10px;
 
-  &:before {
-    height: 10px;
+  transform: rotate(-33deg);
 
-    transform: rotate(-33deg);
+  top: 29%;
+  left: 26%;
+}
 
-    top: 29%;
-    left: 26%;
-  }
+.custom-checkbox--big-stick {
+  height: 15px;
+
+  transform: rotate(33deg);
+
+  top: 0;
+  left: 62%;
 }
 
 //на странице блог изменить размер кастомного чекбокса
@@ -53,157 +86,38 @@
   & .custom-checkbox {
     width: 25px;
     height: 25px;
-
-    &:before {
-      height: 11px;
-
-      top: 32%;
-      left: 27%;
-    }
-
-    &:after {
-      top: 13%;
-      left: 55%;
-    }
   }
+
+  & .custom-checkbox--small-stick {
+    height: 11px;
+
+    top: 32%;
+    left: 27%;
+  }
+
+  & .custom-checkbox--big-stick {
+    top: 13%;
+    left: 55%;
+  }
+
 }
 
 .label--condition:hover ~ .custom-checkbox {
-  border-color: $nav;
+  color: $nav;
 }
 
-//стандартный цвет кастомного чекбокса
-input[data-checkbox="checkbox"] {
+input[type="checkbox"]:checked {
   & ~ .custom-checkbox {
-    border-color: $dot;
+    color: $basic-text;
   }
 }
 
-input[data-checkbox="checkbox"]:checked {
-  & ~ .custom-checkbox {
-    border-color: $basic-text;
-  }
-}
-
-input[data-checkbox="checkbox"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
+input[type="checkbox"]:checked {
+  & ~ .custom-checkbox .custom-checkbox--small-stick,
+  & ~ .custom-checkbox .custom-checkbox--big-stick {
     background-color: $basic-text;
   }
 }
-
-//голубой на странице блог
-input[data-checkbox="checkbox-blue"] {
-  & ~ .custom-checkbox {
-    border-color: $blue;
-  }
-}
-
-input[data-checkbox="checkbox-blue"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $blue;
-  }
-}
-
-//светло голубой на странице блог
-input[data-checkbox="checkbox-blue-light"] {
-  & ~ .custom-checkbox {
-    border-color: $blue-light;
-  }
-}
-
-input[data-checkbox="checkbox-blue-light"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $blue-light;
-  }
-}
-
-//желтый на странице блог
-input[data-checkbox="checkbox-yellow"] {
-  & ~ .custom-checkbox {
-    border-color: $yellow;
-  }
-}
-
-input[data-checkbox="checkbox-yellow"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $yellow;
-  }
-}
-
-//светло зелёный на странице блог
-input[data-checkbox="checkbox-green-light"] {
-  & ~ .custom-checkbox {
-    border-color: $green-light;
-  }
-}
-
-input[data-checkbox="checkbox-green-light"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $green-light;
-  }
-}
-
-//оранжевый на странице блог
-input[data-checkbox="checkbox-orange"] {
-  & ~ .custom-checkbox {
-    border-color: $orange;
-  }
-}
-
-input[data-checkbox="checkbox-orange"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $orange;
-  }
-}
-
-//розовый на странице блог
-input[data-checkbox="checkbox-pink"] {
-  & ~ .custom-checkbox {
-    border-color: $pink;
-  }
-}
-
-input[data-checkbox="checkbox-pink"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $pink;
-  }
-}
-
-//темно синий на странице блог
-input[data-checkbox="checkbox-dark-blue"] {
-  & ~ .custom-checkbox {
-    border-color: $dark-blue;
-  }
-}
-
-input[data-checkbox="checkbox-dark-blue"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $dark-blue;
-  }
-}
-
-//зелёный синий на странице блог
-input[data-checkbox="checkbox-green"] {
-  & ~ .custom-checkbox {
-    border-color: $green;
-  }
-}
-
-input[data-checkbox="checkbox-green"]:checked {
-  & ~ .custom-checkbox:before,
-  & ~ .custom-checkbox:after {
-    background-color: $green;
-  }
-}
-
 
 input[type="checkbox"]:focus {
   & ~ .custom-checkbox {

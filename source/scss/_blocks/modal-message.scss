@@ -1,0 +1,27 @@
+.modal-message {
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+}
+
+.modal-message__inner-wrap {
+  position: relative;
+}
+
+.modal-message__text--error {
+  color: $button-bad;
+
+  max-width: 475px;
+}
+
+.modal-message__text--success {
+  color: $button-good;
+
+  max-width: 219px;
+}
+
+.modal-message__text {
+  @media (max-width: $media-mobile) {
+    max-width: 280px;
+  }
+}

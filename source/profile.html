@@ -24,21 +24,11 @@
 <body>
 @@include("./blocks/header.html", {
 hrefHome: "../index.html",
-classHome: "",
 
 hrefBlog: "../blog.html",
-myBlog: "My blog",
-classBlog: "",
 
 hrefProfile: "",
-myProfile: "My profile",
 classProfile: "header__item--active",
-
-signIn: "Sign in",
-classSignIn: "hide-completely",
-
-register: "Register",
-classRegister: "hide-completely"
 })
 
 <main>
@@ -85,9 +75,9 @@ classRegister: "hide-completely"
 
 @@include('blocks/footer.html')
 
-<section class="editing-pass wrap-form hidden">
+<section class="editing-pass modal hidden">
   <form novalidate class="editing-pass__form form" name="editing-pass" action="" method="post">
-    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="editing-pass__fieldset fieldset">
       <div class="editing-pass__wrap-input wrap-input">
@@ -101,7 +91,8 @@ classRegister: "hide-completely"
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="repeat-password" type="password" id="repeat-pass">
+        <input class="editing-pass__input input-default" name="repeat-password" type="password" id="repeat-pass"
+               required>
         <label class="editing-pass__label label" for="repeat-pass">Repeat new password <span
           class="star">*</span></label>
       </div>
@@ -111,9 +102,9 @@ classRegister: "hide-completely"
   </form>
 </section>
 
-<section class="editing-data wrap-form hidden">
+<section class="editing-data modal hidden">
   <form class="editing-data__form form" name="editing-data" action="" method="post">
-    <button class="close-form" type="button" aria-label="закрыть окно формы"></button>
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="editing-data__fieldset fieldset">
       <div class="editing-data__wrap-input wrap-input">

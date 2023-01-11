@@ -26,7 +26,7 @@
 @import "_blocks/preloader";
 @import "_blocks/slider";
 @import "_blocks/controls";
-@import "_blocks/wrap-form";
+@import "_blocks/modal";
 @import "_blocks/form";
 @import "_blocks/fieldset";
 @import "_blocks/label";
@@ -35,9 +35,11 @@
 @import "_blocks/wrap-input";
 @import "_blocks/input-default";
 @import "_blocks/custom-checkbox";
-@import "_blocks/close-form";
+@import "_blocks/custom-checkbox-js";
+@import "_blocks/close-modal";
 @import "_blocks/message";
 @import "_blocks/blog";
+@import "_blocks/modal-message";
 @import "_blocks/container";
 @import "_blocks/footer";
 @import "_blocks/header";
@@ -639,10 +641,6 @@
 
 //tags
 .filters__fieldset-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-
   max-width: 115px;
 
   margin-right: 77px;
@@ -656,11 +654,12 @@
 
 .filters__wrap-input-tag {
   position: relative;
+}
 
-  & .custom-checkbox {
-    position: relative;
-    display: block;
-  }
+.filters__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .filters__label-tag {

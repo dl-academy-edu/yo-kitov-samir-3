@@ -1,15 +1,12 @@
 import {
-  activeModal,
+  activeModalForm,
   renderLinks,
   formValidation,
   getObjDataForm,
-  formRequest,
+  sendRequestForForm,
+  onFormSubmission,
   URL
 } from '../utils-form.js';
-
-// import {
-//
-// } from './utils-form-profile';
 
 if (document.querySelector('.profile__info')) {
   const wrapButton = document.querySelector('.profile__info');
@@ -29,15 +26,26 @@ if (document.querySelector('.profile__info')) {
         formPassModal: {
           element: formPassModal,
           event: 'submit',
-          callback: formPassSubmission
+          callback: onFormSubmission
         }
       };
-      activeModal(modalPass, objRemoveEvent);
-      formPassModal.addEventListener('submit', formPassSubmission);
+
+      activeModalForm(modalPass, objRemoveEvent);
+
+      const optionsRequestSignIn = {
+        url: 'api/users',
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        modal: modalPass
+      };
+
+      formPassModal.addEventListener('submit', onFormSubmission(optionsRequestSignIn, 'validate'));
     }
 
     if (target.closest(`.${ITEM_OPEN_DATA_MODAL}`)) {
-      activeModal(modalData);
+      activeModalForm(modalData);
       formDataModal.addEventListener('submit', (e) => {
         e.preventDefault();
         const dataForm = getObjDataForm(formDataModal);
