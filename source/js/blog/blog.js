@@ -1,15 +1,16 @@
 import {
+  convertFormParametersToString,
   createBlog,
-  showTags,
   getArrayTags,
-  requestTags,
-  initializeForm,
-  getObjParamsLocationSearch,
-  resetTags,
-  convertParametersToString,
   getObjParamsFormFilter,
-  setLocationSearch
+  getObjParamsLocationSearch,
+  initializeForm,
+  requestTags,
+  resetTags,
+  showTags
 } from './utils-blog.js';
+
+import {getNumbersFromString} from '../common.js';
 
 if (document.querySelector('.page-blog--js')) {
   const formFilters = document.querySelector('.filters__form');
@@ -19,37 +20,93 @@ if (document.querySelector('.page-blog--js')) {
   const arrayParamsSearch = location.search
                                     .slice(1)
                                     .split('&');
-  console.log(location.search);
   let paramsSearch;
   if (location.search) {
     paramsSearch = getObjParamsLocationSearch(arrayParamsSearch);
-    console.log(paramsSearch);
     [...document.forms].forEach((form) => {
       initializeForm(form, paramsSearch);
     });
   }
-
 
   formFilters.addEventListener('submit', (e) => {
     e.preventDefault();
     const form = e.target;
     const objParamsForm = getObjParamsFormFilter(form);
 
-    const strParamsForms = convertParametersToString(objParamsForm);
-    setLocationSearch(strParamsForms);
-    console.log(strParamsForms);
+    const objDataFormForRequest = convertParametersFormForRequest(objParamsForm);
+
+    const optionsRequestPosts = {
+      url: 'api/posts?v=1.0.0',
+      method: 'GET',
+      body: objDataFormForRequest
+    };
+    requestTags(optionsRequestPosts, onSuccessPosts);
+
+    function onSuccessPosts(arrayData) {
+
+    }
+
+    function createLinkPagination(page) {
+      const li = document.createElement('li');
+      li.classList.add('controls__item');
+      const link = document.createElement('a');
+      link.classList.add('controls__link');
+      link.innerText = page + 1;
+
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const link = e.target;
+
+        const activeLink = document.querySelector('.controls__link--active');
+        activeLink.classList.remove('controls__link--active');
+
+        link.classList.add('controls__link--active');
+      });
+    }
+
+    // const strParamsForm = convertFormParametersToString(objParamsForm);
+    // setLocationSearch(strParamsForms);
+
+    function convertParametersFormForRequest(objParamsForm) {
+      const dataForm = {
+        filter: {},
+        limit: 9
+      };
+
+      for (const name in objParamsForm) {
+        if (objParamsForm.hasOwnProperty(name)) {
+          switch (name) {
+            case 'comments':
+            case 'views':
+              const arrayNumbers = getNumbersFromString(objParamsForm[name].join());
+              const min = Math.min.apply(null, arrayNumbers);
+              const max = Math.max.apply(null, arrayNumbers);
+
+              dataForm.filter[name] = JSON.stringify({$between: [min, max]});
+              break;
+
+            default:
+              dataForm[name] = JSON.stringify(objParamsForm[name]);
+              break;
+          }
+        }
+      }
+      console.log(JSON.stringify(dataForm));
+      return dataForm;
+    }
   });
 
+  const optionsRequestTags = {
+    url: 'api/tags',
+    method: 'GET',
+    // headers: {name:'Content-Type', value:' application/json; charset=utf-8'}
+  };
 
   function onSuccessTags(arrayTagsData) {
     const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
     showTags(wrapTags, tags);
   }
 
-  const optionsRequestTags = {
-    url: 'api/tags',
-    method: 'GET',
-  };
   requestTags(optionsRequestTags, onSuccessTags);
 
   buttonReset.addEventListener('click', (e) => {
@@ -76,3 +133,5 @@ if (document.querySelector('.page-blog--js')) {
     },
   }));
 }
+
+

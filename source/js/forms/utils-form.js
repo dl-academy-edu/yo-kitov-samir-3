@@ -337,7 +337,7 @@ function createMessage(text = '', selectorMessage) {
 }
 
 function showMessage(elem, message) {
-  const target = elem.length ? elem[0] : elem;
+  const target = elem?.length ? elem[0] : elem;
 
   target.parentElement.prepend(message);
 }
@@ -377,6 +377,7 @@ function deletePreloader() {
 
 function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) {
   showPreloader();
+  console.log(objOptionsRequest);
 
   fetch(`${URL}${objOptionsRequest.url}`, {
     method: method,
@@ -392,6 +393,8 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
     })
     .then((response) => {
       if (response.success) {
+        console.log(response.success);
+        console.log(response);
         if (resolve) {
           resolve(response.data);
         }
@@ -408,18 +411,18 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
       }
     })
     .catch((error) => {
+      console.log(error);
       let modalMessageError;
-
-      if (error.errors && Object.keys(error.errors).length) {
-        formValidation(objOptionsRequest.form, error.errors);
-        return;
-      }
 
       if (error._message) {
         clearForm(objOptionsRequest.form);
-        objOptionsRequest.form.reset();
         modalMessageError = createModalMessage(error._message, MODAL_MESSAGE_INVALID);
         showModalMessage(modalMessageError);
+        return;
+      }
+
+      if (error.errors && Object.keys(error.errors).length) {
+        formValidation(objOptionsRequest.form, error.errors);
         return;
       }
 
@@ -440,14 +443,23 @@ function onFormSubmission(objOptionsRequest, type = VALIDATE_FORM, resolve = nul
       if (!formValidation(form)) return;
     }
 
-    const data = getObjDataForm(form);
+    let data = getObjDataForm(form);
+
+    if (objOptionsRequest.extendedData) {
+      data = {
+        to: 'sakitov@yandex.ru',
+        body: JSON.stringify(data)
+      };
+    }
+
+    console.log(data);
 
     const optionsRequest = {
       url: objOptionsRequest.url,
       headers: objOptionsRequest.headers,
       body: data,
       form: form,
-      modal: objOptionsRequest.modal
+      modal: objOptionsRequest.modal,
     };
     sendRequestForForm(optionsRequest, objOptionsRequest.method, resolve, reject);
   };

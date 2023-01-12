@@ -100,13 +100,8 @@
   cursor: default;
 }
 
-.controls__button--number {
-  width: auto;
-  height: auto;
-
-  border-radius: 0;
-
-  background-color: transparent;
+.controls__link {
+  cursor: pointer;
 
   font-weight: 700;
   font-size: 18px;
@@ -117,12 +112,10 @@
   &:hover,
   &:focus {
     color: $nav;
-
-    background-color: transparent;
   }
 }
 
-.controls__button--number-active {
+.controls__link--active {
   color: $basic-text;
   cursor: default;
 }

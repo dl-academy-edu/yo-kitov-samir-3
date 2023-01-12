@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="page-profile--js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -65,9 +65,10 @@ classProfile: "header__item--active",
           </li>
         </ul>
 
-        <button class="profile__button profile__button--password link">Change password</button>
-        <button class="profile__button profile__button--data link">Change other data</button>
-        <button class="profile__button link">Delete account</button>
+        <button class="profile__button profile__button--password profile__button--password-js link">Change password
+        </button>
+        <button class="profile__button profile__button--data profile__button--data-js link">Change other data</button>
+        <button class="profile__button profile__button--delete-js link">Delete account</button>
       </div>
     </div>
   </section>
@@ -91,7 +92,7 @@ classProfile: "header__item--active",
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="repeat-password" type="password" id="repeat-pass"
+        <input class="editing-pass__input input-default" name="repeatPassword" type="password" id="repeat-pass"
                required>
         <label class="editing-pass__label label" for="repeat-pass">Repeat new password <span
           class="star">*</span></label>

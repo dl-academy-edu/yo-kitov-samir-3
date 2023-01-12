@@ -165,19 +165,28 @@ function showTags(elemTarget, arrayTags) {
 function requestTags(objOptionsRequest, onSuccess, onError) {
   const xhr = new XMLHttpRequest();
   xhr.open(objOptionsRequest.method, `${URL}${objOptionsRequest.url}`);
+  if (objOptionsRequest.headers) {
+    xhr.setRequestHeader(objOptionsRequest.headers.name, objOptionsRequest.headers.value);
+  }
   xhr.responseType = 'json';
   showPreloader();
-  xhr.send();
+  xhr.send(JSON.stringify(objOptionsRequest?.body));
   xhr.onload = () => {
     if (xhr.response.success || xhr.status === 200) {
-      onSuccess(xhr.response.data);
+      console.log(xhr.response.data);
+      if (onSuccess) {
+        onSuccess(xhr.response.data);
+      }
     }
     deletePreloader();
+  };
+
+  xhr.onerror = () => {
+
   };
 }
 
 function initializeForm(form, objParams) {
-  console.log(objParams);
   for (const name in objParams) {
     if (objParams.hasOwnProperty(name)) {
       const inputs = form.querySelectorAll(`input[name=${name}]`);
@@ -248,7 +257,7 @@ function getObjParamsFormFilter(form) {
   return objParamsForm;
 }
 
-function convertParametersToString(objFormParamsFilter) {
+function convertFormParametersToString(objFormParamsFilter) {
   let ifTheFirstElement = true;
   let strSearch = '';
 
@@ -281,7 +290,7 @@ export {
   initializeForm,
   getObjParamsLocationSearch,
   resetTags,
-  convertParametersToString,
+  convertFormParametersToString,
   getObjParamsFormFilter,
   setLocationSearch
 };

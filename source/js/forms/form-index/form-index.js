@@ -1,25 +1,6 @@
 import {
   activeModalForm,
-  closeModalForm,
-  MODAL_CLOSE_BUTTON_SELECTOR,
-  formValidation,
-  getObjDataForm,
-  sendRequestForForm,
   onFormSubmission,
-  renderLinks,
-  clearForm,
-  saveDataUser,
-  showPreloader,
-  deletePreloader,
-  URL,
-
-  createModalMessage,
-  showModalMessage,
-  removeLaterModalMessage,
-  MODAL_MESSAGE_TEXT_ERROR,
-  MODAL_MESSAGE_INVALID,
-  MODAL_MESSAGE_TEXT_SUCCESS,
-  MODAL_MESSAGE_VALID,
 } from '../utils-form.js';
 
 import {
@@ -28,6 +9,7 @@ import {
 } from './utils-form-index.js';
 
 const pageIndex = document.querySelector('.page-index--js');
+const pageProfile = document.querySelector('.page-profile--js');
 
 if (pageIndex) {
   const formSignInModal = document.querySelector('.sign-in__form');
@@ -121,6 +103,64 @@ if (pageIndex) {
       };
 
       formMessageModal.addEventListener('submit', onFormSubmission(optionsRequestSignIn, 'validate'));
+    }
+  });
+}
+
+if (pageProfile) {
+  const formPasswordModal = document.querySelector('.editing-pass__form');
+  const modalPassword = document.querySelector('.editing-pass');
+  const formDataModal = document.querySelector('.editing-data__form');
+  const modalData = document.querySelector('.editing-data');
+
+  const BUTTON_OPEN_PASSWORD_MODAL = 'profile__button--password-js';
+  const BUTTON_OPEN_DATA_MODAL = 'profile__button--data-js';
+  const BUTTON_DELETE_USER = 'profile__button--delete-js';
+
+  pageProfile.addEventListener('click', (e) => {
+    const target = e.target;
+
+    //форма смены пароля
+    if (target.closest(`.${BUTTON_OPEN_PASSWORD_MODAL}`)) {
+      const objRemoveEvent = {
+        formPasswordModal: {
+          element: formPasswordModal,
+          event: 'submit',
+          callback: onFormSubmission
+        }
+      };
+
+      activeModalForm(modalPassword, objRemoveEvent);
+
+      const optionsRequestPassword = {
+        url: 'api/users',
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${localStorage.token}`,
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        modal: modalPassword
+      };
+
+      formPasswordModal.addEventListener('submit', onFormSubmission(optionsRequestPassword));
+    }
+
+    //форма смены данных пользователя
+    if (target.closest(`.${BUTTON_OPEN_DATA_MODAL}`)) {
+      const objRemoveEvent = {
+        formDataModal: {
+          element: formDataModal,
+          event: 'submit',
+          callback: onFormSubmission
+        }
+      };
+
+      activeModalForm(modalData, objRemoveEvent);
+    }
+
+    //удаление аккаунта пользователя
+    if (target.closest(`.${BUTTON_DELETE_USER}`)) {
+
     }
   });
 }
