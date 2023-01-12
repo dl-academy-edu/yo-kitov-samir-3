@@ -6,6 +6,8 @@
   margin-bottom: 6px;
 
   z-index: 1;
+
+  position: relative;
 }
 
 .filters__form {
@@ -21,7 +23,7 @@
 
   cursor: pointer;
 
-  transition: $transition-default;
+  transition: color $transition-default;
 
   &:hover {
     color: $nav;

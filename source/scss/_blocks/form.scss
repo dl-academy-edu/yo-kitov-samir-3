@@ -6,6 +6,8 @@
 
   background-color: $basic-white;
 
+  position: relative;
+
   @media (max-width: $media-mobile) {
     padding: 20px;
     border: none;

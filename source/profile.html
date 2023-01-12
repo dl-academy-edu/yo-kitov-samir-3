@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="page-profile--js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -24,21 +24,11 @@
 <body>
 @@include("./blocks/header.html", {
 hrefHome: "../index.html",
-classHome: "",
 
 hrefBlog: "../blog.html",
-myBlog: "My blog",
-classBlog: "",
 
 hrefProfile: "",
-myProfile: "My profile",
 classProfile: "header__item--active",
-
-signIn: "Sign in",
-classSignIn: "hide-completely",
-
-register: "Register",
-classRegister: "hide-completely"
 })
 
 <main>
@@ -75,9 +65,10 @@ classRegister: "hide-completely"
           </li>
         </ul>
 
-        <button class="profile__button link">Change password</button>
-        <button class="profile__button link">Change other data</button>
-        <button class="profile__button link">Delete account</button>
+        <button class="profile__button profile__button--password profile__button--password-js link">Change password
+        </button>
+        <button class="profile__button profile__button--data profile__button--data-js link">Change other data</button>
+        <button class="profile__button profile__button--delete-js link">Delete account</button>
       </div>
     </div>
   </section>
@@ -85,21 +76,24 @@ classRegister: "hide-completely"
 
 @@include('blocks/footer.html')
 
-<section class="editing-pass wrap-form hidden">
-  <form class="editing-pass__form form" name="editing__pass" action="" method="post">
+<section class="editing-pass modal hidden">
+  <form novalidate class="editing-pass__form form" name="editing-pass" action="" method="post">
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="editing-pass__fieldset fieldset">
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="old-pass" type="password" id="old-pass">
+        <input class="editing-pass__input input-default" name="old-password" type="password" id="old-pass" required>
         <label class="editing-pass__label label" for="old-pass">Old password <span class="star">*</span></label>
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="new-pass" type="password" id="new-pass">
+        <input class="editing-pass__input input-default" name="new-password" type="password" id="new-pass" required>
         <label class="editing-pass__label label" for="new-pass">New password <span class="star">*</span></label>
       </div>
 
       <div class="editing-pass__wrap-input wrap-input">
-        <input class="editing-pass__input input-default" name="repeat-pass" type="password" id="repeat-pass">
+        <input class="editing-pass__input input-default" name="repeatPassword" type="password" id="repeat-pass"
+               required>
         <label class="editing-pass__label label" for="repeat-pass">Repeat new password <span
           class="star">*</span></label>
       </div>
@@ -109,8 +103,10 @@ classRegister: "hide-completely"
   </form>
 </section>
 
-<section class="editing-data wrap-form hidden">
+<section class="editing-data modal hidden">
   <form class="editing-data__form form" name="editing-data" action="" method="post">
+    <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
+
     <fieldset class="editing-data__fieldset fieldset">
       <div class="editing-data__wrap-input wrap-input">
         <input class="editing-data__input input-default" type="email" name="email" id="data-email">
@@ -133,12 +129,12 @@ classRegister: "hide-completely"
       </div>
 
       <div class="editing-data__wrap-input wrap-input">
-        <input class="editing-data__input input-default" type="text" name="age" id="data-age">
+        <input class="editing-data__input input-default" type="number" name="age" id="data-age">
         <label class="editing-data__label label" for="data-age">Age</label>
       </div>
 
       <div class="editing-data__wrap-input wrap-input">
-        <input class="editing-data__input input-default" type="file" name="picture" id="data-picture">
+        <input class="editing-data__input input-default" type="file" name="avatar" id="data-picture">
         <label class="editing-data__label label" for="data-picture">Profile picture</label>
       </div>
     </fieldset>
