@@ -1,4 +1,5 @@
-const URL = 'https://academy.directlinedev.com';
+import {URL} from '../common.js';
+
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
 const SELECTOR_MESSAGE_INVALID = 'message--error';
