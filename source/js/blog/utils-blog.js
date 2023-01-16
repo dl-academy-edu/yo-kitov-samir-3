@@ -3,6 +3,7 @@ import {
   showPreloader,
   deletePreloader
 } from '../forms/utils-form.js';
+import {getNumbersFromString} from '../common.js';
 
 const SELECTOR_CUSTOM_CHECKBOX = 'custom-checkbox-js';
 const SELECTOR_SMALL_STICK = 'custom-checkbox-js--small-stick';
@@ -163,6 +164,7 @@ function showTags(elemTarget, arrayTags) {
 }
 
 function requestTags(objOptionsRequest, onSuccess, onError) {
+  console.log(`${URL}${objOptionsRequest.url}`);
   const xhr = new XMLHttpRequest();
   xhr.open(objOptionsRequest.method, `${URL}${objOptionsRequest.url}`);
   if (objOptionsRequest.headers) {
@@ -170,7 +172,7 @@ function requestTags(objOptionsRequest, onSuccess, onError) {
   }
   xhr.responseType = 'json';
   showPreloader();
-  xhr.send(JSON.stringify(objOptionsRequest?.body));
+  xhr.send();
   xhr.onload = () => {
     if (xhr.response.success || xhr.status === 200) {
       console.log(xhr.response.data);
@@ -214,10 +216,12 @@ function initializeForm(form, objParams) {
   }
 }
 
-function getObjParamsLocationSearch(arrayParamsLocation) {
+function getObjParamsLocationSearch(locationSearch) {
+  const arrayParamsSearch = locationSearch.slice(1)
+                                          .split('&');
   let params = {};
 
-  arrayParamsLocation.forEach((itemParam) => {
+  arrayParamsSearch.forEach((itemParam) => {
     const [name, value] = itemParam.split('=');
 
     if (params[name]) {
@@ -278,6 +282,67 @@ function convertFormParametersToString(objFormParamsFilter) {
   return strSearch;
 }
 
+// function convertParametersFormForRequest(objParamsForm) {
+//   const dataForm = {
+//     filter: {},
+//     limit: 9,
+//     page: objParamsForm.page || 0
+//   };
+//
+//   for (const name in objParamsForm) {
+//     if (objParamsForm.hasOwnProperty(name)) {
+//       switch (name) {
+//         case 'comments':
+//           const arrayNumbers = getNumbersFromString(objParamsForm[name].join());
+//           const min = Math.min.apply(null, arrayNumbers);
+//           const max = Math.max.apply(null, arrayNumbers);
+//
+//           dataForm.filter[name] = {$between: [min, max]};
+//           break;
+//
+//         default:
+//           dataForm[name] = objParamsForm[name];
+//           break;
+//       }
+//     }
+//   }
+//   console.log(JSON.stringify(dataForm));
+//   return dataForm;
+// }
+
+function convertObjParametersSearchForRequest(objParamsForm) {
+  const dataForm = {
+    filter: {},
+    limit: 9,
+    page: objParamsForm.page || 0
+  };
+
+  for (const name in objParamsForm) {
+    if (objParamsForm.hasOwnProperty(name)) {
+      switch (name) {
+        case 'comments':
+        case 'views':
+          const arrayNumbers = getNumbersFromString(objParamsForm[name].join());
+          const min = Math.min.apply(null, arrayNumbers);
+          const max = Math.max.apply(null, arrayNumbers);
+
+          dataForm.filter[name] = {$between: [min, max]};
+          break;
+
+        case 'tags':
+        case 'sort':
+          dataForm[name] = objParamsForm[name];
+          break;
+
+        case 'show':
+          dataForm.limit = +objParamsForm[name][0];
+      }
+    }
+  }
+
+  return dataForm;
+}
+
 function setLocationSearch(formParameterString) {
   location = `${location.origin}${location.pathname}?${formParameterString}`;
 }
@@ -292,5 +357,6 @@ export {
   resetTags,
   convertFormParametersToString,
   getObjParamsFormFilter,
-  setLocationSearch
+  setLocationSearch,
+  convertObjParametersSearchForRequest
 };

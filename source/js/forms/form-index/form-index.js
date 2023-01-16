@@ -1,12 +1,16 @@
 import {
   activeModalForm,
   onFormSubmission,
+  sendRequestForForm,
 } from '../utils-form.js';
 
 import {
   accessToSubmitButton,
-  resolveFormSignIn
+  resolveFormSignIn,
+  onSuccessDelete,
+  onSuccessFormData
 } from './utils-form-index.js';
+
 
 const pageIndex = document.querySelector('.page-index--js');
 const pageProfile = document.querySelector('.page-profile--js');
@@ -39,7 +43,7 @@ if (pageIndex) {
       activeModalForm(modalSignIn, objRemoveEvent);
 
       const optionsRequestSignIn = {
-        url: 'api/users/login',
+        url: '/api/users/login',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -66,7 +70,7 @@ if (pageIndex) {
       activeModalForm(modalRegister, objRemoveEvent);
 
       const optionsRequestRegister = {
-        url: 'api/users',
+        url: '/api/users',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -93,7 +97,7 @@ if (pageIndex) {
       activeModalForm(modalMessage, objRemoveEvent);
 
       const optionsRequestSignIn = {
-        url: 'api/emails',
+        url: '/api/emails',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'
@@ -117,6 +121,11 @@ if (pageProfile) {
   const BUTTON_OPEN_DATA_MODAL = 'profile__button--data-js';
   const BUTTON_DELETE_USER = 'profile__button--delete-js';
 
+  const optionsRequestUser = {
+    url: `/api/users/${localStorage.userId}`,
+  };
+  sendRequestForForm(optionsRequestUser, 'GET', onSuccessFormData);
+
   pageProfile.addEventListener('click', (e) => {
     const target = e.target;
 
@@ -133,13 +142,13 @@ if (pageProfile) {
       activeModalForm(modalPassword, objRemoveEvent);
 
       const optionsRequestPassword = {
-        url: 'api/users',
+        url: '/api/users',
         method: 'PUT',
         headers: {
           'x-access-token': `${localStorage.token}`,
           'Content-Type': 'application/json;charset=utf-8'
         },
-        modal: modalPassword
+        modal: modalPassword,
       };
 
       formPasswordModal.addEventListener('submit', onFormSubmission(optionsRequestPassword));
@@ -156,11 +165,31 @@ if (pageProfile) {
       };
 
       activeModalForm(modalData, objRemoveEvent);
+
+      const optionsRequestData = {
+        url: '/api/users',
+        method: 'PUT',
+        headers: {
+          'x-access-token': `${localStorage.token}`,
+        },
+        modal: modalData,
+        typeBody: 'formData'
+      };
+
+      formDataModal.addEventListener('submit', onFormSubmission(optionsRequestData, '', onSuccessFormData));
+
     }
 
     //удаление аккаунта пользователя
     if (target.closest(`.${BUTTON_DELETE_USER}`)) {
-
+      const optionsRequestUser = {
+        url: `/api/users/${localStorage.userId}`,
+        headers: {
+          'x-access-token': `${localStorage.token}`,
+          'Content-Type': 'application/json;charset=utf-8'
+        }
+      };
+      sendRequestForForm(optionsRequestUser, 'DELETE', onSuccessDelete);
     }
   });
 }

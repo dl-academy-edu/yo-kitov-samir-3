@@ -518,7 +518,7 @@
 .profile__img {
   width: 320px;
   height: 450px;
-  object-fit: contain;
+  object-fit: cover;
 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
   background-color: $about-bg;
@@ -581,6 +581,14 @@
   &:first-of-type {
     width: 100%;
   }
+}
+
+.editing-data__file-custom {
+  padding: 13px 14px 12px 55px;
+
+  //background-image: url("./source/img/svg/file-upload.svg");
+  //background-repeat: no-repeat;
+  //background-position: 10px 10px;
 }
 
 .editing-data__submit {

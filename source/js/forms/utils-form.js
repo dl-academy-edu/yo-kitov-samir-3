@@ -1,4 +1,4 @@
-const URL = 'https://academy.directlinedev.com/';
+const URL = 'https://academy.directlinedev.com';
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
 const SELECTOR_MESSAGE_INVALID = 'message--error';
@@ -13,6 +13,10 @@ const MODAL_MESSAGE_TEXT_SUCCESS = 'Form has been sent successfully';
 const MODAL_MESSAGE_INVALID = 'modal-message__text--error';
 const MODAL_MESSAGE_VALID = 'modal-message__text--success';
 const VALIDATE_FORM = 'validate';
+//3 константы которые идут после этого коментария должны называться так как требует этого бэкенд
+const NAME_REPEAT_PASSWORD = 'repeatPassword';
+const NAME_NEW_PASSWORD = 'newPassword';
+const NAME_PASSWORD = 'oldPassword';
 
 function createModalMessage(text, selectorStateModalMessage, selectorButtonCloseModal = MODAL_CLOSE_BUTTON_SELECTOR) {
   const innerModal = `<div class="modal-message__inner-wrap">
@@ -200,6 +204,21 @@ function getInvalidInputs(form) {
           }
           break;
 
+        case 'password':
+          if (input.name === NAME_REPEAT_PASSWORD) {
+            const form = input.form;
+            const repeatPassword = input;
+            const newPassword = form.querySelector(`input[name=${NAME_NEW_PASSWORD}]`);
+            const password = form.querySelector(`input[name=${NAME_PASSWORD}]`);
+
+            let passwordToCheck = newPassword || password;
+
+            if (repeatPassword.value !== passwordToCheck.value) {
+              errors[input.name] = {input: input, message: 'Passwords do not match'};
+            }
+          }
+          break;
+
         //если тип инпута email
         case 'email':
           //тогда мы проверяем его значение регулярным выражением, и если проверка не прошла
@@ -317,7 +336,7 @@ function markErrorInput(elem, validInputStateSelector = INPUT_STATE_SELECTOR_VAL
 }
 
 function removeMarkedInputs(form, inputStateSelector) {
-  const correctInputs = form.querySelectorAll(`.${inputStateSelector}`);
+  const correctInputs = form?.querySelectorAll(`.${inputStateSelector}`);
 
   if (correctInputs) {
     [...correctInputs].forEach((input) => input.classList.remove(inputStateSelector));
@@ -343,16 +362,21 @@ function showMessage(elem, message) {
 }
 
 function removeAllMessages(form, selectorMessage) {
-  const errors = form.querySelectorAll(`.${selectorMessage}`);
+  const messages = form?.querySelectorAll(`.${selectorMessage}`);
 
-  if (errors) {
-    [...errors].forEach((message) => message.remove());
+  if (messages) {
+    [...messages].forEach((message) => message.remove());
   }
 }
 
 function saveDataUser(data) {
-  localStorage.userId = data.id;
+  localStorage.userId = data.userId;
   localStorage.token = data.token;
+}
+
+function deleteDataUser(data) {
+  localStorage.removeItem('userId');
+  localStorage.removeItem('token');
 }
 
 function showPreloader() {
@@ -377,12 +401,17 @@ function deletePreloader() {
 
 function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) {
   showPreloader();
-  console.log(objOptionsRequest);
+
+  let body = JSON.stringify(objOptionsRequest?.body);
+
+  if (objOptionsRequest.typeBody && objOptionsRequest.typeBody === 'formData') {
+    body = new FormData(objOptionsRequest?.form);
+  }
 
   fetch(`${URL}${objOptionsRequest.url}`, {
     method: method,
     headers: objOptionsRequest?.headers,
-    body: JSON.stringify(objOptionsRequest?.body),
+    body: body,
   })
     .then((response) => {
       if (response.ok || response.status === 422 || response.status === 401 || response.status === 400) {
@@ -393,19 +422,19 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
     })
     .then((response) => {
       if (response.success) {
-        console.log(response.success);
-        console.log(response);
         if (resolve) {
           resolve(response.data);
         }
 
-        clearForm(objOptionsRequest.form);
-        objOptionsRequest.form.reset();
-        closeModalForm(objOptionsRequest.modal, MODAL_CLOSE_BUTTON_SELECTOR);
+        if (objOptionsRequest.form) {
+          clearForm(objOptionsRequest.form);
+          objOptionsRequest.form.reset();
+          closeModalForm(objOptionsRequest.modal, MODAL_CLOSE_BUTTON_SELECTOR);
 
-        const modalMessageSuccess = createModalMessage(MODAL_MESSAGE_TEXT_SUCCESS, MODAL_MESSAGE_VALID);
-        showModalMessage(modalMessageSuccess);
-        removeLaterModalMessage(modalMessageSuccess);
+          const modalMessageSuccess = createModalMessage(MODAL_MESSAGE_TEXT_SUCCESS, MODAL_MESSAGE_VALID);
+          showModalMessage(modalMessageSuccess);
+          removeLaterModalMessage(modalMessageSuccess);
+        }
       } else {
         throw response;
       }
@@ -452,14 +481,13 @@ function onFormSubmission(objOptionsRequest, type = VALIDATE_FORM, resolve = nul
       };
     }
 
-    console.log(data);
-
     const optionsRequest = {
       url: objOptionsRequest.url,
       headers: objOptionsRequest.headers,
       body: data,
       form: form,
       modal: objOptionsRequest.modal,
+      typeBody: objOptionsRequest.typeBody
     };
     sendRequestForForm(optionsRequest, objOptionsRequest.method, resolve, reject);
   };
@@ -477,6 +505,7 @@ export {
   closeModalForm,
   MODAL_CLOSE_BUTTON_SELECTOR,
   saveDataUser,
+  deleteDataUser,
   showPreloader,
   deletePreloader,
   removeMarkedInputs,

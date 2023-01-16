@@ -234,8 +234,9 @@ classProfile: "hide-completely",
 
 @@include('blocks/footer.html')
 
-<section class="sign-in modal hidden">
-  <form novalidate class="sign-in__form form" action="" method="post" name="sign-in">
+<div class="sign-in modal hidden">
+  <form novalidate class="sign-in__form form" action="https://academy.directlinedev.com/api/users/login" method="post"
+        name="sign-in">
     <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="sign-in__fieldset fieldset">
@@ -255,10 +256,11 @@ classProfile: "hide-completely",
 
     <button class="sign-in__submit link" type="submit">Log in</button>
   </form>
-</section>
+</div>
 
-<section class="register modal hidden">
-  <form novalidate class="register__form form" action="" method="post" name="register">
+<div class="register modal hidden">
+  <form novalidate class="register__form form" action="https://academy.directlinedev.com/api/users" method="post"
+        name="register">
     <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="register__fieldset fieldset">
@@ -270,7 +272,7 @@ classProfile: "hide-completely",
       </div>
 
       <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="name" name="name"
+        <input class="register__input register__input--email input-default" type="text" name="name"
                id="register-name" required>
         <label class="register__label register__label--name label" for="register-name">Name <span class="star">*</span></label>
       </div>
@@ -326,10 +328,11 @@ classProfile: "hide-completely",
 
     <button disabled class="register__submit link link--form-margin" type="submit">Sign up</button>
   </form>
-</section>
+</div>
 
-<section class="message modal hidden">
-  <form novalidate class="message__form form" action="" method="post" name="message">
+<div class="message modal hidden">
+  <form novalidate class="message__form form" action="https://academy.directlinedev.com/api/emails" method="post"
+        name="message">
     <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="message__fieldset fieldset">
@@ -382,8 +385,8 @@ classProfile: "hide-completely",
 
     <button disabled class="message__submit link link--form-margin" type="submit">Send</button>
   </form>
-</section>
+</div>
 
-<script src="js/app.js" type="module" defer></script>
+<script src="js/app.js" type="module"></script>
 </body>
 </html>
