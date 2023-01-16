@@ -101,11 +101,11 @@ if (document.querySelector('.page-blog--js')) {
       return searchParams;
     }
 
-    // const optionsRequestPosts = {
-    //   url: `api/posts${strRequest}`,
-    //   method: 'GET',
-    // };
-    // requestTags(optionsRequestPosts, onSuccessPost(dataRequest.page));
+    const optionsRequestPosts = {
+      url: `/api/posts?${strRequest}`,
+      method: 'GET',
+    };
+    requestTags(optionsRequestPosts, onSuccessPost(dataRequest.page));
 
     function onSuccessPost(page, formFilter) {
       return function () {

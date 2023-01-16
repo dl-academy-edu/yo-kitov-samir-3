@@ -1,6 +1,5 @@
 import {
   saveDataUser,
-  deleteDataUser
 } from './forms/utils-form.js';
 
 const URL = 'https://academy.directlinedev.com';
