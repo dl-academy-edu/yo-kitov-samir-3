@@ -77,7 +77,6 @@ if (pageProfile) {
       };
 
       formDataModal.addEventListener('submit', onFormSubmission(optionsRequestData, '', onSuccessFormData));
-
     }
 
     //удаление аккаунта пользователя

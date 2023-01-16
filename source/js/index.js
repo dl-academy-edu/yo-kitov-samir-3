@@ -1,12 +1,13 @@
 import {
   activeModalForm,
   onFormSubmission,
-  renderLinks
+  signOut
 } from './forms/utils-form.js';
 
 import {
   accessToSubmitButton,
-  resolveFormSignIn
+  resolveFormSignIn,
+  renderLinks,
 } from './common.js';
 
 renderLinks();
@@ -19,6 +20,7 @@ const formMessageModal = document.querySelector('.message__form');
 const modalMessage = document.querySelector('.message');
 
 const ITEM_OPEN_SIGN_IN_MODAL = 'header__item--sign-in-js';
+const ITEM_OPEN_SIGN_OUT_MODAL = 'header__item--sign-out-js';
 const ITEM_OPEN_REGISTER_MODAL = 'header__item--register-js';
 const BUTTON_OPEN_MESSAGE_MODAL = 'footer__message-button--js';
 
@@ -47,6 +49,11 @@ document.addEventListener('click', (e) => {
     };
 
     formSignInModal.addEventListener('submit', onFormSubmission(optionsRequestSignIn, 'validate', resolveFormSignIn));
+  }
+
+  //кнопка выхода
+  if (target.closest(`.${ITEM_OPEN_SIGN_OUT_MODAL}`)) {
+    signOut();
   }
 
   //форма регистрации

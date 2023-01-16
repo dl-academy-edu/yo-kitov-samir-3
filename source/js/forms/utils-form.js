@@ -1,4 +1,4 @@
-import {URL} from '../common.js';
+import {URL, renderLinks, changesUserData} from '../common.js';
 
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
@@ -96,22 +96,6 @@ function removeHandlers(objEvent) {
           .forEach((nameElement) => {
             objEvent[nameElement].element.removeEventListener(`${objEvent[nameElement].event}`, objEvent[nameElement].callback);
           });
-  }
-}
-
-function renderLinks(selectorHiddenItem = 'hide-completely') {
-  const itemSign = document.querySelector('.header__item--sign-in-js');
-  const itemRegister = document.querySelector('.header__item--register-js');
-  const itemProfile = document.querySelector('.header__item--profile-js');
-
-  if (localStorage.token) {
-    itemSign.classList.add(selectorHiddenItem);
-    itemRegister.classList.add(selectorHiddenItem);
-    itemProfile.classList.remove(selectorHiddenItem);
-  } else {
-    itemSign.classList.remove(selectorHiddenItem);
-    itemRegister.classList.remove(selectorHiddenItem);
-    itemProfile.classList.add(selectorHiddenItem);
   }
 }
 
@@ -375,7 +359,7 @@ function saveDataUser(data) {
   localStorage.token = data.token;
 }
 
-function deleteDataUser(data) {
+function deleteDataUser() {
   localStorage.removeItem('userId');
   localStorage.removeItem('token');
 }
@@ -494,13 +478,17 @@ function onFormSubmission(objOptionsRequest, type = VALIDATE_FORM, resolve = nul
   };
 }
 
+function signOut() {
+  deleteDataUser();
+  location.pathname = '/';
+}
+
 export {
   formValidation,
   createMessage,
   removeAllMessages,
   getObjDataForm,
   activeModalForm,
-  renderLinks,
   sendRequestForForm,
   onFormSubmission,
   closeModalForm,
@@ -510,6 +498,7 @@ export {
   showPreloader,
   deletePreloader,
   removeMarkedInputs,
+  signOut,
 
   clearForm,
   SELECTOR_MESSAGE_INVALID,
