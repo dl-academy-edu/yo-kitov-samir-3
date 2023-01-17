@@ -39,10 +39,8 @@ function getTimeForMan(strTime) {
   };
 }
 
-function createBlog(selectorTemplate, {id, title, tags, date, views, commentsCount, text, photo}) {
-  const blog = document.querySelector(selectorTemplate)
-                       .content
-                       .cloneNode(true);
+function createPost(Template, {id, title, tags, date, views, commentsCount, text, photo}) {
+  const blog = Template.content.cloneNode(true);
 
   const article = blog.querySelector('.blog');
   const titleBlog = blog.querySelector('.blog__title');
@@ -75,12 +73,16 @@ function createBlog(selectorTemplate, {id, title, tags, date, views, commentsCou
 
   textBlog.innerHTML = text;
 
-  imgBlog.src = 'photo.desktopPhotoUrl';
-  imgBlog.srcset = `${photo.desktop2xPhotoUrl} 2x`;
-  imgTabletBlog.srcset = `${photo.tabletPhotoUrl}, ${photo.tablet2xPhotoUrl} 2x`;
-  imgMobileBlog.srcset = `${photo.mobilePhotoUrl}, ${photo.mobile2xPhotoUrl} 2x`;
+  imgBlog.src = `${URL}${photo.desktopPhotoUrl}`;
+  imgBlog.srcset = `${URL}${photo.desktop2xPhotoUrl} 2x`;
+  imgTabletBlog.srcset = `${URL}${photo.tabletPhotoUrl}, ${URL}${photo.tablet2xPhotoUrl} 2x`;
+  imgMobileBlog.srcset = `${URL}${photo.mobilePhotoUrl}, ${URL}${photo.mobile2xPhotoUrl} 2x`;
 
   return blog;
+}
+
+function showPosts(parentPosts, arrayPosts) {
+  parentPosts.append(...arrayPosts);
 }
 
 function createTag({id, color}, arrayCheckedTags) {
@@ -132,10 +134,10 @@ function createTag({id, color}, arrayCheckedTags) {
   return li;
 }
 
-function getArrayTags(arrayDataTags, arrayCheckedTags) {
+function getArrayTags(response, arrayCheckedTags) {
   const arrayTags = [];
 
-  arrayDataTags.forEach(({id, color}) => {
+  response.data.forEach(({id, color}) => {
     const tag = createTag({id, color}, arrayCheckedTags);
     arrayTags.push(tag);
   });
@@ -163,8 +165,8 @@ function showTags(elemTarget, arrayTags) {
   elemTarget.append(...arrayTags);
 }
 
-function requestTags(objOptionsRequest, onSuccess, onError) {
-  console.log(`${URL}${objOptionsRequest.url}`);
+function requestPageBlog(objOptionsRequest, onSuccess, onError) {
+
   const xhr = new XMLHttpRequest();
   xhr.open(objOptionsRequest.method, `${URL}${objOptionsRequest.url}`);
   if (objOptionsRequest.headers) {
@@ -175,9 +177,9 @@ function requestTags(objOptionsRequest, onSuccess, onError) {
   xhr.send();
   xhr.onload = () => {
     if (xhr.response.success || xhr.status === 200) {
-      console.log(xhr.response.data);
+      console.log(xhr.response);
       if (onSuccess) {
-        onSuccess(xhr.response.data);
+        onSuccess(xhr.response);
       }
     }
     deletePreloader();
@@ -282,45 +284,19 @@ function convertFormParametersToString(objFormParamsFilter) {
   return strSearch;
 }
 
-// function convertParametersFormForRequest(objParamsForm) {
-//   const dataForm = {
-//     filter: {},
-//     limit: 9,
-//     page: objParamsForm.page || 0
-//   };
-//
-//   for (const name in objParamsForm) {
-//     if (objParamsForm.hasOwnProperty(name)) {
-//       switch (name) {
-//         case 'comments':
-//           const arrayNumbers = getNumbersFromString(objParamsForm[name].join());
-//           const min = Math.min.apply(null, arrayNumbers);
-//           const max = Math.max.apply(null, arrayNumbers);
-//
-//           dataForm.filter[name] = {$between: [min, max]};
-//           break;
-//
-//         default:
-//           dataForm[name] = objParamsForm[name];
-//           break;
-//       }
-//     }
-//   }
-//   console.log(JSON.stringify(dataForm));
-//   return dataForm;
-// }
-
 function convertObjParametersSearchForRequest(objParamsForm) {
   const dataForm = {
     filter: {},
-    limit: 9,
-    page: objParamsForm.page || 0
+    limit: +objParamsForm.show[0] || 9,
+    page: objParamsForm.page || 0,
   };
+
+  dataForm.offset = dataForm.page * dataForm.limit;
 
   for (const name in objParamsForm) {
     if (objParamsForm.hasOwnProperty(name)) {
       switch (name) {
-        case 'comments':
+        case 'commentsCount':
         case 'views':
           const arrayNumbers = getNumbersFromString(objParamsForm[name].join());
           const min = Math.min.apply(null, arrayNumbers);
@@ -333,9 +309,6 @@ function convertObjParametersSearchForRequest(objParamsForm) {
         case 'sort':
           dataForm[name] = objParamsForm[name];
           break;
-
-        case 'show':
-          dataForm.limit = +objParamsForm[name][0];
       }
     }
   }
@@ -347,16 +320,112 @@ function setLocationSearch(formParameterString) {
   location = `${location.origin}${location.pathname}?${formParameterString}`;
 }
 
+function getStrSearch(dataRequest) {
+  const searchParams = new URLSearchParams();
+  searchParams.set('v', '1.0.0');
+
+  for (const name in dataRequest) {
+    if (dataRequest.hasOwnProperty(name)) {
+      if (name === 'sort') {
+        searchParams.set(`${name}`, JSON.stringify([dataRequest[name][0], 'ASC']));
+        continue;
+      }
+
+      searchParams.set(`${name}`, JSON.stringify(dataRequest[name]));
+      console.log(name, dataRequest[name]);
+    }
+  }
+  console.log(`${searchParams}`);
+  return searchParams;
+}
+
+function createLinkPagination(page, parentLinks, templatePost, parentPosts) {
+  const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+  const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
+
+  const li = document.createElement('li');
+  const link = document.createElement('a');
+
+  li.classList.add('controls__item');
+  link.classList.add('controls__link');
+  link.innerText = page + 1;
+
+  if (+dataRequest.page === page) {
+    link.classList.add('controls__link--active');
+  }
+
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const searchParams = new URLSearchParams(location.search);
+    const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+    const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
+    const strRequest = getStrSearch(dataRequest);
+
+    const target = e.target;
+
+    const activeLink = document.querySelector('.controls__link--active');
+    activeLink.classList.remove('controls__link--active');
+    target.classList.add('controls__link--active');
+
+    searchParams.set('page', +target.innerText - 1);
+    setLocationSearch(searchParams);
+    const optionsRequestPosts = {
+      url: `/api/posts?${strRequest}`,
+      method: 'GET',
+    };
+    requestPageBlog(optionsRequestPosts, onSuccessPost(dataRequest.page, parentLinks, templatePost, parentPosts));
+  });
+
+  li.append(link);
+  return li;
+}
+
+function showLinkPagination(parentLinks, arrayLinks) {
+  parentLinks.append(...arrayLinks);
+}
+
+function onSuccessPost(page, parentLinks, template, parentPosts, formFilter) {
+  return function (response) {
+    const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+    const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
+
+    let arrayPosts = [];
+    console.log(response);
+    response.data.forEach((objPost) => {
+      const li = document.createElement('li');
+      const post = createPost(template, objPost);
+      li.append(post);
+      arrayPosts.push(li);
+    });
+    showPosts(parentPosts, arrayPosts);
+    console.log(page);
+
+    const numPage = Math.ceil(response.count / dataRequest.limit);
+    let arrayLinks = [];
+
+    for (let i = 0; i < numPage; i++) {
+      const link = createLinkPagination(i, parentLinks, template, parentPosts);
+      arrayLinks.push(link);
+    }
+    showLinkPagination(parentLinks, arrayLinks);
+  };
+}
+
 export {
-  createBlog,
+  createPost,
   showTags,
   getArrayTags,
-  requestTags,
+  requestPageBlog,
   initializeForm,
   getObjParamsLocationSearch,
   resetTags,
   convertFormParametersToString,
   getObjParamsFormFilter,
   setLocationSearch,
-  convertObjParametersSearchForRequest
+  convertObjParametersSearchForRequest,
+  getStrSearch,
+  showPosts,
+  createLinkPagination,
+  showLinkPagination,
+  onSuccessPost
 };

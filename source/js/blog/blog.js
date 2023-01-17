@@ -1,15 +1,20 @@
 import {
   convertFormParametersToString,
-  createBlog,
+  createPost,
   getArrayTags,
   getObjParamsFormFilter,
   getObjParamsLocationSearch,
   initializeForm,
-  requestTags,
+  requestPageBlog,
   resetTags,
   showTags,
   setLocationSearch,
-  convertObjParametersSearchForRequest
+  convertObjParametersSearchForRequest,
+  getStrSearch,
+  showPosts,
+  createLinkPagination,
+  showLinkPagination,
+  onSuccessPost
 } from './utils-blog.js';
 
 import {getNumbersFromString} from '../common.js';
@@ -18,6 +23,9 @@ if (document.querySelector('.page-blog--js')) {
   const formFilters = document.querySelector('.filters__form');
   const buttonReset = document.querySelector('button[type="reset"]');
   const wrapTags = document.querySelector('.filters__list');
+  const wrapPosts = document.querySelector('.blogs__list-posts');
+  const wrapLinks = document.querySelector('.controls__list--blog-js');
+  const template = document.querySelector('#blog');
 
   formFilters.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -31,28 +39,10 @@ if (document.querySelector('.page-blog--js')) {
       method: 'GET',
       body: objDataFormForRequest
     };
-    requestTags(optionsRequestPosts, onSuccessPosts);
+    requestPageBlog(optionsRequestPosts, onSuccessPosts);
 
     function onSuccessPosts(arrayData) {
 
-    }
-
-    function createLinkPagination(page) {
-      const li = document.createElement('li');
-      li.classList.add('controls__item');
-      const link = document.createElement('a');
-      link.classList.add('controls__link');
-      link.innerText = page + 1;
-
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const link = e.target;
-
-        const activeLink = document.querySelector('.controls__link--active');
-        activeLink.classList.remove('controls__link--active');
-
-        link.classList.add('controls__link--active');
-      });
     }
 
     const strParamsForm = convertFormParametersToString(objParamsForm);
@@ -66,52 +56,30 @@ if (document.querySelector('.page-blog--js')) {
     // headers: {name:'Content-Type', value:' application/json; charset=utf-8'}
   };
 
-  requestTags(optionsRequestTags, onSuccessTags);
+  requestPageBlog(optionsRequestTags, onSuccessTags(wrapTags, template, wrapPosts, wrapLinks));
 
-  function onSuccessTags(arrayTagsData) {
-    const paramsSearch = getObjParamsLocationSearch(location.search);
-    if (location.search) {
-      [...document.forms].forEach((form) => {
-        initializeForm(form, paramsSearch);
-      });
-    }
-
-    const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
-    showTags(wrapTags, tags);
-
-    const paramsLocationSearch = getObjParamsLocationSearch(location.search);
-    const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
-    const strRequest = getStrSearch(dataRequest);
-    console.log(`${strRequest}`);
-
-    function getStrSearch(dataRequest) {
-      const searchParams = new URLSearchParams();
-      searchParams.set('v', '1.0.0');
-
-      for (const name in dataRequest) {
-        if (name === 'sort') {
-          searchParams.set(`${name}`, JSON.stringify([dataRequest[name][0], 'DESC']));
-        }
-
-        searchParams.set(`${name}`, JSON.stringify(dataRequest[name]));
-        console.log(name, dataRequest[name]);
+  function onSuccessTags(parentTags, templatePost, parentPosts, parentLinks) {
+    return function (arrayTagsData) {
+      const paramsSearch = getObjParamsLocationSearch(location.search);
+      if (location.search) {
+        [...document.forms].forEach((form) => {
+          initializeForm(form, paramsSearch);
+        });
       }
 
-      console.log(`${searchParams}`);
-      return searchParams;
-    }
+      const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
+      showTags(parentTags, tags);
 
-    const optionsRequestPosts = {
-      url: `/api/posts?${strRequest}`,
-      method: 'GET',
-    };
-    requestTags(optionsRequestPosts, onSuccessPost(dataRequest.page));
+      const dataRequest = convertObjParametersSearchForRequest(paramsSearch);
+      const strRequest = getStrSearch(dataRequest);
 
-    function onSuccessPost(page, formFilter) {
-      return function () {
-        console.log(page);
+      const optionsRequestPosts = {
+        url: `/api/posts?${strRequest}`,
+        method: 'GET',
       };
-    }
+      requestPageBlog(optionsRequestPosts, onSuccessPost(dataRequest.page, parentLinks, templatePost, parentPosts));
+
+    };
   }
 
   buttonReset.addEventListener('click', (e) => {

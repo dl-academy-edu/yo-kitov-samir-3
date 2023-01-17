@@ -6,7 +6,8 @@ import {
 
 import {
   onSuccessDelete,
-  onSuccessFormData
+  onSuccessFormData,
+  getOnChangeFileFunction
 } from './utils-form-profile.js';
 
 const pageProfile = document.querySelector('.page-profile--js');
@@ -16,6 +17,8 @@ if (pageProfile) {
   const modalPassword = document.querySelector('.editing-pass');
   const formDataModal = document.querySelector('.editing-data__form');
   const modalData = document.querySelector('.editing-data');
+  const labelFileCustom = document.querySelector('.editing-data__file-custom--js');
+  const inputFile = document.querySelector('.editing-data__input-file-js');
 
   const BUTTON_OPEN_PASSWORD_MODAL = 'profile__button--password-js';
   const BUTTON_OPEN_DATA_MODAL = 'profile__button--data-js';
@@ -55,16 +58,25 @@ if (pageProfile) {
     }
 
     //форма смены данных пользователя
+    const onChangeFile = getOnChangeFileFunction(labelFileCustom);
+
     if (target.closest(`.${BUTTON_OPEN_DATA_MODAL}`)) {
       const objRemoveEvent = {
         formDataModal: {
           element: formDataModal,
           event: 'submit',
           callback: onFormSubmission
+        },
+
+        inputFile: {
+          element: inputFile,
+          event: 'change',
+          callback: onChangeFile
         }
       };
-
       activeModalForm(modalData, objRemoveEvent);
+
+      inputFile.addEventListener('change', onChangeFile);
 
       const optionsRequestData = {
         url: '/api/users',

@@ -1,4 +1,4 @@
-import {URL, renderLinks, changesUserData} from '../common.js';
+import {URL,} from '../common.js';
 
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';

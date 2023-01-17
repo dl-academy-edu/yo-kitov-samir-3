@@ -584,11 +584,13 @@
 }
 
 .editing-data__file-custom {
-  padding: 13px 14px 12px 55px;
+  padding: 13px 14px 12px 37px;
 
-  //background-image: url("./source/img/svg/file-upload.svg");
-  //background-repeat: no-repeat;
-  //background-position: 10px 10px;
+  background-image: url("../img/svg/file-upload.svg");
+  background-repeat: no-repeat;
+  background-position: 12px 17px;
+
+  cursor: pointer;
 }
 
 .aaa {
