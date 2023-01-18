@@ -79,8 +79,9 @@ classProfile: "header__item--active",
 
 @@include('blocks/footer.html')
 
-<section class="editing-pass modal hidden">
-  <form novalidate class="editing-pass__form form" name="editing-pass" action="" method="post">
+<div class="editing-pass modal hidden">
+  <form novalidate class="editing-pass__form form" name="editing-pass" action="https://academy.directlinedev.com"
+        method="post">
     <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="editing-pass__fieldset fieldset">
@@ -104,10 +105,11 @@ classProfile: "header__item--active",
 
     <button class="editing-pass__submit link" type="submit">Change password</button>
   </form>
-</section>
+</div>
 
-<section class="editing-data modal hidden">
-  <form novalidate class="editing-data__form form" name="editing-data" action="" method="post">
+<div class="editing-data modal hidden">
+  <form novalidate class="editing-data__form form" name="editing-data" action="https://academy.directlinedev.com"
+        method="post">
     <button class="close-modal" type="button" aria-label="закрыть окно формы"></button>
 
     <fieldset class="editing-data__fieldset fieldset">
@@ -137,17 +139,19 @@ classProfile: "header__item--active",
       </div>
 
       <div class="editing-data__wrap-input wrap-input">
-        <input class="visually-hidden editing-data__input editing-data__input-file-js input-default" type="file" name="avatar" id="data-picture">
-        <label class="editing-data__file-custom editing-data__file-custom--js input-default" for="data-picture">Choose a file...</label>
+        <input class="visually-hidden editing-data__input editing-data__input-file-js input-default" type="file"
+               name="avatar" id="data-picture">
+        <label class="editing-data__file-custom editing-data__file-custom--js input-default" for="data-picture">Choose a
+          file...</label>
         <label class="editing-data__label label" for="data-picture">Profile picture</label>
       </div>
     </fieldset>
 
     <button class="editing-data__submit link" type="submit">Submit changes</button>
   </form>
-</section>
+</div>
 
-<script src="js/app.js" type="module" defer></script>
+<script src="js/app.js" type="module"></script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-import {URL,} from '../common.js';
+import {URL} from '../common.js';
 
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
@@ -8,7 +8,6 @@ const SELECTOR_MESSAGE_VALID = 'message--success';
 const INPUT_STATE_SELECTOR_VALID = 'input-default--valid-js';
 const REGULAR_EMAIL = /^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i;
 const REGULAR_PHONE = /(\+7|8)[\s(]?(\d{3})[\s)]?(\d{3})[\s-]?(\d{2})[\s-]?(\d{2})/g;
-const MODAL_CLOSE_BUTTON_SELECTOR = 'close-modal';
 const MODAL_MESSAGE_TEXT_ERROR = 'The form was sent but the server transmits an error: “The form was sent but the server transmits an error”';
 const MODAL_MESSAGE_TEXT_SUCCESS = 'Form has been sent successfully';
 const MODAL_MESSAGE_INVALID = 'modal-message__text--error';
@@ -51,52 +50,6 @@ function removeLaterModalMessage(modal) {
 function closeModalForm(modal, selectorButtonClose) {
   const button = modal.querySelector(`.${selectorButtonClose}`);
   button.click();
-}
-
-function activeModalForm(modal, objEvent, selectorButtonCloseModal = MODAL_CLOSE_BUTTON_SELECTOR, selectorHiddenModal = 'hidden') {
-  modal.classList.remove(selectorHiddenModal);
-
-  const forms = [...modal.querySelectorAll('form')];
-  const formActive = forms.find((form) => {
-    return !form.classList.contains(selectorHiddenModal);
-  });
-  formActive.querySelector('input')
-            .focus();
-
-  const buttonCloseForm = modal.querySelector(`.${selectorButtonCloseModal}`);
-  buttonCloseForm.addEventListener('click', closePopupButtonClick);
-
-  document.addEventListener('keyup', closePopupKeyup);
-
-  //вспомогательные функции
-  function closePopupButtonClick() {
-    modal.classList.add(selectorHiddenModal);
-
-    this.removeEventListener('click', closePopupButtonClick);
-    modal.removeEventListener('keyup', closePopupKeyup);
-
-    removeHandlers(objEvent);
-  }
-
-  function closePopupKeyup(e) {
-    if (e.code === 'Escape') {
-      modal.classList.add(selectorHiddenModal);
-
-      document.removeEventListener('keyup', closePopupKeyup);
-      buttonCloseForm.removeEventListener('click', closePopupButtonClick);
-
-      removeHandlers(objEvent);
-    }
-  }
-}
-
-function removeHandlers(objEvent) {
-  if (objEvent) {
-    Object.keys(objEvent)
-          .forEach((nameElement) => {
-            objEvent[nameElement].element.removeEventListener(`${objEvent[nameElement].event}`, objEvent[nameElement].callback);
-          });
-  }
 }
 
 function formValidation(form, objError = {}) {
@@ -354,16 +307,6 @@ function removeAllMessages(form, selectorMessage) {
   }
 }
 
-function saveDataUser(data) {
-  localStorage.userId = data.userId;
-  localStorage.token = data.token;
-}
-
-function deleteDataUser() {
-  localStorage.removeItem('userId');
-  localStorage.removeItem('token');
-}
-
 function showPreloader() {
   document.body.append(createPreloader());
 
@@ -478,40 +421,9 @@ function onFormSubmission(objOptionsRequest, type = VALIDATE_FORM, resolve = nul
   };
 }
 
-function signOut() {
-  deleteDataUser();
-  location.pathname = '/';
-}
-
 export {
-  formValidation,
-  createMessage,
-  removeAllMessages,
-  getObjDataForm,
-  activeModalForm,
   sendRequestForForm,
   onFormSubmission,
-  closeModalForm,
-  MODAL_CLOSE_BUTTON_SELECTOR,
-  saveDataUser,
-  deleteDataUser,
   showPreloader,
   deletePreloader,
-  removeMarkedInputs,
-  signOut,
-
-  clearForm,
-  SELECTOR_MESSAGE_INVALID,
-  INPUT_STATE_SELECTOR_INVALID,
-  SELECTOR_MESSAGE_VALID,
-  INPUT_STATE_SELECTOR_VALID,
-
-  createModalMessage,
-  showModalMessage,
-  removeLaterModalMessage,
-  MODAL_MESSAGE_TEXT_ERROR,
-  MODAL_MESSAGE_INVALID,
-  MODAL_MESSAGE_TEXT_SUCCESS,
-  MODAL_MESSAGE_VALID,
-  URL
 };

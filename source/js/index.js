@@ -1,13 +1,13 @@
 import {
-  activeModalForm,
   onFormSubmission,
-  signOut
 } from './forms/utils-form.js';
 
 import {
   accessToSubmitButton,
   resolveFormSignIn,
   renderLinks,
+  signOut,
+  activeModalForm
 } from './common.js';
 
 renderLinks();

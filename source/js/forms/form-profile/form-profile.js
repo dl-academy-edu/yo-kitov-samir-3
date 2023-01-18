@@ -1,5 +1,4 @@
 import {
-  activeModalForm,
   onFormSubmission,
   sendRequestForForm
 } from '../utils-form.js';
@@ -9,6 +8,8 @@ import {
   onSuccessFormData,
   getOnChangeFileFunction
 } from './utils-form-profile.js';
+
+import {activeModalForm} from '../../common.js'
 
 const pageProfile = document.querySelector('.page-profile--js');
 

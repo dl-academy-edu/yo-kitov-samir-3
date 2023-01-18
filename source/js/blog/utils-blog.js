@@ -1,9 +1,9 @@
 import {
-  URL,
   showPreloader,
   deletePreloader
 } from '../forms/utils-form.js';
-import {getNumbersFromString} from '../common.js';
+
+import {getNumbersFromString, URL} from '../common.js';
 
 const SELECTOR_CUSTOM_CHECKBOX = 'custom-checkbox-js';
 const SELECTOR_SMALL_STICK = 'custom-checkbox-js--small-stick';
@@ -177,7 +177,6 @@ function requestPageBlog(objOptionsRequest, onSuccess, onError) {
   xhr.send();
   xhr.onload = () => {
     if (xhr.response.success || xhr.status === 200) {
-      console.log(xhr.response);
       if (onSuccess) {
         onSuccess(xhr.response);
       }
@@ -218,9 +217,9 @@ function initializeForm(form, objParams) {
   }
 }
 
-function getObjParamsLocationSearch(locationSearch) {
-  const arrayParamsSearch = locationSearch.slice(1)
-                                          .split('&');
+function getObjParamsLocationSearch() {
+  const arrayParamsSearch = location.search.slice(1)
+                                    .split('&');
   let params = {};
 
   arrayParamsSearch.forEach((itemParam) => {
@@ -285,9 +284,10 @@ function convertFormParametersToString(objFormParamsFilter) {
 }
 
 function convertObjParametersSearchForRequest(objParamsForm) {
+
   const dataForm = {
     filter: {},
-    limit: +objParamsForm.show[0] || 9,
+    limit: objParamsForm.show ? +objParamsForm.show[0] : 9,
     page: objParamsForm.page || 0,
   };
 
@@ -305,8 +305,7 @@ function convertObjParametersSearchForRequest(objParamsForm) {
           dataForm.filter[name] = {$between: [min, max]};
           break;
 
-        case 'tags':
-        case 'sort':
+        default:
           dataForm[name] = objParamsForm[name];
           break;
       }
@@ -332,15 +331,15 @@ function getStrSearch(dataRequest) {
       }
 
       searchParams.set(`${name}`, JSON.stringify(dataRequest[name]));
-      console.log(name, dataRequest[name]);
+
     }
   }
-  console.log(`${searchParams}`);
+
   return searchParams;
 }
 
 function createLinkPagination(page, parentLinks, templatePost, parentPosts) {
-  const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+  const paramsLocationSearch = getObjParamsLocationSearch();
   const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
 
   const li = document.createElement('li');
@@ -357,7 +356,7 @@ function createLinkPagination(page, parentLinks, templatePost, parentPosts) {
   link.addEventListener('click', (e) => {
     e.preventDefault();
     const searchParams = new URLSearchParams(location.search);
-    const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+    const paramsLocationSearch = getObjParamsLocationSearch();
     const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
     const strRequest = getStrSearch(dataRequest);
 
@@ -386,11 +385,11 @@ function showLinkPagination(parentLinks, arrayLinks) {
 
 function onSuccessPost(page, parentLinks, template, parentPosts, formFilter) {
   return function (response) {
-    const paramsLocationSearch = getObjParamsLocationSearch(location.search);
+    const paramsLocationSearch = getObjParamsLocationSearch();
     const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
 
     let arrayPosts = [];
-    console.log(response);
+
     response.data.forEach((objPost) => {
       const li = document.createElement('li');
       const post = createPost(template, objPost);
@@ -398,7 +397,7 @@ function onSuccessPost(page, parentLinks, template, parentPosts, formFilter) {
       arrayPosts.push(li);
     });
     showPosts(parentPosts, arrayPosts);
-    console.log(page);
+
 
     const numPage = Math.ceil(response.count / dataRequest.limit);
     let arrayLinks = [];

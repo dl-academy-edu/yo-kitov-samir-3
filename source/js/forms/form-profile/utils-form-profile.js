@@ -1,6 +1,8 @@
-import {deleteDataUser} from '../utils-form.js';
-
-import {renderLinks, URL} from '../../common.js';
+import {
+  renderLinks,
+  URL,
+  deleteDataUser
+} from '../../common.js';
 
 function onSuccessDelete(data) {
   changesUserData(data, '');

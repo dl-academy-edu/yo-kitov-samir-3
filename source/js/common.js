@@ -1,9 +1,5 @@
-import {
-  saveDataUser,
-} from './forms/utils-form.js';
-
 const URL = 'https://academy.directlinedev.com';
-
+const MODAL_CLOSE_BUTTON_SELECTOR = 'close-modal';
 const SELECTOR_AGREEMENT_CHECKBOX = 'input[name=agreement]';
 const SELECTOR_BUTTON_SUBMIT = 'button[type=submit]';
 
@@ -60,10 +56,74 @@ function renderLinks(selectorHiddenItem = 'hide-completely') {
   }
 }
 
+function activeModalForm(modal, objEvent, selectorButtonCloseModal = MODAL_CLOSE_BUTTON_SELECTOR, selectorHiddenModal = 'hidden') {
+  modal.classList.remove(selectorHiddenModal);
+
+  const forms = [...modal.querySelectorAll('form')];
+  const formActive = forms.find((form) => {
+    return !form.classList.contains(selectorHiddenModal);
+  });
+  formActive.querySelector('input')
+            .focus();
+
+  const buttonCloseForm = modal.querySelector(`.${selectorButtonCloseModal}`);
+  buttonCloseForm.addEventListener('click', closePopupButtonClick);
+
+  document.addEventListener('keyup', closePopupKeyup);
+
+  //вспомогательные функции
+  function closePopupButtonClick() {
+    modal.classList.add(selectorHiddenModal);
+
+    this.removeEventListener('click', closePopupButtonClick);
+    modal.removeEventListener('keyup', closePopupKeyup);
+
+    removeHandlers(objEvent);
+  }
+
+  function closePopupKeyup(e) {
+    if (e.code === 'Escape') {
+      modal.classList.add(selectorHiddenModal);
+
+      document.removeEventListener('keyup', closePopupKeyup);
+      buttonCloseForm.removeEventListener('click', closePopupButtonClick);
+
+      removeHandlers(objEvent);
+    }
+  }
+}
+
+function removeHandlers(objEvent) {
+  if (objEvent) {
+    Object.keys(objEvent)
+          .forEach((nameElement) => {
+            objEvent[nameElement].element.removeEventListener(`${objEvent[nameElement].event}`, objEvent[nameElement].callback);
+          });
+  }
+}
+
+function signOut() {
+  deleteDataUser();
+  location.pathname = '/';
+}
+
+function saveDataUser(data) {
+  localStorage.userId = data.userId;
+  localStorage.token = data.token;
+}
+
+function deleteDataUser() {
+  localStorage.removeItem('userId');
+  localStorage.removeItem('token');
+}
+
 export {
   accessToSubmitButton,
   resolveFormSignIn,
   getNumbersFromString,
   renderLinks,
+  signOut,
+  activeModalForm,
+  deleteDataUser,
   URL
 };

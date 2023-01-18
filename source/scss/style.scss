@@ -80,6 +80,10 @@
 .banner__title {
   display: inline-block;
   max-width: min-content;
+
+  @media (max-width: $media-mobile) {
+    margin-right: 20px;
+  }
 }
 
 .banner__sub-title {
@@ -489,6 +493,10 @@
   flex-wrap: wrap;
 
   padding-bottom: 80px;
+
+  @media (max-width: $media-mobile) {
+    column-gap: 25px;
+  }
 }
 
 .profile__info {
