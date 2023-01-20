@@ -83,11 +83,6 @@ function checkRightSlide(parentSlides, counter, step) {
   return counter + step >= parentSlides.children.length;
 }
 
-function disabledArrow(leftArrow, rightArrow) {
-  leftArrow.disabled = checkLeftSlide(optionsSlider.counter, optionsSlider.step);
-  rightArrow.disabled = checkRightSlide(optionsSlider.parentSlides, optionsSlider.counter, optionsSlider.step);
-}
-
 export {
   createControls,
   hideSlide,
@@ -96,5 +91,4 @@ export {
   makeDotActive,
   checkLeftSlide,
   checkRightSlide,
-  disabledArrow
 };
