@@ -4,6 +4,7 @@ import {
 } from '../forms/utils-form.js';
 
 import {getNumbersFromString, URL} from '../common.js';
+import {checkLeftSlide, checkRightSlide} from '../slider-index/utilsSliders.js';
 
 const SELECTOR_CUSTOM_CHECKBOX = 'custom-checkbox-js';
 const SELECTOR_SMALL_STICK = 'custom-checkbox-js--small-stick';
@@ -237,7 +238,7 @@ function getObjParamsLocationSearch() {
 
 function getObjParamsFormFilter(form) {
   const inputs = form.querySelectorAll('input');
-  const objParamsForm = {};
+  const objParamsForm = {page: [0]};
 
   [...inputs].forEach((input) => {
     switch (input.type) {
@@ -259,6 +260,7 @@ function getObjParamsFormFilter(form) {
     }
   });
 
+  console.log(objParamsForm);
   return objParamsForm;
 }
 
@@ -383,7 +385,7 @@ function showLinkPagination(parentLinks, arrayLinks) {
   parentLinks.append(...arrayLinks);
 }
 
-function onSuccessPost(page, parentLinks, template, parentPosts, formFilter) {
+function onSuccessPost(parentLinks, template, parentPosts) {
   return function (response) {
     const paramsLocationSearch = getObjParamsLocationSearch();
     const dataRequest = convertObjParametersSearchForRequest(paramsLocationSearch);
@@ -407,6 +409,60 @@ function onSuccessPost(page, parentLinks, template, parentPosts, formFilter) {
       arrayLinks.push(link);
     }
     showLinkPagination(parentLinks, arrayLinks);
+
+    const ARROW = '.controls__arrow';
+    const parentControls = document.querySelector('.controls-js');
+    const arrowRight = document.querySelector('.controls__arrow--right-js');
+    const arrowLeft = document.querySelector('.controls__arrow--left-js');
+
+    parentControls.addEventListener('click', (e) => {
+      const target = e.target;
+
+      if (target.closest(ARROW)) {
+        const dataArrow = target.dataset.arrow;
+        const searchParams = new URLSearchParams(location.search);
+        const page = +searchParams.get('page');
+
+        if (dataArrow === 'right' && page + 1 <= parentLinks.children.length - 1) {
+          searchParams.set('page', page + 1);
+          setLocationSearch(searchParams);
+          return;
+        }
+
+        if (dataArrow === 'left' && page - 1 >= 0) {
+          searchParams.set('page', page - 1);
+          setLocationSearch(searchParams);
+          return;
+        }
+
+      }
+    });
+    arrowRight.disabled = checkRightSlide(parentLinks, +dataRequest.page[0], 1);
+    arrowLeft.disabled = checkLeftSlide(+dataRequest.page[0], 1);
+    checkLeftSlide();
+  };
+}
+
+function onSuccessTags(parentTags, templatePost, parentPosts, parentLinks) {
+  return function (arrayTagsData) {
+    const paramsSearch = getObjParamsLocationSearch();
+    if (location.search) {
+      [...document.forms].forEach((form) => {
+        initializeForm(form, paramsSearch);
+      });
+    }
+
+    const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
+    showTags(parentTags, tags);
+
+    const dataRequest = convertObjParametersSearchForRequest(paramsSearch);
+    const strRequest = getStrSearch(dataRequest);
+
+    const optionsRequestPosts = {
+      url: `/api/posts?${strRequest}`,
+      method: 'GET',
+    };
+    requestPageBlog(optionsRequestPosts, onSuccessPost(parentLinks, templatePost, parentPosts));
   };
 }
 
@@ -426,5 +482,6 @@ export {
   showPosts,
   createLinkPagination,
   showLinkPagination,
-  onSuccessPost
+  onSuccessPost,
+  onSuccessTags
 };

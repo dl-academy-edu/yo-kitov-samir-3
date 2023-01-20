@@ -4,9 +4,9 @@ import {
   showSlide,
   changeCounterArrows,
   makeDotActive,
-  checkLeftSlide,
-  checkRightSlide
 } from './utilsSliders.js';
+
+import {disabledArrow} from './utilsSliders.js';
 
 if (document.querySelector('.slider__list--js')) {
   const parentSlides = document.querySelector('.slider__list');
@@ -67,7 +67,7 @@ if (document.querySelector('.slider__list--js')) {
     optionsSlider.counter = Number(localStorage.slider);
   }
 
-  disabledArrow();
+  disabledArrow(leftArrow, rightArrow);
 
   doxControls.addEventListener('click', (e) => {
     const target = e.target;
@@ -86,7 +86,7 @@ if (document.querySelector('.slider__list--js')) {
         optionsSlider.counter = data;
         localStorage.slider = optionsSlider.counter;
 
-        disabledArrow();
+        disabledArrow(leftArrow, rightArrow);
       }
     }
 
@@ -97,13 +97,13 @@ if (document.querySelector('.slider__list--js')) {
       if (dataArrow === 'right' && (numberOfHidden.length === parentSlides.children.length - optionsSlider.step)) {
         optionsSlider.counter = changeCounterArrows(optionsSlider, 'right');
 
-        disabledArrow();
+        disabledArrow(leftArrow, rightArrow);
       }
 
       if (dataArrow === 'left' && (numberOfHidden.length === parentSlides.children.length - optionsSlider.step)) {
         optionsSlider.counter = changeCounterArrows(optionsSlider, 'left');
 
-        disabledArrow();
+        disabledArrow(leftArrow, rightArrow);
       }
 
       if (optionsSlider.prevCounter !== optionsSlider.counter) {
@@ -116,9 +116,4 @@ if (document.querySelector('.slider__list--js')) {
       }
     }
   });
-
-  function disabledArrow() {
-    leftArrow.disabled = checkLeftSlide(optionsSlider.counter, optionsSlider.step);
-    rightArrow.disabled = checkRightSlide(optionsSlider.parentSlides, optionsSlider.counter, optionsSlider.step);
-  }
 }

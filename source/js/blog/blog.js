@@ -1,16 +1,11 @@
 import {
   convertFormParametersToString,
-  getArrayTags,
   getObjParamsFormFilter,
-  getObjParamsLocationSearch,
-  initializeForm,
   requestPageBlog,
   resetTags,
-  showTags,
   setLocationSearch,
-  convertObjParametersSearchForRequest,
-  getStrSearch,
-  onSuccessPost
+  onSuccessTags,
+  convertObjParametersSearchForRequest
 } from './utils-blog.js';
 
 if (document.querySelector('.page-blog--js')) {
@@ -26,54 +21,24 @@ if (document.querySelector('.page-blog--js')) {
     const form = e.target;
     const objParamsForm = getObjParamsFormFilter(form);
 
-    const objDataFormForRequest = convertObjParametersSearchForRequest(objParamsForm);
-
-    const optionsRequestPosts = {
-      url: '/api/posts?v=1.0.0',
-      method: 'GET',
-      body: objDataFormForRequest
-    };
-    requestPageBlog(optionsRequestPosts, onSuccessPosts);
-
-    function onSuccessPosts(arrayData) {
-
-    }
-
     const strParamsForm = convertFormParametersToString(objParamsForm);
+    console.log(strParamsForm);
     setLocationSearch(strParamsForm);
   });
 
   //отправка запроса на сервер при загрузке страницы
+  const searchParams = new URLSearchParams(location.search);
+  const page = searchParams.get('page');
+  if (!page) {
+    searchParams.set('page', 0);
+    setLocationSearch(searchParams);
+  }
+
   const optionsRequestTags = {
     url: '/api/tags',
     method: 'GET',
   };
-
   requestPageBlog(optionsRequestTags, onSuccessTags(wrapTags, template, wrapPosts, wrapLinks));
-
-  function onSuccessTags(parentTags, templatePost, parentPosts, parentLinks) {
-    return function (arrayTagsData) {
-      const paramsSearch = getObjParamsLocationSearch(location.search);
-      if (location.search) {
-        [...document.forms].forEach((form) => {
-          initializeForm(form, paramsSearch);
-        });
-      }
-
-      const tags = getArrayTags(arrayTagsData, paramsSearch?.tags);
-      showTags(parentTags, tags);
-
-      const dataRequest = convertObjParametersSearchForRequest(paramsSearch);
-      const strRequest = getStrSearch(dataRequest);
-
-      const optionsRequestPosts = {
-        url: `/api/posts?${strRequest}`,
-        method: 'GET',
-      };
-      requestPageBlog(optionsRequestPosts, onSuccessPost(dataRequest.page, parentLinks, templatePost, parentPosts));
-
-    };
-  }
 
   buttonReset.addEventListener('click', (e) => {
     const target = e.target;
