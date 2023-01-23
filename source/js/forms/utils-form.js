@@ -368,7 +368,6 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
       }
     })
     .catch((error) => {
-      console.log(error);
       let modalMessageError;
 
       if (error._message) {
