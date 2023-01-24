@@ -125,5 +125,6 @@ export {
   signOut,
   activeModalForm,
   deleteDataUser,
+  MODAL_CLOSE_BUTTON_SELECTOR,
   URL
 };

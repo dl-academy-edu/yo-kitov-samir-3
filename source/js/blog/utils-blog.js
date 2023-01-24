@@ -307,6 +307,10 @@ function convertObjParametersSearchForRequest(objParamsForm) {
           dataForm.filter[name] = {$between: [min, max]};
           break;
 
+        case 'search':
+          dataForm.filter['title'] = objParamsForm[name][0];
+          break;
+
         default:
           dataForm[name] = objParamsForm[name];
           break;

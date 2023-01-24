@@ -1,4 +1,4 @@
-import {URL} from '../common.js';
+import {URL, MODAL_CLOSE_BUTTON_SELECTOR} from '../common.js';
 
 const TIME_DELETE_MODAL = 2000;
 const SUCCESS_MESSAGE = 'All right';
@@ -143,6 +143,11 @@ function getInvalidInputs(form) {
           break;
 
         case 'password':
+          if (!input.value.length) {
+            errors[input.name] = {input: input, message: 'This field is required'};
+            break;
+          }
+
           if (input.name === NAME_REPEAT_PASSWORD) {
             const form = input.form;
             const repeatPassword = input;
@@ -368,6 +373,7 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
       }
     })
     .catch((error) => {
+      console.log(error);
       let modalMessageError;
 
       if (error._message) {
@@ -385,6 +391,8 @@ function sendRequestForForm(objOptionsRequest, method = 'GET', resolve, reject) 
       if (error) {
         modalMessageError = createModalMessage(MODAL_MESSAGE_TEXT_ERROR, MODAL_MESSAGE_INVALID);
         showModalMessage(modalMessageError);
+        objOptionsRequest.form.reset();
+        clearForm(objOptionsRequest.form);
       }
     })
     .finally(() => deletePreloader());
