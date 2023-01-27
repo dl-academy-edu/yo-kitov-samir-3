@@ -14,3 +14,11 @@
     border-color: $basic-text;
   }
 }
+
+.input-default--invalid-js {
+  border: 2.5px solid $button-bad;
+}
+
+.input-default--valid-js {
+  border: 2.5px solid $button-good;
+}

@@ -4,11 +4,11 @@ import {
   showSlide,
   changeCounterArrows,
   makeDotActive,
-  checkLeftSlide,
-  checkRightSlide
-} from './utils.js';
+} from './utilsSliders.js';
 
-if (document.querySelector('.slider__list')) {
+import {checkLeftSlide, checkRightSlide} from './utilsSliders.js';
+
+if (document.querySelector('.slider__list--js')) {
   const parentSlides = document.querySelector('.slider__list');
   const listControls = document.querySelector('.controls__list');
   const itemControl = document.querySelector('.controls__item');
@@ -49,15 +49,8 @@ if (document.querySelector('.slider__list')) {
   });
 
   // создать точки переключения слайдера
-  let buttonActive;
-  let controls;
-  if (loc.includes('blog')) {
-    buttonActive = 'controls__button--number-active';
-    controls = createControls(parentSlides.children.length, itemControl, buttonActive, optionsSlider.start, 'numbers');
-  } else {
-    buttonActive = 'controls__button--active';
-    controls = createControls(parentSlides.children.length, itemControl, buttonActive, optionsSlider.start);
-  }
+  const buttonActive = 'controls__button--active';
+  const controls = createControls(parentSlides.children.length, itemControl, buttonActive, optionsSlider.start);
 
 
   //удалить все точки и добавить точек столько же сколько и слайдов
@@ -65,13 +58,13 @@ if (document.querySelector('.slider__list')) {
   listControls.append(...controls);
 
   // сделать активным слайд который был при последнем посещениии страницы или до перезагрузки страницы
-  if (localStorage[loc] && optionsSlider.start !== Number(localStorage[loc])) {
+  if (localStorage.slider && optionsSlider.start !== Number(localStorage.slider)) {
     hideSlide(optionsSlide, optionsSlider.start, TIME_HIDE);
-    showSlide(optionsSlide, localStorage[loc], TIME_SHOW);
-    makeDotActive(listControls, optionsSlider.start, localStorage[loc], buttonActive);
+    showSlide(optionsSlide, localStorage.slider, TIME_SHOW);
+    makeDotActive(listControls, optionsSlider.start, localStorage.slider, buttonActive);
 
-    optionsSlider.prevCounter = Number(localStorage[loc]);
-    optionsSlider.counter = Number(localStorage[loc]);
+    optionsSlider.prevCounter = Number(localStorage.slider);
+    optionsSlider.counter = Number(localStorage.slider);
   }
 
   disabledArrow();
@@ -91,7 +84,7 @@ if (document.querySelector('.slider__list')) {
 
         optionsSlider.prevCounter = data;
         optionsSlider.counter = data;
-        localStorage.setItem(loc, optionsSlider.counter);
+        localStorage.slider = optionsSlider.counter;
 
         disabledArrow();
       }
@@ -119,7 +112,7 @@ if (document.querySelector('.slider__list')) {
         makeDotActive(listControls, optionsSlider.prevCounter, optionsSlider.counter, buttonActive);
 
         optionsSlider.prevCounter = optionsSlider.counter;
-        localStorage.setItem(loc, optionsSlider.counter);
+        localStorage.slider = optionsSlider.counter;
       }
     }
   });

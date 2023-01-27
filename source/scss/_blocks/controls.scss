@@ -16,8 +16,8 @@
 
 //arrow
 .controls__arrow {
-  width: 42px;
-  height: 42px;
+  min-width: 42px;
+  min-height: 42px;
 
   border-radius: 50%;
   border: 3px solid $basic-text;
@@ -70,7 +70,10 @@
 //button
 .controls__list {
   display: flex;
+  flex-wrap: wrap;
   gap: 7px;
+
+  padding: 0 10px 0 15px;
 
   @media (max-width: $media-mobile) {
     margin-top: 14px;
@@ -100,13 +103,8 @@
   cursor: default;
 }
 
-.controls__button--number {
-  width: auto;
-  height: auto;
-
-  border-radius: 0;
-
-  background-color: transparent;
+.controls__link {
+  cursor: pointer;
 
   font-weight: 700;
   font-size: 18px;
@@ -117,12 +115,10 @@
   &:hover,
   &:focus {
     color: $nav;
-
-    background-color: transparent;
   }
 }
 
-.controls__button--number-active {
+.controls__link--active {
   color: $basic-text;
   cursor: default;
 }

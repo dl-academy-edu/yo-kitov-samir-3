@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="no-js">
+<html lang="en" class="page-index--js">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
@@ -21,33 +21,25 @@
   <link href="css/style.min.css" rel="stylesheet">
   <!-- endbuild -->
 </head>
-<body>
+<body class="body-index">
 @@include("./blocks/header.html", {
 hrefHome: "",
 classHome: "header__item--active",
 
 hrefBlog: "../blog.html",
-myBlog: "My blog",
 classBlog: "",
 
-hrefProfile: "",
-myProfile: "My profile",
+hrefProfile: "../profile.html",
 classProfile: "hide-completely",
-
-signIn: "Sign in",
-classSignIn: "",
-
-register: "Register",
-classRegister: ""
 })
 
 <main>
   <section class="banner container">
-    <h1 class="banner__title main-title">Antonina Antoninovna</h1>
-    <h2 class="banner__sub-title">Future front-end developer 23 years old, Tolyatti</h2>
+    <h1 class="banner__title main-title">Samir Igorevich</h1>
+    <h2 class="banner__sub-title">Future front-end developer 32 years old, Tolyatti</h2>
 
     <div class="slider">
-      <ul class="slider__list">
+      <ul class="slider__list slider__list--js">
         <li class="slider__item slider__item--active">
           <picture>
             <source media="(max-width: 767px)" srcset="img/girl-mobile.jpg, img/girl-mobile@x2.jpg 2x">
@@ -173,9 +165,9 @@ classRegister: ""
     <div class="portfolio__inner-wrap container">
       <h2 class="portfolio__title title">Portfolio</h2>
 
-      <div class="portfolio__slider">
-        <ul class="portfolio__list">
-          <li class="portfolio__item portfolio__item--active">
+      <div class="swiper">
+        <ul class="swiper-wrapper">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -194,7 +186,7 @@ classRegister: ""
             </div>
           </li>
 
-          <li class="portfolio__item">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -213,7 +205,7 @@ classRegister: ""
             </div>
           </li>
 
-          <li class="portfolio__item">
+          <li class="swiper-slide">
             <picture>
               <source media="(max-width: 767px)"
                       srcset="img/project-monster-mobile.jpg, img/project-monster-mobile@x2.jpg 2x">
@@ -232,6 +224,9 @@ classRegister: ""
             </div>
           </li>
         </ul>
+
+        <button class="swiper-button-prev swiper-arrow" aria-label="переключить слайдер влево"></button>
+        <button class="swiper-button-next swiper-arrow" aria-label="переключить слайдер вправо"></button>
       </div>
     </div>
   </section>
@@ -239,147 +234,6 @@ classRegister: ""
 
 @@include('blocks/footer.html')
 
-<section class="sign-in wrap-form hidden">
-  <form class="sign-in__form form" action="" method="post" name="sign-in">
-    <fieldset class="sign-in__fieldset fieldset">
-      <div class="sign-in__wrap-input wrap-input">
-        <input class="sign-in__input sign-in__input--email input-default" type="email" name="sign-in-email"
-               id="sign-in-email">
-        <label class="sign-in__label sign-in__label--email label" for="sign-in-email">Email <span class="start">*</span></label>
-      </div>
-
-      <div class="sign-in__wrap-input wrap-input">
-        <input class="sign-in__input sign-in__input--password input-default" type="password" name="sign-in-password"
-               id="sign-in-password">
-        <label class="sign-in__label sign-in__label--password label" for="sign-in-password">Password <span
-          class="start">*</span></label>
-      </div>
-    </fieldset>
-
-    <button class="sign-in__submit link" type="submit">Log in</button>
-  </form>
-</section>
-
-<section class="register wrap-form hidden">
-  <form class="register__form form" action="" method="post" name="register">
-    <fieldset class="register__fieldset fieldset">
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="email" name="register-email"
-               id="register-email">
-        <label class="register__label register__label--email label" for="register-email">Email <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--email input-default" type="text" name="register-name"
-               id="register-name">
-        <label class="register__label register__label--name label" for="register-name">Name <span class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--surname input-default" type="text" name="register-surname"
-               id="register-surname">
-        <label class="register__label register__label--surname label" for="register-surname">Surname <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--password input-default" type="password" name="register-password"
-               id="register-password">
-        <label class="register__label register__label--password label" for="register-password">Password <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--repeat-password input-default" type="password"
-               name="register-repeat-password"
-               id="register-repeat-password">
-        <label class="register__label register__label--repeat-password label" for="register-repeat-password">Repeat
-          password <span
-            class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--location input-default" type="text" name="register-location"
-               id="register-location">
-        <label class="register__label register__label--location label" for="register-location">Location <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--age input-default" type="text" name="register-age"
-               id="register-age">
-        <label class="register__label register__label--age label" for="register-age">Age <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="register__wrap-input wrap-input">
-        <input class="register__input register__input--agreement visually-hidden"
-               type="checkbox" name="agreement"
-               id="agreement" data-checkbox="checkbox">
-        <label class="register__label register__label--agreement label label--condition" for="agreement">Clicking on the
-          button, you
-          consent to the processing of your personal data.</label>
-        <span class="custom-checkbox" aria-disabled="true"></span>
-      </div>
-    </fieldset>
-
-    <button class="register__submit link" type="submit">Sign up</button>
-  </form>
-</section>
-
-<section class="message wrap-form hidden">
-  <form class="message__form form" action="" method="post" name="message">
-    <fieldset class="message__fieldset fieldset">
-      <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--name input-default" type="text" name="message-name"
-               id="message-name">
-        <label class="message__label message__label--name label" for="message-name">What is your name? <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--subject input-default" type="text" name="message-subject"
-               id="message-subject">
-        <label class="message__label message__label--subject label" for="message-subject">Message subject <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--email input-default" type="email" name="message-email"
-               id="message-email">
-        <label class="message__label message__label--email label" for="message-email">Your Email <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="message__wrap-input wrap-input">
-        <input class="message__input message__input--phone input-default" type="tel" name="message-phone"
-               id="message-phone">
-        <label class="message__label message__label--phone label" for="message-phone">Your mobile phone <span
-          class="start">*</span></label>
-      </div>
-
-      <div class="message__wrap-input wrap-input">
-        <textarea class="message__input message__input--text input-default" name="message-text"
-                  id="message-text"></textarea>
-        <label class="message__label message__label--text label"
-               for="message-text">What do you want to discuss with me?</label>
-      </div>
-
-      <div class="message__wrap-input wrap-input">
-        <input class="visually-hidden" type="checkbox" name="agreement-message" id="agreement-message"
-               data-checkbox="checkbox">
-        <label class="message__label message__label--agreement-message label label--condition"
-               for="agreement-message">Clicking on the button, you consent to the processing of your personal
-          data.</label>
-        <span class="custom-checkbox" aria-disabled="true"></span>
-      </div>
-    </fieldset>
-
-    <button class="message__submit link" type="submit">Send</button>
-  </form>
-</section>
-
-<script src="js/app.js" type="module" defer></script>
+<script src="js/app.js" type="module"></script>
 </body>
 </html>
