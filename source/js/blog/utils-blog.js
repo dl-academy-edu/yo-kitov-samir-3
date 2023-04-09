@@ -244,7 +244,10 @@ function getObjParamsFormFilter(form) {
     switch (input.type) {
       case 'search':
       case 'text':
-        objParamsForm[input.name] = [input.value];
+        if (input.value !== '') {
+          console.log(input.value);
+          objParamsForm[input.name] = [input.value];
+        }
         break;
 
       default:
